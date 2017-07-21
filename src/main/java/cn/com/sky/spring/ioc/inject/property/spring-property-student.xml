@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="school" class="cn.com.sky.spring.ioc.inject.property.School">
+		<property name="name" value="TsingHua" />
+	</bean>
+
+	<!-- 1. 注入简单值 -->
+	<bean id="studentBySimple" class="cn.com.sky.spring.ioc.inject.property.Student">
+		<property name="name" value="sky" />
+		<property name="age" value="21" />
+	</bean>
+
+
+	<!-- 2. 引用其他Bean -->
+	<bean id="studentByBean" class="cn.com.sky.spring.ioc.inject.property.Student">
+		<property name="name" value="sky" />
+		<property name="age" value="21" />
+		<property name="school" ref="school" />
+	</bean>
+
+	<!-- 3. 注入内部Bean。内部Bean不能被复用。内部Bean 仅适用于一次注入，而且也不能被其他Bean 所引用。 -->
+	<bean id="studentByInnerBean" class="cn.com.sky.spring.ioc.inject.property.Student">
+		<property name="name" value="sky" />
+		<property name="age" value="21" />
+		<property name="school" ref="school" />
+		<property name="hobby">
+			<bean class="cn.com.sky.spring.ioc.inject.property.Hobby">
+				<property name="desc" value="playgames" />
+			</bean>
+		</property>
+	</bean>
+
+</beans>

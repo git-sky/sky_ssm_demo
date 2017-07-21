@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		">
+
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="500" />
+		<property name="maxIdle" value="100" />
+		<property name="minIdle" value="10" />
+		<property name="maxWaitMillis" value="1000" />
+		<property name="testOnBorrow" value="true" />
+	</bean>
+	<bean id="redisClusterConnectionFactory"
+		  class="cn.com.gome.ztghb.cache.redis.spring.RedisClusterConnectionFactory">
+		<property name="hostPorts">
+			<set>
+				<value>10.58.47.100:7010</value>
+				<value>10.58.47.100:7011</value>
+				<value>10.58.47.100:7012</value>
+				<value>10.58.47.101:7010</value>
+				<value>10.58.47.101:7011</value>
+				<value>10.58.47.101:7012</value>
+			</set>
+		</property>
+		<property name="jedisPoolConfig" ref="jedisPoolConfig" />
+	</bean>
+
+	<bean id="redisCluster"
+		  class="cn.com.gome.ztghb.cache.redis.impl.RedisClusterImpl">
+		<constructor-arg index="0" ref="redisClusterConnectionFactory" />
+	</bean>
+	
+</beans>

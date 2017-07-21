@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="  
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+
+	<!-- 配置bean -->
+	<bean id="userDao" class="cn.com.sky.spring.aop.autoproxy.UserDaoImpl" />
+
+	<!-- 通知 -->
+	<bean id="myAdvice" class="cn.com.sky.spring.aop.autoproxy.MyAdvice" />
+
+	<!-- advisor -->
+	<bean id="myAdvisor"
+		class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice" ref="myAdvice" />
+		<!-- <property name="pattern" value=".*add" /> -->
+		<property name="patterns">
+			<list>
+				<value>.*add</value>
+				<value>.*update</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 自动代理创建模式,DefaultAdvisorAutoProxyCreator -->
+	<!-- 将DefaultAdvisorAutoProxyCreator注册到容器后，它就会自动搜寻容器内的所有Advisor，然后根据各个Advisor所提供的拦截信息，为符合条件的容器中的目标对象生成相应的代理对象。 -->
+	<bean
+		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
+
+	<!-- 自动代理创建模式,BeanNameAutoProxyCreator,更加细粒度的织入范围控制。 -->
+	<bean
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<!-- 通过beanNames，我们可以指定要对容器中的哪些bean自动生成代理对象。 -->
+		<property name="beanNames">
+			<list>
+				<value>userDao</value>
+			</list>
+		</property>
+		<!-- 通过interceptorNames，我们可以指定将要应用到目标对象的拦截器、Advice或者Advisor等。 -->
+		<property name="interceptorNames">
+			<list>
+				<value>myAdvisor</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>

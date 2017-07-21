@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	<!-- 一个应用只能有一个application 建议所有的消费配置放在一个配置文件中 
+	<dubbo:application name="consumer-gome-rebate-ztjg" />-->
+	<dubbo:consumer check="false" filter="logSessionFilter" />
+
+	<!-- 此处的端口 有可能会被配置文件中或者jvm参数中的值替掉 -->
+	<dubbo:protocol name="dubbo" port="20880" />
+	<!-- zookeeper地址在RegistryConfigBeanPostProcessor类中找diamond配置 -->
+	<dubbo:registry protocol="zookeeper"  id="baseDubbo" />
+	<dubbo:registry protocol="zookeeper" id="rebateRedis" />
+
+	<dubbo:reference interface="com.gome.service.CacheService" id="cacheService" loadbalance="random" timeout="2000" registry="rebateRedis" />
+	<bean id="cacheServiceTransfer" class="cn.com.gome.rebate.privateutils.CacheServiceTransfer">
+		<property name="cacheService" ref="cacheService" />
+	</bean>
+
+
+	<dubbo:registry id="msgAddress" protocol="zookeeper" />
+	<dubbo:registry id="memberAddress" protocol="zookeeper"  />
+	<dubbo:registry id="settlementAddress" protocol="zookeeper" />
+
+
+	<!-- Account Sys -->
+	<dubbo:reference version="${account_dubbo_version}"  id="budgetfacade" interface="com.gomeo2o.facade.account.service.BudgetTotalFacade" check="false" timeout="5000" registry="msgAddress" />
+	<dubbo:reference version="${account_dubbo_version}"  id="detailfacade" interface="com.gomeo2o.facade.account.service.RebateDetailFacade" check="false" timeout="5000" registry="msgAddress" />
+	<dubbo:reference version="${account_dubbo_version}"  id="acccountInfofacade" interface="com.gomeo2o.facade.account.service.AccountInfoFacade" check="false" timeout="5000" registry="msgAddress" />
+	<!-- settlement Sys -->
+	<dubbo:reference version="${settlement_dubbo_version}"  id="settlementService" interface="cn.com.gome.settlement.service.GomeSettlementWriteService" check="false" timeout="5000" registry="settlementAddress" />
+
+	<!-- member Sys   -->
+	<dubbo:reference version="${user_dubbo_version}"  id="memberfacade" interface="cn.com.gome.user.service.MemberRebateFacade" check="false" timeout="5000" registry="memberAddress" />
+	<!-- 商品信息 -->
+	<dubbo:reference version="${item_dubbo_version}"  id="itemReadService" interface="io.terminus.ecp.item.service.ItemReadService" check="false"  timeout="5000" registry="memberAddress" />
+
+	<!--美店api -->
+	<dubbo:reference version="${vshop_dubbo_version}"  id="vshopFacade" interface="com.gomeo2o.facade.vshop.service.VshopFacade" check="false"  timeout="5000" registry="memberAddress" />
+
+	<!--商家信息-->
+	<dubbo:reference version="${shop_dubbo_version}"  id="xpopAccountFacade" interface="cn.com.gome.shop.service.XpopAccountFacade" check="false" timeout="5000" registry="memberAddress"/>
+
+</beans>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="student" class="cn.com.sky.spring.ioc.inject.constructor.Student">
+		<constructor-arg value="sky" />
+		<constructor-arg value="alibaba" />
+		<constructor-arg value="21" />
+		<constructor-arg value="true" />
+	</bean>
+
+	<!-- 与上一个配置是一样的 -->
+	<bean id="studentByElement" class="cn.com.sky.spring.ioc.inject.constructor.Student">
+		<constructor-arg>
+			<value>sky</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>alibaba</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>21</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>true</value>
+		</constructor-arg>
+	</bean>
+
+	<!-- 不传type，默认string类型 -->
+	<bean id="student2" class="cn.com.sky.spring.ioc.inject.constructor.Student">
+		<constructor-arg value="sky" />
+		<constructor-arg value="21" />
+	</bean>
+
+	<!-- 根据type属性传值 -->
+	<bean id="studentByType" class="cn.com.sky.spring.ioc.inject.constructor.Student">
+		<constructor-arg type="java.lang.String" value="sky" />
+		<constructor-arg type="int" value="21" />
+	</bean>
+
+	<!-- 根据index属性传值 -->
+	<!-- 通过使用index属性可以显式的指定构造器参数出现顺序。推荐 -->
+	<bean id="studentByIndex" class="cn.com.sky.spring.ioc.inject.constructor.Student">
+		<constructor-arg index="0" value="sky" />
+		<constructor-arg index="1" value="21" />
+	</bean>
+
+	<!-- 根据name属性传值。推荐 -->
+	<bean id="studentByName" class="cn.com.sky.spring.ioc.inject.constructor.Student">
+		<constructor-arg name="name" value="sky" />
+		<constructor-arg name="age" value="21" />
+	</bean>
+
+	<bean id="school" class="cn.com.sky.spring.ioc.inject.constructor.School">
+		<constructor-arg index="0" value="TsingHua" />
+		<constructor-arg index="1" value="BeiJing" />
+	</bean>
+
+	<!-- 注入对象引用。在这我们不能使用value属性为构造参数school赋值，因为School不是简单类型。取而代之的是，我们使用ref属性将ID为xidian的Bean引用传递给构造器。 -->
+	<bean id="studentByRef" class="cn.com.sky.spring.ioc.inject.constructor.Student">
+		<constructor-arg name="name" value="sky" />
+		<constructor-arg name="age" value="21" />
+		<constructor-arg name="school" ref="school" />
+	</bean>
+
+	<bean id="studentByInnerBean" class="cn.com.sky.spring.ioc.inject.constructor.Student">
+		<constructor-arg name="name" value="sky" />
+		<constructor-arg name="age" value="21" />
+		<constructor-arg name="school" ref="school" />
+		<constructor-arg name="hobby">
+			<bean class="cn.com.sky.spring.ioc.inject.constructor.Hobby">
+				<property name="desc" value="playgames" />
+			</bean>
+		</constructor-arg>
+	</bean>
+
+</beans>
