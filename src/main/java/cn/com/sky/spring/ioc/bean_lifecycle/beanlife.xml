@@ -4,7 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="sky" class="cn.com.sky.spring.ioc.bean_lifecycle.Student"
-		scope="singleton" init-method="myInit" destroy-method="myDestroy">
+		scope="singleton" init-method="myInit"
+		destroy-method="myDestroy">
 		<property name="name" value="butterfly" />
 		<property name="age" value="21" />
 		<property name="school" value="TsingHua" />

@@ -5,6 +5,8 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.support.PropertiesBeanDefinitionReader;
 
+import cn.com.sky.spring.beanfactory.programmatic.model.User;
+
 /**
  * 2.a>加载Properties配置的BeanFactory的使用
  */
@@ -19,8 +21,16 @@ public class TestByPropertiesFile {
 
 	public static BeanFactory bindViaPropertiesFile(BeanDefinitionRegistry registry) {
 		PropertiesBeanDefinitionReader reader = new PropertiesBeanDefinitionReader(registry);
-		reader.loadBeanDefinitions("classpath:../../config.properties");
+		String properties = getPath() + "/config.properties";
+		reader.loadBeanDefinitions(properties);
 		return (BeanFactory) registry;
+	}
+
+	private static String getPath() {
+		String path = TestByAnnotation.class.getPackage().getName();
+		String p = path.replaceAll("\\.", "/");
+		System.out.println(p);
+		return p;
 	}
 
 }

@@ -9,6 +9,10 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.support.RootBeanDefinition;
 
+import cn.com.sky.spring.beanfactory.programmatic.model.Account;
+import cn.com.sky.spring.beanfactory.programmatic.model.Address;
+import cn.com.sky.spring.beanfactory.programmatic.model.User;
+
 /**
  * 1.直接编码方式
  */

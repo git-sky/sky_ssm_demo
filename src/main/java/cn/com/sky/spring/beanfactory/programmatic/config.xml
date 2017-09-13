@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-	<bean id="djNewsProvider" class="..FXNewsProvider">
+	<bean id="user" class="cn.com.sky.spring.beanfactory.programmatic.model.User">
 		<constructor-arg index="0">
-			<ref bean="djNewsListener" />
+			<ref bean="account" />
 		</constructor-arg>
 		<constructor-arg index="1">
-			<ref bean="djNewsPersister" />
+			<ref bean="address" />
 		</constructor-arg>
 	</bean>
-	<bean id="djNewsListener" class="..impl.DowJonesNewsListener">
+	<bean id="account"
+		class="cn.com.sky.spring.beanfactory.programmatic.model.Account">
 	</bean>
-	<bean id="djNewsPersister" class="..impl.DowJonesNewsPersister">
+	<bean id="address"
+		class="cn.com.sky.spring.beanfactory.programmatic.model.Address">
 	</bean>
 </beans>

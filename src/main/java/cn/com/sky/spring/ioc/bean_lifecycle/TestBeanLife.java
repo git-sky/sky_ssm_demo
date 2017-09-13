@@ -34,7 +34,7 @@ public class TestBeanLife {
 	private String getPath() {
 		String path = TestBeanLife.class.getPackage().getName();
 		String p = path.replaceAll("\\.", "/");
-		System.out.println(p);
+		// System.out.println(p);
 		return p;
 	}
 
@@ -43,13 +43,21 @@ public class TestBeanLife {
 
 		String configLocation = getPath() + "/beanlife.xml";
 
+		// 1.容器初始化
+		System.out.println("=================1.容器初始化===================");
 		ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
+
 		// 2. 从IOC容器中获取Bean实例
-		Student stu = (Student) context.getBean("sky");
-		System.out.println("====================================");
+		System.out.println("==================2.从IOC容器中获取Bean实例==================");
+		Teacher stu = (Teacher) context.getBean("sky");
+
 		// 3.调用方法
+		System.out.println("==================3.调用方法==================");
 		System.out.println(stu);
+		stu.say();
+
 		// 4.关闭容器
+		System.out.println("==================4.关闭容器==================");
 		((ClassPathXmlApplicationContext) context).registerShutdownHook();
 
 	}
@@ -60,7 +68,8 @@ public class TestBeanLife {
 
 		ConfigurableBeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource(configLocation));
 		beanFactory.addBeanPostProcessor(new MyBeanPostProcessor());
-//		beanFactory.getBean("sky");
-		beanFactory.getBean("teacher");
+		// beanFactory.getBean("sky");
+		Teacher teacher = (Teacher) beanFactory.getBean("teacher");
+		System.out.println(teacher);
 	}
 }
