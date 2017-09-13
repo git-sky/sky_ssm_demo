@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.com.sky.spring.beanfactory.demo.TestCarFactoryBean;
+import cn.com.sky.spring.beanfactory.factory_bean.TestCarFactoryBean;
 import cn.com.sky.spring.ioc.factory_initial.HelloApi;
 
 public class TestFactory {

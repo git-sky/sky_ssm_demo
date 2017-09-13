@@ -3,7 +3,7 @@ package cn.com.sky.spring.ioc.aggregate;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.com.sky.spring.beanfactory.demo.TestCarFactoryBean;
+import cn.com.sky.spring.beanfactory.factory_bean.TestCarFactoryBean;
 
 /**
  * spring 装配集合

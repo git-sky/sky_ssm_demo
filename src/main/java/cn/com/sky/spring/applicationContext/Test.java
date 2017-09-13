@@ -3,7 +3,6 @@ package cn.com.sky.spring.applicationContext;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 
 public class Test {
 
@@ -14,25 +13,48 @@ public class Test {
 		return p;
 	}
 
+	@SuppressWarnings({ "deprecation", "unused" })
 	public static void main(String[] args) {
 
 		String configLocation = getPath() + "/applicationContext.xml";
 
-		// ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
+//		 ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
 
 		BeanFactory context = new XmlBeanFactory(new ClassPathResource(configLocation));
 
-		Student sky = (Student) context.getBean("sky");
-		Student sky2 = (Student) context.getBean("sky2");
+		Student sky1 = (Student) context.getBean("sky");
+//		Student sky2 = (Student) context.getBean("sky");
 //		Student sky3 = (Student) context.getBean("sky");
-//		Student sky4 = (Student) context.getBean("sky2");
-//		System.out.println(sky);
+//
+//		System.out.println(sky1);
 //		System.out.println(sky2);
 //		System.out.println(sky3);
-//		System.out.println(sky4);
-//		System.out.println(sky == sky2);
-//		System.out.println(sky == sky3);
-//		System.out.println(sky2 == sky4);
+
+		// cn.com.sky.spring.applicationContext.Student@56a59355
+		// cn.com.sky.spring.applicationContext.Student@56a59355
+		// cn.com.sky.spring.applicationContext.Student@56a59355
+
+		Student sky21 = (Student) context.getBean("sky2");
+//		Student sky22 = (Student) context.getBean("sky2");
+//		Student sky23 = (Student) context.getBean("sky2");
+//
+//		System.out.println(sky21);
+//		System.out.println(sky22);
+//		System.out.println(sky23);
+
+		// cn.com.sky.spring.applicationContext.Student@106bdde4
+		// cn.com.sky.spring.applicationContext.Student@19b4ac28
+		// cn.com.sky.spring.applicationContext.Student@24928347
+
+		// Student sky3 = (Student) context.getBean("sky");
+		// Student sky4 = (Student) context.getBean("sky2");
+		// System.out.println(sky);
+		// System.out.println(sky2);
+		// System.out.println(sky3);
+		// System.out.println(sky4);
+		// System.out.println(sky == sky2);
+		// System.out.println(sky == sky3);
+		// System.out.println(sky2 == sky4);
 
 	}
 }

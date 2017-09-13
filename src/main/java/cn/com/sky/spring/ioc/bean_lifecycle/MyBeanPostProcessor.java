@@ -21,15 +21,16 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
 
 	// 来自于BeanPostProcessor接口
 	@Override
-	public Object postProcessAfterInitialization(Object arg0, String arg1) throws BeansException {
-		System.out.println("postProcessAfterInitialization...[" + arg1 + "],[" + arg0 + "]");
-		return arg0;
+	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		System.out.println("postProcessBeforeInitialization...[" + beanName + "],[" + bean + "]");
+		return bean;
 	}
 
 	// 来自于BeanPostProcessor接口
 	@Override
-	public Object postProcessBeforeInitialization(Object arg0, String arg1) throws BeansException {
-		System.out.println("postProcessBeforeInitialization...[" + arg1 + "],[" + arg0 + "]");
-		return arg0;
+	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		System.out.println("postProcessAfterInitialization...[" + beanName + "],[" + bean + "]");
+		return bean;
 	}
+
 }

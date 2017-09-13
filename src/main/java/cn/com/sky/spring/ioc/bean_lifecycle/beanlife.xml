@@ -3,13 +3,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="sky" class="cn.com.sky.spring.ioc.bean_lifecycle.Student" scope="singleton"
-		init-method="myInit" destroy-method="myDestroy">
+	<bean id="sky" class="cn.com.sky.spring.ioc.bean_lifecycle.Student"
+		scope="singleton" init-method="myInit" destroy-method="myDestroy">
 		<property name="name" value="butterfly" />
 		<property name="age" value="21" />
 		<property name="school" value="TsingHua" />
 	</bean>
-	
-	<bean id="myBeanPostProcessor" class="cn.com.sky.spring.ioc.bean_lifecycle.MyBeanPostProcessor" />
+
+	<bean id="myBeanPostProcessor"
+		class="cn.com.sky.spring.ioc.bean_lifecycle.MyBeanPostProcessor" />
+
+	<bean id="teacher" class="cn.com.sky.spring.ioc.bean_lifecycle.Teacher">
+		<property name="name" value="袁腾飞" />
+	</bean>
 
 </beans>

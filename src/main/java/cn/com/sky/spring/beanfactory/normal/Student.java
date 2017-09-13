@@ -1,4 +1,4 @@
-package cn.com.sky.spring.applicationContext;
+package cn.com.sky.spring.beanfactory.normal;
 
 public class Student {
 
@@ -6,8 +6,8 @@ public class Student {
 	private int age;
 
 	public Student() {
-		System.out.println("Student() ");
 	}
+
 
 	public String getName() {
 		return name;
@@ -24,9 +24,10 @@ public class Student {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
-//	@Override
-//	public String toString() {
-//		return "Student [name=" + name + ", age=" + age + "]";
-//	}
+
+
+	@Override
+	public String toString() {
+		return "Student [name=" + name + ", age=" + age + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
 }

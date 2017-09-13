@@ -66,4 +66,35 @@
 	</servlet-mapping>
 
 
+
+	<!-- hessian -->
+
+	<servlet>
+		<servlet-name>hello</servlet-name>
+		<servlet-class>com.caucho.hessian.server.HessianServlet</servlet-class>
+		<init-param>
+			<param-name>home-class</param-name>
+			<param-value>cn.com.sky.hessian.service.BasicService</param-value>
+		</init-param>
+		<init-param>
+			<param-name>home-api</param-name>
+			<param-value>cn.com.sky.hessian.service.Basic</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>hello</servlet-name>
+		<url-pattern>/hello</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>liny</servlet-name>
+		<servlet-class>cn.com.sky.hessian.service.LinyService</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>liny</servlet-name>
+		<url-pattern>/liny</url-pattern>
+	</servlet-mapping>
+
 </web-app>

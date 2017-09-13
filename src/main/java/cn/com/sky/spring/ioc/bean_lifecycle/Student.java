@@ -97,7 +97,7 @@ public class Student implements FactoryBean, BeanNameAware, BeanFactoryAware, In
 
 	@Override
 	public String toString() {
-		return "name：" + name + "   age：" + age + "   school：" + school;
+		return "Student [name=" + name + ", age=" + age + ", school=" + school + "]";
 	}
 
 	@Override

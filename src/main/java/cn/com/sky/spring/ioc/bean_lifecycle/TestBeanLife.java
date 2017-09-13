@@ -60,6 +60,7 @@ public class TestBeanLife {
 
 		ConfigurableBeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource(configLocation));
 		beanFactory.addBeanPostProcessor(new MyBeanPostProcessor());
-		beanFactory.getBean("sky");
+//		beanFactory.getBean("sky");
+		beanFactory.getBean("teacher");
 	}
 }

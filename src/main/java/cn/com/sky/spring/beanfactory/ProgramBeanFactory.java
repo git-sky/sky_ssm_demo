@@ -4,7 +4,7 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.core.io.ClassPathResource;
 
-import cn.com.sky.spring.beanfactory.demo.Car;
+import cn.com.sky.spring.beanfactory.factory_bean.Car;
 
 public class ProgramBeanFactory {
 	public static void main(String[] args) {
