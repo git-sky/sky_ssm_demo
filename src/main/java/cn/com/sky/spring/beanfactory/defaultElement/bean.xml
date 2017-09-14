@@ -3,14 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="sky" name="sky2,sky3" class="cn.com.sky.spring.beanfactory.normal.Student"
-		scope="prototype">
-		<property name="name" value="Lucy" />
-		<property name="age" value="24" />
-	</bean>
-
-	<!-- 定义别名 -->
-	<alias name="sky" alias="sky5" />
-	<alias name="sky" alias="sky6" />
+	<alias name="" alias="" />
+	<bean></bean>
+	<import resource="" />
+	<beans></beans>
 
 </beans>
