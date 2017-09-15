@@ -1,8 +1,6 @@
 package cn.com.sky.spring.applicationContext;
 
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.context.ApplicationContext;
 
 public class Test {
 
@@ -18,29 +16,31 @@ public class Test {
 
 		String configLocation = getPath() + "/applicationContext.xml";
 
-//		 ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
+//		ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
+		
+		ApplicationContext context = new MyClassPathXmlApplicationContext(configLocation);
 
-		BeanFactory context = new XmlBeanFactory(new ClassPathResource(configLocation));
+		// BeanFactory context = new XmlBeanFactory(new ClassPathResource(configLocation));
 
 		Student sky1 = (Student) context.getBean("sky");
-//		Student sky2 = (Student) context.getBean("sky");
-//		Student sky3 = (Student) context.getBean("sky");
-//
-//		System.out.println(sky1);
-//		System.out.println(sky2);
-//		System.out.println(sky3);
+		// Student sky2 = (Student) context.getBean("sky");
+		// Student sky3 = (Student) context.getBean("sky");
+		//
+		// System.out.println(sky1);
+		// System.out.println(sky2);
+		// System.out.println(sky3);
 
 		// cn.com.sky.spring.applicationContext.Student@56a59355
 		// cn.com.sky.spring.applicationContext.Student@56a59355
 		// cn.com.sky.spring.applicationContext.Student@56a59355
 
 		Student sky21 = (Student) context.getBean("sky2");
-//		Student sky22 = (Student) context.getBean("sky2");
-//		Student sky23 = (Student) context.getBean("sky2");
-//
-//		System.out.println(sky21);
-//		System.out.println(sky22);
-//		System.out.println(sky23);
+		// Student sky22 = (Student) context.getBean("sky2");
+		// Student sky23 = (Student) context.getBean("sky2");
+		//
+		// System.out.println(sky21);
+		// System.out.println(sky22);
+		// System.out.println(sky23);
 
 		// cn.com.sky.spring.applicationContext.Student@106bdde4
 		// cn.com.sky.spring.applicationContext.Student@19b4ac28
