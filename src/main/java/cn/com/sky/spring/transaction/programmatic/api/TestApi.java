@@ -30,6 +30,7 @@ public class TestApi {
 		datasource.setMaxPoolSize(maxPoolSize);
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+		
 		DataSourceTransactionManager txManager = new DataSourceTransactionManager(datasource);
 
 		DefaultTransactionDefinition txDefinition = new DefaultTransactionDefinition();// 事务定义类

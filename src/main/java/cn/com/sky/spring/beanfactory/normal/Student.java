@@ -6,6 +6,7 @@ public class Student {
 	private int age;
 
 	public Student() {
+		System.out.println("Student()");
 	}
 
 

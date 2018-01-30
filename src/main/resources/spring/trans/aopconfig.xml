@@ -9,7 +9,7 @@
 
 	<!-- 自动扫描的包 -->
 	<context:component-scan
-		base-package="cn.com.sky.spring.transaction.propagation.demo" />
+		base-package="cn.com.sky.spring.transaction.declarative.aopconfig" />
 
 	<!-- 导入资源文件 -->
 	<context:property-placeholder location="classpath:db.properties" />
@@ -33,28 +33,28 @@
 	<!-- 1. 配置事务管理器。以后集成Hibernate、Mybatis需要配置不同的事务管理器 -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-		<!-- <property name="rollbackOnCommitFailure" value="true" /> --><!-- 场景？？ -->
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="rollbackOnCommitFailure" value="true" />
 	</bean>
 
 	<!-- 任何RuntimeException 会 rollback, 任何 checked Exception 不会rollback。 -->
 	<!-- 第一种配置事务的方式 ，使用tx标签方式 -->
 	<!-- 2. 配置事务属性。传播行为、隔离级别、只读、超时时间回滚 -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<!-- <tx:attributes> <tx:method name="purchase" propagation="REQUIRED" 
-			read-only="false" timeout="30" isolation="DEFAULT" /> <tx:method name="get*" 
-			read-only="true" /> <tx:method name="purchase" rollback-for="Exception" read-only="false" 
-			/>设置为发生Exception异常都回滚 <tx:method name="*" /> </tx:attributes> -->
 		<tx:attributes>
-			<tx:method name="updateBookStock" propagation="REQUIRED" />
-			<tx:method name="*" propagation="REQUIRED" /><!-- 事务在哪些方法起作用，如果没有配置方法，则事务不对任何方法起作用 -->
+			<!-- <tx:method name="purchase" propagation="REQUIRED" read-only="false" 
+				timeout="30" isolation="DEFAULT" /> -->
+			<tx:method name="get*" read-only="true" />
+			<!-- <tx:method name="purchase" rollback-for="Exception"
+				read-only="false" /> --><!-- 设置为发生Exception异常都回滚 -->
+			<tx:method name="*" />
 		</tx:attributes>
 	</tx:advice>
 
 	<!-- 2. 配置事务切入点。并把事务切入点与事务属性关联起来。 -->
 	<aop:config>
 		<aop:pointcut
-			expression="execution(* cn.com.sky.spring.transaction.propagation.demo.*.*(..))"
+			expression="execution(* cn.com.sky.spring.transaction.declarative.aopconfig.*.*(..))"
 			id="txPointCut" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut" />
 	</aop:config>

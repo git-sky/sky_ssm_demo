@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="sky" name="sky2,sky3" class="cn.com.sky.spring.beanfactory.normal.Student"
-		scope="prototype">
+		> <!-- scope="" singleton prototype -->
 		<property name="name" value="Lucy" />
 		<property name="age" value="24" />
 	</bean>

@@ -28,15 +28,15 @@ public class BookShopServiceImpl implements BookShopService {
 			e.printStackTrace();
 		}
 
-		JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost");
+//		JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost");
+//
+//		Jedis jedis = pool.getResource();
+//
+//		// 添加数据
+//		jedis.hset("hashs", "entryKey", "entryValue");
+//		System.out.println(jedis.hget("hashs", "entryKey"));
 
-		Jedis jedis = pool.getResource();
-
-		// 添加数据
-		jedis.hset("hashs", "entryKey", "entryValue");
-		System.out.println(jedis.hget("hashs", "entryKey"));
-
-		 throw new RuntimeException("我就要回滚");// 随便抛出RuntimeException异常，都会导致方法的回滚。
+//		 throw new RuntimeException("我就要回滚");// 随便抛出RuntimeException异常，都会导致方法的回滚。
 	}
 
 }

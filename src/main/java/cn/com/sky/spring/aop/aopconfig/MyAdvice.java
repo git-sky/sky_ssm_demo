@@ -33,6 +33,7 @@ public class MyAdvice {
 			obj = point.proceed();
 		}
 		System.out.println("doAround 2 ..." + point.getSignature().getName());
+		System.out.println(obj);
 		return obj;
 	}
 
@@ -44,11 +45,13 @@ public class MyAdvice {
 		System.out.println("doAfterReturning ..." + point.getSignature().getName());
 	}
 
+	/**
+	 * retValue是被代理方法的返回值
+	 */
 	public String doAfterReturning(JoinPoint point, String retValue) throws Throwable {
 		System.out.println("doAfterReturning ..." + point.getSignature().getName());
-		System.out.println("retValue ..." + retValue);
+		System.out.println("retValue:" + retValue);
 		return retValue;
-
 	}
 
 	public void doAfterThrowing(JoinPoint point, Throwable ex) {

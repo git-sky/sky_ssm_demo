@@ -29,6 +29,7 @@ public class Test {
 
 		XmlBeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource(configLocation));
 
+
 		Student stu = (Student) beanFactory.getBean("sky");
 		System.out.println(stu);
 

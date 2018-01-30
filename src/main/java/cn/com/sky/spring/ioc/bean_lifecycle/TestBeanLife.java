@@ -67,6 +67,9 @@ public class TestBeanLife {
 		String configLocation = getPath() + "/beanlife.xml";
 
 		ConfigurableBeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource(configLocation));
+
+        beanFactory.
+
 		beanFactory.addBeanPostProcessor(new MyBeanPostProcessor());
 		// beanFactory.getBean("sky");
 		Teacher teacher = (Teacher) beanFactory.getBean("teacher");

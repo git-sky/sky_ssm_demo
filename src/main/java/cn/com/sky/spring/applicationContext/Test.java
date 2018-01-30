@@ -1,6 +1,7 @@
 package cn.com.sky.spring.applicationContext;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Test {
 
@@ -16,9 +17,9 @@ public class Test {
 
 		String configLocation = getPath() + "/applicationContext.xml";
 
-//		ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
+		ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
 		
-		ApplicationContext context = new MyClassPathXmlApplicationContext(configLocation);
+//		ApplicationContext context = new MyClassPathXmlApplicationContext(configLocation);
 
 		// BeanFactory context = new XmlBeanFactory(new ClassPathResource(configLocation));
 

@@ -28,12 +28,14 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void query() {
 		System.out.println("query...");
+//		throw new RuntimeException(" i am exception ");
 	}
 
 	@Override
 	public String query(String retValue) {
-		System.out.println("myquery....");
-		return "myquery";
+		System.out.println("myquery...." + retValue);
+//		throw new RuntimeException(" i am exception ");
+		return "i am return value!";
 	}
 
 }
