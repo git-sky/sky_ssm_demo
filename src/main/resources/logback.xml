@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
-	<property name="BASE_LOG_PATH" value="d:/gomeo2o/logs/${projectName}" />
+	<property name="BASE_LOG_PATH" value="/o2o/logs/${projectName}" />
 
 	<!-- warn -->
 	<appender name="warn_file"

@@ -15,4 +15,29 @@
 		<property name="age" value="24" />
 	</bean>
 
+	<bean id="sysProps"
+		  class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass">
+			<value>java.lang.System</value>
+		</property>
+		<property name="targetMethod">
+			<value>getProperties</value>
+		</property>
+	</bean>
+
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject">
+			<bean class="cn.com.sky.spring.applicationContext.Invoker"/>
+		</property>
+		<property name="targetMethod">
+			<value>registerHttpService</value>
+		</property>
+		<property name="arguments">
+			<list>
+				<value>name</value>
+				<value>skywalking</value>
+			</list>
+		</property>
+	</bean>
+
 </beans>

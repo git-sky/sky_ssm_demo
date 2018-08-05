@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.com.sky.spring.ioc.annotation_autoware_full.TestAnnotationFull;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 /**
  * <pre>
@@ -47,7 +48,7 @@ public class TestXml {
 		// context = new
 		// ClassPathXmlApplicationContext(getPath() + "/byConstructor.xml");
 
-		context = new ClassPathXmlApplicationContext(getPath() + "/byDefault.xml");
+		context = new ClassPathXmlApplicationContext("/byDefault.xml");
 
 		// 2. 从IOC容器中获取Bean实例
 		stu = (Student) context.getBean("sky");

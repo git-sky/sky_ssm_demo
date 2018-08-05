@@ -15,7 +15,7 @@ http://www.springframework.org/schema/context                http://www.springfr
 	<!-- 2、使用实例工厂Bean创建Bean -->
 	<bean id="bean4" factory-bean="beanInstanceFactory"
 		factory-method="newInstance">
-		<constructor-arg index="0" value="Hello Instance Factory" />
+		<constructor-arg index="0" value="Hello Instance Factory Generate the HelloApi instance" />
 	</bean>
 
 </beans>  

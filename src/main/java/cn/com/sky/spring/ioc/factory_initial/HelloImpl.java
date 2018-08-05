@@ -1,15 +1,15 @@
 package cn.com.sky.spring.ioc.factory_initial;
 
 
-public class HelloImpl2 implements HelloApi {
+public class HelloImpl implements HelloApi {
 
 	private String message;
 
-	public HelloImpl2() {
+	public HelloImpl() {
 		this.message = "Hello World!";
 	}
 
-	public HelloImpl2(String message) {
+	public HelloImpl(String message) {
 		this.message = message;
 	}
 
