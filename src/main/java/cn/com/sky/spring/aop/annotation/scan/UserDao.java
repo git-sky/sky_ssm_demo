@@ -2,14 +2,14 @@ package cn.com.sky.spring.aop.annotation.scan;
 
 public interface UserDao {
 
-	public void add();
+    void add();
 
-	public void delete();
+    void delete();
 
-	public void update();
+    void update();
 
-	public void query();
+    void query();
 
-	void test() throws Exception;
+    void test() throws Exception;
 
 }

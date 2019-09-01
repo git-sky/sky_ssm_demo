@@ -17,17 +17,18 @@ public class TransactionServiceImpl implements TransactionService {
 
 	@Override
 	public void updateB() {
-//		try {
+		try {
 			transactionDao.persistB();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		// throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+//		 throw new RuntimeException();
 	}
 
 	@Override
 	public void updateC() {
 		transactionDao.persistC();
+		throw new RuntimeException();
 	}
 
 	@Override

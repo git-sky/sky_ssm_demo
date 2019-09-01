@@ -1,43 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- lazy-init="true" scope="singleton" -->
-	<bean id="sky" class="cn.com.sky.spring.applicationContext.Student">
-		<property name="name" value="Lucy" />
-		<property name="age" value="24" />
-	</bean>
+    <!-- lazy-init="true" scope="singleton" -->
+    <bean id="sky" class="cn.com.sky.spring.applicationContext.Student">
+        <property name="name" value="Lucy"/>
+        <property name="age" value="24"/>
+    </bean>
 
-	<!-- lazy-init="true" scope="prototype" -->
-	<bean id="sky2" class="cn.com.sky.spring.applicationContext.Student">
-		<property name="name" value="Lucy" />
-		<property name="age" value="24" />
-	</bean>
+    <!-- lazy-init="true" scope="prototype" -->
+    <bean id="sky2" class="cn.com.sky.spring.applicationContext.Student">
+        <property name="name" value="Lucy"/>
+        <property name="age" value="24"/>
+    </bean>
 
-	<bean id="sysProps"
-		  class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-		<property name="targetClass">
-			<value>java.lang.System</value>
-		</property>
-		<property name="targetMethod">
-			<value>getProperties</value>
-		</property>
-	</bean>
+    <!--调用静态方法的返回值作为bean-->
+    <bean id="sysProps"
+          class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass">
+            <value>java.lang.System</value>
+        </property>
+        <property name="targetMethod">
+            <value>getProperties</value>
+        </property>
+    </bean>
 
-	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-		<property name="targetObject">
-			<bean class="cn.com.sky.spring.applicationContext.Invoker"/>
-		</property>
-		<property name="targetMethod">
-			<value>registerHttpService</value>
-		</property>
-		<property name="arguments">
-			<list>
-				<value>name</value>
-				<value>skywalking</value>
-			</list>
-		</property>
-	</bean>
+    <!--调用实例方法的返回值作为bean-->
+    <bean id="javaVersion" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject" ref="sysProps"/>
+        <property name="targetMethod" value="getProperty"/>
+        <property name="arguments" value="java.version"/>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject">
+            <bean class="cn.com.sky.spring.applicationContext.Invoker"/>
+        </property>
+        <property name="targetMethod">
+            <value>registerHttpService</value>
+        </property>
+        <property name="arguments">
+            <list>
+                <value>name</value>
+                <value>skywalking</value>
+            </list>
+        </property>
+    </bean>
 
 </beans>

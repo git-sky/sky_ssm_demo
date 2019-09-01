@@ -37,8 +37,11 @@ public class TestXml {
 
 	public static void main(String[] args) {
 
-		// context = new
-		// ClassPathXmlApplicationContext(getPath() + "/byName.xml");
+//		 context = new
+//		 ClassPathXmlApplicationContext(getPath() + "/byDefault.xml");
+
+		 context = new
+		 ClassPathXmlApplicationContext(getPath() + "/byName.xml");
 		// context = new
 		// ClassPathXmlApplicationContext(getPath() + "/byType.xml");
 		// context = new
@@ -48,7 +51,8 @@ public class TestXml {
 		// context = new
 		// ClassPathXmlApplicationContext(getPath() + "/byConstructor.xml");
 
-		context = new ClassPathXmlApplicationContext("/byDefault.xml");
+
+//		context = new ClassPathXmlApplicationContext("/byDefault.xml");
 
 		// 2. 从IOC容器中获取Bean实例
 		stu = (Student) context.getBean("sky");

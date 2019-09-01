@@ -7,8 +7,13 @@ import java.beans.PropertyEditorSupport;
 import java.util.Date;
 
 public class DatePropertyEditor extends PropertyEditorSupport {
+
     private String datePattern;
 
+    /**
+     * 果仅仅是支持单向的从String到相应对象类型的转换，只要覆写方法setAsText(String)即可。
+     * 如果想支持双向转换，需要同时考虑getAsText()方法的覆写。
+     */
     @Override
     public void setAsText(String text) throws IllegalArgumentException {
         DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(getDatePattern());

@@ -33,6 +33,9 @@ public class TestCarFactoryBean {
 		Car car = (Car) beanFactory.getBean("car");
 		System.out.println(car);
 
+		Car car2 = (Car) beanFactory.getBean("car");
+		System.out.println(car2);
+
 		// 获取CarFactoryBean实例
 		CarFactoryBean carFactoryBean = (CarFactoryBean) beanFactory.getBean("&car");
 		System.out.println(carFactoryBean);

@@ -2,16 +2,16 @@ package cn.com.sky.spring.aop.aopconfig;
 
 public interface UserDao {
 
-	public void add();
+    void add();
 
-	void add(String str);
+    void add(String str);
 
-	public void delete();
+    void delete();
 
-	public void update();
+    void update();
 
-	public void query();
+    void query();
 
-	public String query(String retValue);
+    String query(String retValue);
 
 }

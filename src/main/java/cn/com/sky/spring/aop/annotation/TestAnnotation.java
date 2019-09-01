@@ -1,6 +1,5 @@
 package cn.com.sky.spring.aop.annotation;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -19,7 +18,7 @@ public class TestAnnotation {
 
 	public static void main(String[] args) {
 
-		String configLocation = getPath() + "/applicationContext.xml";
+		String configLocation = getPath() + "/aspectj-autoproxy.xml";
 
 		final ClassPathXmlApplicationContext appCtx = new ClassPathXmlApplicationContext(configLocation);
 		UserDao userDao = (UserDao) appCtx.getBean("userDao");

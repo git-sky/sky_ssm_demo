@@ -25,8 +25,9 @@ import org.springframework.core.io.ClassPathResource;
  *
  *
  * 解决方式：
+ *
  * 1、方法注入
- * 只要让getNewsBean方法声明符合规定的格式，并在配置文件中通知容器，当 该方法被调用的时候，每次返回指定类型的对象实例即可。
+ * 只要让getNewsBean方法声明符合规定的格式，并在配置文件中通知容器，当该方法被调用的时候，每次返回指定类型的对象实例即可。
  * 方法声明需要符合的规格定义如下:
  * <public|protected> [abstract] <return-type> theMethodName(no-arguments);
  * 也就是说，该方法必须能够被子类实现或者覆写，因为容器会为我们要进行方法注入的对象使用 Cglib动态生成一个子类实现，从而替代当前对象。
@@ -53,11 +54,10 @@ public class TestPrototype {
 
     @Test
     public void test() {
-
-        String configLocation = "/prototype.xml";
+        String configLocation = getPath() + "/prototype.xml";
 
         BeanFactory container = new XmlBeanFactory(new ClassPathResource(configLocation));
-        IFXNewsPersister persister = (MockNewsPersister2) container.getBean("mockPersister");
+        IFXNewsPersister persister = (MockNewsPersister3) container.getBean("mockPersister");
         persister.persistNews();
         persister.persistNews();
     }

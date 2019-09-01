@@ -6,40 +6,45 @@ import org.springframework.stereotype.Controller;
 @Controller("transactionAction")
 public class TransactionActionImpl implements TransactionAction {
 
-	@Autowired
-	private TransactionService transactionService;
+    @Autowired
+    private TransactionService transactionService;
 
-	@Override
-	public void actionA() {
+    @Override
+    public void actionA() {
 
-		transactionService.updateA();
+        transactionService.updateA();
 
-//		try {
-			transactionService.updateB();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+//        try {
+            transactionService.updateB();
+//        } catch (Exception e) {
+////            e.printStackTrace();
+//        }
 
-	}
+        transactionService.updateC();
 
-	@Override
-	public void actionB() {
-		transactionService.updateB();
-	}
+//        throw  new RuntimeException();
 
-	@Override
-	public void actionC() {
-		transactionService.updateC();
-	}
 
-	@Override
-	public void actionD() {
-		transactionService.updateD();
-	}
+    }
 
-	@Override
-	public void actionE() {
-		transactionService.updateE();
-	}
+    @Override
+    public void actionB() {
+        transactionService.updateB();
+    }
+
+    @Override
+    public void actionC() {
+        transactionService.updateC();
+    }
+
+    @Override
+    public void actionD() {
+        transactionService.updateD();
+    }
+
+    @Override
+    public void actionE() {
+        transactionService.updateE();
+    }
 
 }

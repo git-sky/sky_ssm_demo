@@ -8,6 +8,7 @@ import org.springframework.beans.factory.BeanFactoryAware;
  *
  */
 public class MockNewsPersister2 implements IFXNewsPersister, BeanFactoryAware {
+
     private BeanFactory beanFactory;
 
     @Override
@@ -24,6 +25,6 @@ public class MockNewsPersister2 implements IFXNewsPersister, BeanFactoryAware {
     }
 
     public FXNewsBean getNewsBean() {
-        return (FXNewsBean)beanFactory.getBean("newsBean");
+        return (FXNewsBean) beanFactory.getBean("newsBean");
     }
 }

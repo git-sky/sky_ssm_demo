@@ -10,7 +10,7 @@ public class JDBCTransaction {
 	public static final String DRIVER = "com.mysql.jdbc.Driver";
 	public static final String URL = "jdbc:mysql://localhost:3306/myjdbc";
 	public static final String USER = "root";
-	public static final String PASSWD = "root";
+	public static final String PASSWD = "123456";
 
 	public static void update(int id, String name) {
 		Connection conn = null;

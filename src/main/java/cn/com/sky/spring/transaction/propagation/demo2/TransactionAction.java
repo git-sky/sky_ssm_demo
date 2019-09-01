@@ -2,14 +2,14 @@ package cn.com.sky.spring.transaction.propagation.demo2;
 
 public interface TransactionAction {
 
-	public void actionA();
+    void actionA();
 
-	public void actionB();
+    void actionB();
 
-	public void actionC();
+    void actionC();
 
-	public void actionD();
+    void actionD();
 
-	public void actionE();
+    void actionE();
 
 }

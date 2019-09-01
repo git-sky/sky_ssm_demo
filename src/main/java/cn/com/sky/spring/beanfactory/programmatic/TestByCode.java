@@ -18,36 +18,37 @@ import cn.com.sky.spring.beanfactory.programmatic.model.User;
  */
 public class TestByCode {
 
-	public static void main(String[] args) {
-		DefaultListableBeanFactory beanRegistry = new DefaultListableBeanFactory();
-		BeanFactory container = (BeanFactory) bindViaCode(beanRegistry);
-		User user = (User) container.getBean("user");
-		user.say();
-	}
+    public static void main(String[] args) {
+        DefaultListableBeanFactory beanRegistry = new DefaultListableBeanFactory();
+        BeanFactory container = bindViaCode(beanRegistry);
+        User user = (User) container.getBean("user");
+        user.say();
+    }
 
-	public static BeanFactory bindViaCode(BeanDefinitionRegistry registry) {
-		AbstractBeanDefinition user = new RootBeanDefinition(User.class, true);
-		AbstractBeanDefinition account = new RootBeanDefinition(Account.class, true);
-		AbstractBeanDefinition addr = new RootBeanDefinition(Address.class, true);
-		// 将bean定义注册到容器中
-		registry.registerBeanDefinition("user", user);
-		registry.registerBeanDefinition("account", account);
-		registry.registerBeanDefinition("addr", addr);
+    public static BeanFactory bindViaCode(BeanDefinitionRegistry registry) {
+        AbstractBeanDefinition user = new RootBeanDefinition(User.class);
+        AbstractBeanDefinition account = new RootBeanDefinition(Account.class);
+        AbstractBeanDefinition addr = new RootBeanDefinition(Address.class);
 
-		// 指定依赖关系
-		// 1. 可以通过构造方法注入方式
-		ConstructorArgumentValues argValues = new ConstructorArgumentValues();
-		argValues.addIndexedArgumentValue(0, account);
-		argValues.addIndexedArgumentValue(1, addr);
-		user.setConstructorArgumentValues(argValues);
+        // 将bean定义注册到容器中
+        registry.registerBeanDefinition("user", user);
+        registry.registerBeanDefinition("account", account);
+        registry.registerBeanDefinition("addr", addr);
 
-		// 2. 或者通过setter方法注入方式
-		MutablePropertyValues propertyValues = new MutablePropertyValues();
-		propertyValues.addPropertyValue(new PropertyValue("account", account));
-		propertyValues.addPropertyValue(new PropertyValue("addr", addr));
-		user.setPropertyValues(propertyValues);
-		// 绑定完成 2
-		return (BeanFactory) registry;
-	}
+        // 指定依赖关系
+        // 1. 可以通过构造方法注入方式
+        ConstructorArgumentValues argValues = new ConstructorArgumentValues();
+        argValues.addIndexedArgumentValue(0, account);
+        argValues.addIndexedArgumentValue(1, addr);
+        user.setConstructorArgumentValues(argValues);
+
+        // 2. 或者通过setter方法注入方式
+        MutablePropertyValues propertyValues = new MutablePropertyValues();
+        propertyValues.addPropertyValue(new PropertyValue("account", account));
+        propertyValues.addPropertyValue(new PropertyValue("addr", addr));
+        user.setPropertyValues(propertyValues);
+        // 绑定完成 2
+        return (BeanFactory) registry;
+    }
 
 }

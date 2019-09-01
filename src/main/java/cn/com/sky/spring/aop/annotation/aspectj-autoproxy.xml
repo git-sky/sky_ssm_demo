@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <!-- 配置bean -->
+    <bean id="userDao" class="cn.com.sky.spring.aop.annotation.UserDaoImpl"/>
+
+    <!-- 配置切面 -->
+    <!--
+    <bean id="myAspect" class="cn.com.sky.spring.aop.annotation.MyAspect"/>
+    <bean id="myAspect2" class="cn.com.sky.spring.aop.annotation.MyAspect2"/>
+    <bean id="myAspect3" class="cn.com.sky.spring.aop.annotation.MyAspect3"/>
+    <bean id="myAspect4" class="cn.com.sky.spring.aop.annotation.MyAspect4"/>
+    <bean id="myAspect5" class="cn.com.sky.spring.aop.annotation.MyAspect5"/>
+   -->
+    <bean id="myAspect7" class="cn.com.sky.spring.aop.annotation.MyAspect7"/>
+
+    <!-- 是<aop:aspectj-autoproxy />的实际背后实现，与之效果相同。自动代理模式 -->
+    <!-- <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"></bean> -->
+
+    <!-- 通过<aop: aspectj-autoproxy>来配置，使用AspectJ的注解来标识通知及切入点,推荐方式 -->
+    <!-- 该配置只能识别aop的配置，不能组件扫描，所以xml配置文件还需要bean的配置。-->
+    <aop:aspectj-autoproxy/>
+</beans>

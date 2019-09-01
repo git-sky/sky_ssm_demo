@@ -1,26 +1,20 @@
 package cn.com.sky.spring.resource;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-
 import org.junit.Test;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.DefaultResourceLoader;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.core.io.UrlResource;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.*;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
+
+import java.io.*;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * 在Spring内部，针对于资源文件有一个统一的接口Resource表示。
+ * <p>
+ * ResourceLoader接口是资源查找定位策略的统一抽象，具体的资源查找定位策略则由相应的ResourceLoader实现类给出。
  */
 public class ResourceTest {
 
@@ -123,14 +117,50 @@ public class ResourceTest {
      */
     @Test
     public void testResourceLoader() {
-        ResourceLoader loader = new DefaultResourceLoader();
-        Resource resource = loader.getResource("http://www.google.com.hk");
+        ResourceLoader resourceLoader = new DefaultResourceLoader();
+
+        Resource resource = resourceLoader.getResource("http://www.google.com.hk");
         System.out.println(resource instanceof UrlResource); // true
+
         // 注意这里前缀不能使用“classpath*:”，这样不能真正访问到对应的资源，exists()返回false
-        resource = loader.getResource("classpath:test.txt");
+        resource = resourceLoader.getResource("classpath:test.txt");
         System.out.println(resource instanceof ClassPathResource); // true
-        resource = loader.getResource("test.txt");
+        resource = resourceLoader.getResource("test.txt");
         System.out.println(resource instanceof ClassPathResource); // true
+    }
+
+    @Test
+    public void test_ResourcePatternResolver() {
+        //如果不指定的话，则PathMatchingResourcePatternResolver内部会默认构造一个DefaultResourceLoader实例。
+        // PathMatchingResourcePatternResolver内部会将匹配后确定的资源路径，委派给它的ResourceLoader来查找和定位资源。
+        // 这样，如果不指定任何ResourceLoader的话，PathMatchingResourcePatternResolver在加载资源的行为上会与DefaultResourceLoader基本相同，只存在返回的Resource数量上的差异。
+        ResourcePatternResolver resourceResolver = new PathMatchingResourcePatternResolver();
+        Resource fileResource = resourceResolver.getResource("D:/spring21site/README");
+        assertTrue(fileResource instanceof ClassPathResource);
+        assertFalse(fileResource.exists());
+
+        //传入其他类型的ResourceLoader来替换PathMatchingResourcePatternResolver 内部默认使用的DefaultResourceLoader，从而改变其默认行为。
+        resourceResolver = new PathMatchingResourcePatternResolver(new FileSystemResourceLoader());
+        fileResource = resourceResolver.getResource("D:/spring21site/README");
+        assertTrue(fileResource instanceof FileSystemResource);
+        assertTrue(fileResource.exists());
+
+    }
+
+
+    //以ResourceLoader身份登场的ApplicationContext
+    @Test
+    public void test_() {
+        ResourceLoader resourceLoader = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+// 或者
+// ResourceLoader resourceLoader = new FileSystemXmlApplicationContext("http://www.google.com.hk");
+
+        Resource fileResource = resourceLoader.getResource("classpath:applicationContext.xml");
+        assertTrue(fileResource instanceof ClassPathResource);
+        assertFalse(fileResource.exists());
+
+        Resource urlResource2 = resourceLoader.getResource("http://www.spring21.cn");
+        assertTrue(urlResource2 instanceof UrlResource);
     }
 
 }

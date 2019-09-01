@@ -7,33 +7,36 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class BookShopDaoImpl implements BookShopDao {
 
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	
-	public int findBookPriceIsdn(String isbn) {
-		String sql = "select price from book where isbn = ?";
-		return jdbcTemplate.queryForObject(sql, Integer.class, isbn);
-	}
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-	public void updateBookStock(String isbn) {
-		String sql0 = "select stock from book_stock where isbn = ?";
-		int stock = jdbcTemplate.queryForObject(sql0, Integer.class, isbn);
-		if (stock == 0) {
-			throw new RuntimeException("库存不足！");
-		}
-		String sql = "update book_stock set stock = stock-1 where isbn = ?";
-		jdbcTemplate.update(sql, isbn);
-	}
+    @Override
+    public int findBookPriceIsdn(String isbn) {
+        String sql = "select price from book where isbn = ?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, isbn);
+    }
 
-	public void updateUserAccount(String username, int price) {
-		String sql0 = "select balance from account where username = ?";
-		int balance = jdbcTemplate.queryForObject(sql0, Integer.class, username);
-		if (balance < price) {
-			throw new RuntimeException("余额不足！");
-		}
+    @Override
+    public void updateBookStock(String isbn) {
+        String sql0 = "select stock from book_stock where isbn = ?";
+        int stock = jdbcTemplate.queryForObject(sql0, Integer.class, isbn);
+        if (stock == 0) {
+            throw new RuntimeException("库存不足！");
+        }
+        String sql = "update book_stock set stock = stock-1 where isbn = ?";
+        jdbcTemplate.update(sql, isbn);
+    }
 
-		String sql = "update account set balance = balance - ? where username = ?";
-		jdbcTemplate.update(sql, price, username);
-	}
+    @Override
+    public void updateUserAccount(String username, int price) {
+        String sql0 = "select balance from account where username = ?";
+        int balance = jdbcTemplate.queryForObject(sql0, Integer.class, username);
+        if (balance < price) {
+            throw new RuntimeException("余额不足！");
+        }
+
+        String sql = "update account set balance = balance - ? where username = ?";
+        jdbcTemplate.update(sql, price, username);
+    }
 
 }

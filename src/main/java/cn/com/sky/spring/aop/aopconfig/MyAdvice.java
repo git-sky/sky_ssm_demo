@@ -4,7 +4,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 
 /**
- * 通知
+ * 通知(普通pojo)
  */
 public class MyAdvice {
 

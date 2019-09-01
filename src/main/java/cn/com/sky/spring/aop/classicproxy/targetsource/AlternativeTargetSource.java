@@ -46,7 +46,6 @@ public class AlternativeTargetSource implements TargetSource {
 	@Override
 	public void releaseTarget(Object target) throws Exception {
 		System.out.println("releaseTarget...");
-
 	}
 
 }

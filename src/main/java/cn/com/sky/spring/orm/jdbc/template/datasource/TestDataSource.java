@@ -1,12 +1,10 @@
 package cn.com.sky.spring.orm.jdbc.template.datasource;
 
-import java.util.List;
-
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
-
 import cn.com.sky.spring.orm.jdbc.template.dao.UserDao;
 import cn.com.sky.spring.orm.jdbc.template.model.User;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.List;
 
 public class TestDataSource {
 
@@ -25,7 +23,7 @@ public class TestDataSource {
 		final ClassPathXmlApplicationContext appCtx = new ClassPathXmlApplicationContext(configLocation);
 		UserDao userDao = (UserDao) appCtx.getBean("userDaoDynamic");
 
-		List<User> list = userDao.find();
+		List<User> list = userDao.findByResultSetExtractor();
 		for (User user2 : list) {
 			System.out.println(user2);
 		}

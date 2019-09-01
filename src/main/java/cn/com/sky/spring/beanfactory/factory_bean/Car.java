@@ -34,8 +34,8 @@ public class Car {
 		System.out.println("car is running !!!");
 	}
 
-	@Override
-	public String toString() {
-		return "Car [brand=" + brand + ", maxSpeed=" + maxSpeed + ", price=" + price + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Car [brand=" + brand + ", maxSpeed=" + maxSpeed + ", price=" + price + "]";
+//	}
 }

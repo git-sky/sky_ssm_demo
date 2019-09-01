@@ -6,18 +6,19 @@ import org.springframework.stereotype.Service;
 @Service("bookShopServiceTarget")
 public class BookShopServiceImpl implements BookShopService {
 
-	@Autowired
-	private BookShopDao bookShopDao;
+    @Autowired
+    private BookShopDao bookShopDao;
 
-	public void purchase(String username, String isbn) {
-		// 1. 获取书的单价
-		int price = bookShopDao.findBookPriceIsdn(isbn);
+    @Override
+    public void purchase(String username, String isbn) {
+        // 1. 获取书的单价
+        int price = bookShopDao.findBookPriceIsdn(isbn);
 
-		// 2. 更新书的库存
-		bookShopDao.updateBookStock(isbn);
+        // 2. 更新书的库存
+        bookShopDao.updateBookStock(isbn);
 
-		// 3. 更新用户余额
-		bookShopDao.updateUserAccount(username, price);
-	}
+        // 3. 更新用户余额
+        bookShopDao.updateUserAccount(username, price);
+    }
 
 }

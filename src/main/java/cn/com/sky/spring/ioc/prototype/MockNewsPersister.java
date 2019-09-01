@@ -1,6 +1,7 @@
 package cn.com.sky.spring.ioc.prototype;
 
 public class MockNewsPersister implements IFXNewsPersister {
+
     private FXNewsBean newsBean;
 
     public void persistNews(FXNewsBean bean) {

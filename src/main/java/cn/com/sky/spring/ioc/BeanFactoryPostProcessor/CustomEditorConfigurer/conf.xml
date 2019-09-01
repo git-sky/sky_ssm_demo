@@ -7,31 +7,16 @@
 
     <bean id="dateFoo" class="cn.com.sky.spring.ioc.BeanFactoryPostProcessor.CustomEditorConfigurer.DateFoo">
         <property name="date">
-            <value>2007/10/16</value>
+            <value>2007-10-16</value>
         </property>
     </bean>
 
-    <bean id="datePropertyEditor"
-          class="cn.com.sky.spring.ioc.BeanFactoryPostProcessor.CustomEditorConfigurer.DatePropertyEditor">
-        <property name="datePattern">
-            <value>yyyy/MM/dd</value>
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="propertyEditorRegistrars">
+            <list>
+                <bean class="cn.com.sky.spring.ioc.BeanFactoryPostProcessor.CustomEditorConfigurer.DatePropertyEditorRegistrar"/>
+            </list>
         </property>
     </bean>
-
-    <!--<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">-->
-        <!--<property name="customEditors">-->
-            <!--<map>-->
-                <!--<entry key="java.util.Date">-->
-                    <!--<ref bean="datePropertyEditor"/>-->
-                <!--</entry>-->
-            <!--</map>-->
-        <!--</property>-->
-    <!--</bean>-->
-    <!--<bean id="datePropertyEditor"-->
-          <!--class="cn.com.sky.spring.ioc.BeanFactoryPostProcessor.CustomEditorConfigurer.DatePropertyEditor">-->
-        <!--<property name="datePattern">-->
-            <!--<value>yyyy/MM/dd</value>-->
-        <!--</property>-->
-    <!--</bean>-->
 
 </beans>

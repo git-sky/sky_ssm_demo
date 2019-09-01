@@ -2,13 +2,13 @@ package cn.com.sky.spring.transaction.propagation.demo2;
 
 public interface TransactionDao {
 
-	public void persistA();
+    void persistA();
 
-	public void persistB();
+    void persistB();
 
-	public void persistC();
+    void persistC();
 
-	public void persistD();
+    void persistD();
 
-	public void persistE();
+    void persistE();
 }

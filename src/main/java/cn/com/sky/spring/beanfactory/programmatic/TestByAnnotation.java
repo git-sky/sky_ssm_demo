@@ -11,19 +11,19 @@ import cn.com.sky.spring.beanfactory.programmatic.model.User;
  */
 public class TestByAnnotation {
 
-	private static String getPath() {
-		String path = TestByAnnotation.class.getPackage().getName();
-		String p = path.replaceAll("\\.", "/");
-		System.out.println(p);
-		return p;
-	}
+    private static String getPath() {
+        String path = TestByAnnotation.class.getPackage().getName();
+        String p = path.replaceAll("\\.", "/");
+        System.out.println(p);
+        return p;
+    }
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		String configLocation = getPath() + "/annotation.xml";
+        String configLocation = getPath() + "/annotation.xml";
 
-		ApplicationContext ctx = new ClassPathXmlApplicationContext(configLocation);
-		User user = (User) ctx.getBean("user");
-		user.say();
-	}
+        ApplicationContext ctx = new ClassPathXmlApplicationContext(configLocation);
+        User user = (User) ctx.getBean("user");//User需要有默认构造方法
+        user.say();
+    }
 }

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.sky.mybatis.book.mapper.aaa.AuthorMapper">
+
+
+    <!--resultType 从这条语句中返回的期望类型的类的完全限定名或别名。-->
+    <!--注意如果返回的是集合，那应该设置为集合包含的类型，而不是集合本身。-->
+    <!--可以使用 resultType 或 resultMap，但不能同时使用。-->
+    <select id="selectAuthor" resultType="_Au">
+      select id,username,password,email,bio
+      from author
+      where id = #{id}
+    </select>
+
+
+    <!--返回map类型，key是字段名，value是字段值-->
+    <select id="selectAuthorReturnMap" resultType="Map">
+      select id,username,password,email,bio
+      from author
+      where id = #{id}
+    </select>
+
+    <!--表字段和类字段不一致；方式1：用as转换；-->
+    <select id="selectAuthorReturnUser" resultType="user">
+      select id,username as uname,password as upwd,email,bio
+      from author
+      where id = #{id}
+    </select>
+
+
+    <!--表字段和类字段不一致；方式2：用resultMap；-->
+    <!--property javabean属性名称-->
+    <!--column 数据库中的列名，或者是列的别名。-->
+    <!--javaType	一个 Java 类的完全限定名，或一个类型别名（关于内置的类型别名，可以参考上面的表格）。-->
+    <!--jdbcType	JDBC 类型，所支持的 JDBC 类型参见这个表格之后的“支持的 JDBC 类型”。 只需要在可能执行插入、更新和删除的且允许空值的列上指定 JDBC 类型。这是 JDBC 的要求而非 MyBatis 的要求。如果你直接面向 JDBC 编程，你需要对可能存在空值的列指定这个类型。-->
+    <!--typeHandler	我们在前面讨论过默认的类型处理器。使用这个属性，你可以覆盖默认的类型处理器。 这个属性值是一个类型处理器实现类的完全限定名，或者是类型别名。-->
+    <resultMap id="userResultMap" type="user">
+        <id property="uId" column="id"/>
+        <result property="uName" column="username" javaType="string" jdbcType="VARCHAR"/>
+        <result property="uPwd" column="password"/>
+        <result property="uEmail" column="email"/>
+        <result property="uBio" column="bio"/>
+    </resultMap>
+
+    <!--表字段和类字段不一致；方式2：用resultMap；-->
+    <select id="selectAuthorReturnUserByResultMap" resultMap="userResultMap">
+      select id,username,password ,email,bio
+      from author
+      where id = #{id}
+    </select>
+
+
+    <!--insert-->
+
+    <insert id="insertAuthor">
+        insert into author(id,username,password,email,bio)
+        values (#{id},#{username},#{password},#{email},#{bio})
+    </insert>
+
+    <insert id="insertAuthorReturnKey" useGeneratedKeys="true"
+            keyProperty="id">
+      insert into Author (username,password,email,bio)
+      values (#{username},#{password},#{email},#{bio})
+    </insert>
+
+
+    <insert id="insertAuthorMultiReturnKey" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into Author (username, password, email, bio) values
+        <foreach item="item" collection="list" separator=",">
+            (#{item.username}, #{item.password}, #{item.email}, #{item.bio})
+        </foreach>
+    </insert>
+
+    <update id="updateAuthor">
+      update Author set
+        username = #{username},
+        password = #{password},
+        email = #{email},
+        bio = #{bio}
+      where id = #{id}
+    </update>
+
+    <delete id="deleteAuthor">
+      delete from Author where id = #{id}
+    </delete>
+</mapper>
+

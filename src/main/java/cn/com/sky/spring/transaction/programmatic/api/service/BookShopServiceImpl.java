@@ -14,39 +14,40 @@ import cn.com.sky.spring.transaction.programmatic.api.dao.BookShopDao;
 @Service
 public class BookShopServiceImpl implements BookShopService {
 
-	@Autowired
-	private BookShopDao bookShopDao;
-	// 定义事务
-	@Autowired
-	private TransactionDefinition txDefinition;
-	// 事务管理
-	@Autowired
-	private PlatformTransactionManager txManager;
+    @Autowired
+    private BookShopDao bookShopDao;
+    // 定义事务
+    @Autowired
+    private TransactionDefinition txDefinition;
+    // 事务管理
+    @Autowired
+    private PlatformTransactionManager txManager;
 
-	public void purchase(String username, String isbn) {
+    @Override
+    public void purchase(String username, String isbn) {
 
-		TransactionStatus txStatus = txManager.getTransaction(txDefinition);
+        TransactionStatus txStatus = txManager.getTransaction(txDefinition);
 
-		try {
+        try {
 
-			// 1. 获取书的单价
-			int price = bookShopDao.findBookPriceIsdn(isbn);
+            // 1. 获取书的单价
+            int price = bookShopDao.findBookPriceIsdn(isbn);
 
-			// 2. 更新书的库存
-			bookShopDao.updateBookStock(isbn);
+            // 2. 更新书的库存
+            bookShopDao.updateBookStock(isbn);
 
-			// 3. 更新用户余额
-			bookShopDao.updateUserAccount(username, price);
+            // 3. 更新用户余额
+            bookShopDao.updateUserAccount(username, price);
 
-			txManager.commit(txStatus);
+            txManager.commit(txStatus);
 
-			System.out.println("purchase success!");
+            System.out.println("purchase success!");
 
-		} catch (Exception e) {
-			txManager.rollback(txStatus);
-			e.printStackTrace();
-			System.out.println("purchase error!");
-		}
-	}
+        } catch (Exception e) {
+            txManager.rollback(txStatus);
+            e.printStackTrace();
+            System.out.println("purchase error!");
+        }
+    }
 
 }

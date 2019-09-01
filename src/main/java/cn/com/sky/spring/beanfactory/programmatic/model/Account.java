@@ -7,6 +7,10 @@ public class Account {
 
 	private String cardNo;
 
+//	public Account(String cardNo) {
+//		this.cardNo = cardNo;
+//	}
+
 	public String getCardNo() {
 		return cardNo;
 	}

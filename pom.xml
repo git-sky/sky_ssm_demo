@@ -15,10 +15,14 @@
         <spring.version>4.3.17.RELEASE</spring.version>
         <!--<spring.version>3.2.18.RELEASE</spring.version>-->
         <!-- <hadoop.version>2.5.0-mr1-cdh5.2.0</hadoop.version> -->
+        <!--<mybatis.version>3.4.6</mybatis.version>-->
+        <mybatis.version>3.2.3</mybatis.version>
+
+        <mybatis.spring.version>1.3.2</mybatis.spring.version>
     </properties>
 
     <dependencies>
-        <!-- spring -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
@@ -84,45 +88,66 @@
             <artifactId>spring-jms</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
-        <!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.36</version> </dependency> -->
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
             <version>${spring.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <!--<scope>test</scope>-->
-        </dependency>
-        <!-- mybatis -->
+
+        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.2.7</version>
+            <version>${mybatis.version}</version>
         </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
-            <version>1.2.2</version>
+            <version>${mybatis.spring.version}</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.47</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.3.11.Final</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <!--<dependency>-->
+        <!--<groupId>org.hibernate</groupId>-->
+        <!--<artifactId>hibernate-core</artifactId>-->
+        <!--<version>5.4.3.Final</version>-->
+        <!--</dependency>-->
+
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <!--<scope>test</scope>-->
+        </dependency>
+
+
         <!-- c3p0 -->
         <!-- <dependency> <groupId>c3p0</groupId> <artifactId>c3p0</artifactId>
             <version>0.9.1.2</version> </dependency> <dependency> <groupId>c3p0</groupId>
             <artifactId>c3p0-oracle-thin-extras</artifactId> <version>0.9.0.2</version>
             </dependency> -->
 
-        <!-- mysql -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.6</version>
-        </dependency>
 
         <!-- 事务依赖 -->
         <dependency>
@@ -139,11 +164,11 @@
         <!--Redis <dependency> <groupId>redis.clients</groupId> <artifactId>jedis</artifactId>
             <version>2.4.2</version> <type>jar</type> </dependency> -->
         <!-- ID生成 -->
-        <dependency>
-            <groupId>com.gome.cacheservice</groupId>
-            <artifactId>cacheservice-client</artifactId>
-            <version>1.1.0-SNAPSHOT</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>com.gome.cacheservice</groupId>-->
+        <!--<artifactId>cacheservice-client</artifactId>-->
+        <!--<version>1.1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
@@ -243,21 +268,23 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>com.taobao.diamond</groupId>
-            <artifactId>diamond-client</artifactId>
-            <version>2.0.5.3.taocode-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.taobao.diamond</groupId>
-            <artifactId>diamond-utils</artifactId>
-            <version>2.0.5.3.taocode-SNAPSHOT</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>com.taobao.diamond</groupId>-->
+        <!--<artifactId>diamond-client</artifactId>-->
+        <!--<version>2.0.5.3.taocode-SNAPSHOT</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>com.taobao.diamond</groupId>-->
+        <!--<artifactId>diamond-utils</artifactId>-->
+        <!--<version>2.0.5.3.taocode-SNAPSHOT</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>commons-configuration</groupId>
             <artifactId>commons-configuration</artifactId>
             <version>1.8</version>
         </dependency>
+
+
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
@@ -265,38 +292,23 @@
         </dependency>
         <!-- <dependency> <groupId>net.sf.json-lib</groupId> <artifactId>json-lib</artifactId>
             <version>2.4</version> </dependency> -->
+
+
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.12</version>
+            <version>1.2.56</version>
         </dependency>
-        <!-- <dependency> <groupId>com.alibaba</groupId> <artifactId>fastjson</artifactId>
-            <version>1.2.1</version> </dependency> -->
+
+
         <dependency>
             <groupId>com.esotericsoftware</groupId>
             <artifactId>kryo</artifactId>
             <version>3.0.0</version>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-        </dependency>
-        <dependency>
-            <groupId>com.taobao.diamond</groupId>
-            <artifactId>diamond-client</artifactId>
-            <version>2.0.5.3.taocode-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.taobao.diamond</groupId>
-            <artifactId>diamond-utils</artifactId>
-            <version>2.0.5.3.taocode-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-configuration</groupId>
-            <artifactId>commons-configuration</artifactId>
-            <version>1.8</version>
-        </dependency>
+
+
         <!-- rocketMq -->
         <dependency>
             <groupId>com.alibaba.rocketmq</groupId>
@@ -354,11 +366,11 @@
             <artifactId>jmf</artifactId>
             <version>2.1.1e</version>
         </dependency>
-        <dependency>
-            <groupId>xuggle</groupId>
-            <artifactId>xuggle-xuggler</artifactId>
-            <version>5.4</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>xuggle</groupId>-->
+        <!--<artifactId>xuggle-xuggler</artifactId>-->
+        <!--<version>5.4</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
@@ -379,8 +391,7 @@
             <artifactId>mongo-java-driver</artifactId>
             <version>2.6.5</version>
         </dependency>
-        <!-- <dependency> <groupId>io.netty</groupId> <artifactId>netty-all</artifactId>
-            <version>5.0.0.Alpha1</version> </dependency> -->
+
         <!-- <dependency> <groupId>io.netty</groupId> <artifactId>netty-all</artifactId>
             <version>4.0.34.Final</version> </dependency> -->
         <dependency>
@@ -414,17 +425,21 @@
             <version>3.3.1</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.apache.mina</groupId>
             <artifactId>mina-core</artifactId>
             <version>2.0.4</version>
         </dependency>
+
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -449,28 +464,13 @@
         </dependency>
 
         <!--zk开源客户端 zkclient -->
+        <!-- https://mvnrepository.com/artifact/com.101tec/zkclient -->
         <dependency>
             <groupId>com.101tec</groupId>
             <artifactId>zkclient</artifactId>
-            <version>0.8</version>
+            <version>0.10</version>
         </dependency>
 
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <!--
-                        <scope>test</scope>
-            -->
-        </dependency>
-
-
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>4.3.11.Final</version>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
         <dependency>
@@ -493,19 +493,13 @@
             <version>3.1.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/javax.servlet.jsp/jsp-api -->
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
             <version>2.2</version>
         </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/com.caucho/hessian -->
         <dependency>
@@ -540,6 +534,7 @@
                 <directory>${basedir}/src/main/java</directory>
                 <includes>
                     <include>**/*.xml</include>
+                    <include>**/*.properties</include>
                 </includes>
             </resource>
         </resources>

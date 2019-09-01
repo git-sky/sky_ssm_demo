@@ -1,6 +1,7 @@
 package cn.com.sky.spring.ioc.annotation_autoware;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -20,6 +21,10 @@ import cn.com.sky.spring.ioc.aggregate.TestCollection;
  * 
  * 
  * 测试Bean的自动装配-注解实现
+ *
+ *
+ * <context:annotation-config> 不但帮我们把AutowiredAnnotationBeanPostProcessor 和CommonAnnotationBeanPostProcessor注册到容器，
+ * 同时还会把 PersistenceAnnotationBeanPostProcessor 和 RequiredAnnotationBeanPostProcessor 一并进行注册，一举四得。
  * 
  * </pre>
  */
@@ -37,7 +42,7 @@ public class TestAnnotationConfig {
 
 	public static void main(String[] args) {
 
-		String configLocation = getPath() + "/annotation.xml";
+		String configLocation = getPath() + "/annotation-config.xml";
 
 		context = new ClassPathXmlApplicationContext(configLocation);
 
@@ -47,6 +52,8 @@ public class TestAnnotationConfig {
 		System.out.println(stu);
 		// 4.关闭容器
 		((ClassPathXmlApplicationContext) context).registerShutdownHook();
+
+//		AutowiredAnnotationBeanPostProcessor
 
 	}
 }

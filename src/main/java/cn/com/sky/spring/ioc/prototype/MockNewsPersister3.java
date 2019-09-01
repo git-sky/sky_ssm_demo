@@ -3,6 +3,7 @@ package cn.com.sky.spring.ioc.prototype;
 import org.springframework.beans.factory.ObjectFactory;
 
 public class MockNewsPersister3 implements IFXNewsPersister {
+
     private ObjectFactory newsBeanFactory;
 
     public void persistNews(FXNewsBean bean) {

@@ -1,43 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/tx  
-    	http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
-        http://www.springframework.org/schema/util
-        http://www.springframework.org/schema/util/spring-util.xsd
-      ">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
-		使用location属性定义单个配置文件 <property name="location"> <value>classpath:/com/zsw/config/jdbc.properties</value> 
-		</property> 使用locations属性定义多个配置文件 <property name="locations"> <list> <value>classpath:/cn/com/sky/spring/ioc/BeanFactoryPostProcessor/jdbc.properties 
-		</value> </list> </property> </bean> -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <!--使用location属性定义单个配置文件-->
+        <property name="location">
+            <value>classpath:/cn/com/sky/spring/ioc/BeanFactoryPostProcessor/jdbc.properties</value>
+        </property>
+        <!--使用locations属性定义多个配置文件-->
+        <property name="locations">
+            <list>
+                <value>classpath:/cn/com/sky/spring/ioc/BeanFactoryPostProcessor/jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
 
 
-	<bean id="propertyConfigurer"
-		class="cn.com.sky.spring.ioc.BeanFactoryPostProcessor.DataBasePropertyPlaceholderConfigurer">
-	</bean>
+    <bean class="org.springframework.beans.factory.config.PropertyOverrideConfigurer">
+        <property name="location" value="classpath:/cn/com/sky/spring/ioc/BeanFactoryPostProcessor/pool-adjustment.properties"/>
+    </bean>
 
-	<!-- <context:property-placeholder location="classpath:/cn/com/sky/spring/ioc/BeanFactoryPostProcessor/jdbc.properties" 
-		/> -->
 
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="url">
-			<value>${database.url}</value>
-		</property>
-		<property name="driverClassName">
-			<value>${database.driver}</value>
-		</property>
-		<property name="username">
-			<value>${database.user}</value>
-		</property>
-		<property name="password">
-			<value>${database.password}</value>
-		</property>
-	</bean>
+    <!--<bean id="propertyConfigurer"-->
+    <!--class="cn.com.sky.spring.ioc.BeanFactoryPostProcessor.DataBasePropertyPlaceholderConfigurer">-->
+    <!--</bean>-->
+
+    <!-- <context:property-placeholder location="classpath:/cn/com/sky/spring/ioc/BeanFactoryPostProcessor/jdbc.properties"
+        /> -->
+
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="url">
+            <value>${database.url}</value>
+        </property>
+        <property name="driverClassName">
+            <value>${database.driver}</value>
+        </property>
+        <property name="username">
+            <value>${database.user}</value>
+        </property>
+        <property name="password">
+            <value>${database.password}</value>
+        </property>
+    </bean>
+
 </beans>

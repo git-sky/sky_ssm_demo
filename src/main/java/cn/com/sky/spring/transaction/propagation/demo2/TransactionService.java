@@ -2,14 +2,14 @@ package cn.com.sky.spring.transaction.propagation.demo2;
 
 public interface TransactionService {
 
-	public void updateA();
+    void updateA();
 
-	public void updateB();
+    void updateB();
 
-	public void updateC();
+    void updateC();
 
-	public void updateD();
+    void updateD();
 
-	public void updateE();
+    void updateE();
 
 }

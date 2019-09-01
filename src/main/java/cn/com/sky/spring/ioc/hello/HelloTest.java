@@ -16,16 +16,16 @@ public class HelloTest {
 		// 1、读取配置文件实例化一个IoC容器
 		ApplicationContext context = new ClassPathXmlApplicationContext("cn/com/sky/spring/ioc/hello/hello.xml");
 		// 2、从容器中获取Bean，注意此处完全“面向接口编程，而不是面向实现”
-		// HelloApi helloApi = context.getBean("hello", HelloApi.class);
+		 HelloApi helloApi = context.getBean("hello", HelloApi.class);
 		// // 3、执行业务逻辑
-		// helloApi.sayHello();
+		 helloApi.sayHello();
 		//
 		// //根据name获取bean
-		// HelloApi helloName = context.getBean("helloName", HelloApi.class);
-		// helloName.sayHello();
+		 HelloApi helloName = context.getBean("helloName", HelloApi.class);
+		 helloName.sayHello();
 		//
 		// //根据别名获取bean
-		// HelloApi alias1 = context.getBean("alias1", HelloApi.class);
-		// alias1.sayHello();
+		 HelloApi alias1 = context.getBean("alias1", HelloApi.class);
+		 alias1.sayHello();
 	}
 }

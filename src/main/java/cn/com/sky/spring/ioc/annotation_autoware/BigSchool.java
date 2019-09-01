@@ -1,6 +1,7 @@
 package cn.com.sky.spring.ioc.annotation_autoware;
 
 public class BigSchool extends School {
+
 	private String name;
 	private String location;
 

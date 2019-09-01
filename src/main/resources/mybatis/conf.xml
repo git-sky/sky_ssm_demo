@@ -1,54 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
 <configuration>
 
-	<properties resource="mybatis/db3.properties" />
+    <properties resource="mybatis/db2.properties"/>
 
-	<!-- 配置实体类的别名，配置实体类别名的目的是为了在引用实体类时可以使用实体类的别名来代替实体类，达到简写的目的 -->
-	<typeAliases>
-		<!-- 为实体类cn.com.sky.mybatis.domain.User配置一个别名_User -->
-		<typeAlias type="cn.com.sky.mybatis.domain.User" alias="_User" />
-		<!-- 为cn.com.sky.mybatis.domain包下的所有实体类配置别名，MyBatis默认的设置别名的方式就是去除类所在的包后的简单的类名 
-			比如cn.com.sky.mybatis.domain.User这个实体类的别名就会被设置成User -->
-		<package name="cn.com.sky.mybatis.domain" />
-	</typeAliases>
+    <!-- 配置实体类的别名，配置实体类别名的目的是为了在引用实体类时可以使用实体类的别名来代替实体类，达到简写的目的 -->
+    <typeAliases>
+        <!--单个配置： 为实体类cn.com.sky.mybatis.domain.User配置一个别名_User -->
+        <typeAlias type="cn.com.sky.mybatis.domain.User" alias="_User"/>
 
-	<environments default="development">
-		<environment id="development">
-			<transactionManager type="JDBC" />
-			<!-- 配置数据库连接信息 -->
-			<dataSource type="POOLED">
-				<property name="driver" value="${driver}" />
-				<property name="url" value="${url}" />
-				<property name="username" value="${name}" />
-				<property name="password" value="${password}" />
-			</dataSource>
-		</environment>
-	</environments>
+        <!--批量配置：
+         为cn.com.sky.mybatis.domain 包下的所有实体类批量配置别名，
+            MyBatis默认的设置别名的方式就是去除类所在的包后的简单的类名,
+            比如: cn.com.sky.mybatis.domain.User 这个实体类的别名就会被设置成 User
+            -->
+        <package name="cn.com.sky.mybatis.domain"/>
+    </typeAliases>
 
-	<mappers>
-		<!-- 注册userMapper.xml文件， userMapper.xml位于cn.com.sky.mybatis.mapping这个包下，所以resource写成cn/com/sky/mybatis/mapping/userMapper.xml -->
-		<mapper resource="cn/com/sky/mybatis/mapping/userMapper.xml" />
+    <!--配置多个环境-->
+    <!--默认开发环境-->
+    <environments default="development">
+        <!--开发环境-->
+        <environment id="development">
+            <!--mybaits提供了两种JDBC和MANAGED；-->
+            <transactionManager type="JDBC"/>
+            <!-- 配置数据库连接信息 -->
+            <!--类型有:UNPOOLED，POOLED，JNDI; -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+        <!--测试环境-->
+        <environment id="test">
+            <transactionManager type="JDBC"/>
+            <!-- 配置数据库连接信息 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+        <!--预上线环境-->
+        <environment id="stage">
+            <transactionManager type="JDBC"/>
+            <!-- 配置数据库连接信息 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+        <!--线上环境-->
+        <environment id="prod">
+            <transactionManager type="JDBC"/>
+            <!-- 配置数据库连接信息 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
 
-		<!-- 注册UserMapper映射接口 -->
-		<mapper class="cn.com.sky.mybatis.mapping.UserMapperI" />
+
+    <mappers>
+        <!--单个配置： 注册userMapper.xml文件， userMapper.xml位于cn.com.sky.mybatis.mapping这个包下，所以resource写成cn/com/sky/mybatis/mapping/userMapper.xml -->
+        <mapper resource="cn/com/sky/mybatis/mapping/userMapper.xml"/>
+
+        <!--单个配置： 注册UserMapper映射接口 &ndash;&gt;-->
+        <!--<mapper class="cn.com.sky.mybatis.mapping.UserMapperI"/>-->
 
 
-		<!-- 注册orderMapper.xml文件， orderMapper.xml位于me.gacl.mapping这个包下，所以resource写成cn/com/sky/mybatis/mapping/orderMapper.xml -->
-		<mapper resource="cn/com/sky/mybatis/mapping/orderMapper.xml" />
+        <!--&lt;!&ndash; 注册orderMapper.xml文件， orderMapper.xml位于cn.com.sky.mybatis.mapping这个包下，所以resource写成cn/com/sky/mybatis/mapping/orderMapper.xml &ndash;&gt;-->
+        <!--<mapper resource="cn/com/sky/mybatis/mapping/orderMapper.xml"/>-->
 
 
-		<!-- 注册classMapper.xml文件， classMapper.xml位于cn.com.sky.mybatis.mapping这个包下，所以resource写成cn/com/sky/mybatis/mapping/classMapper.xml -->
-		<mapper resource="cn/com/sky/mybatis/mapping/classMapper.xml" />
+        <!--&lt;!&ndash; 注册classMapper.xml文件， classMapper.xml位于cn.com.sky.mybatis.mapping这个包下，所以resource写成cn/com/sky/mybatis/mapping/classMapper.xml &ndash;&gt;-->
+        <!--<mapper resource="cn/com/sky/mybatis/mapping/classMapper.xml"/>-->
 
-		<mapper resource="cn/com/sky/mybatis/mapping/classMapper2.xml" />
+        <!--<mapper resource="cn/com/sky/mybatis/mapping/classMapper2.xml"/>-->
 
-		<mapper resource="cn/com/sky/mybatis/mapping/commodityMapper.xml" />
+        <!--<mapper resource="cn/com/sky/mybatis/mapping/commodityMapper.xml"/>-->
 
+        <!--批量配置：扫描包下的文件-->
+        <package name="cn.com.sky.mybatis.mapping"/>
 
-	</mappers>
-
-
-
+    </mappers>
 
 </configuration>

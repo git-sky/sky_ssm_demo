@@ -3,10 +3,12 @@ package cn.com.sky.spring.ioc.bean_lifecycle;
 import org.junit.Test;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 /**
  * <pre>
@@ -66,7 +68,13 @@ public class TestBeanLife {
     public void testBeanFactory() {
 		String configLocation = getPath() + "/beanlife.xml";
 
-//        String configLocation = "/beanlife.xml";
+//        Resource resource = new ClassPathResource(configLocation);
+//        DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
+//        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
+//        reader.loadBeanDefinitions(resource);
+//        factory.addBeanPostProcessor(new MyBeanPostProcessor());
+
+
 
 
         ConfigurableBeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource(configLocation));

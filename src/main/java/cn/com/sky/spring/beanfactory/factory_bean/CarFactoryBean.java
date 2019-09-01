@@ -4,35 +4,36 @@ import org.springframework.beans.factory.FactoryBean;
 
 public class CarFactoryBean implements FactoryBean<Car> {
 
-	private String carInfo;
+    private String carInfo;
 
-	@Override
-	public Car getObject() throws Exception {
+    @Override
+    public Car getObject() throws Exception {
 
-		Car car = new Car();
-		String[] infos = carInfo.split(",");
-		car.setBrand(infos[0]);
-		car.setMaxSpeed(Integer.valueOf(infos[1]));
-		car.setPrice(Double.valueOf(infos[2]));
-		return car;
-	}
+        Car car = new Car();
+        String[] infos = carInfo.split(",");
+        car.setBrand(infos[0]);
+        car.setMaxSpeed(Integer.valueOf(infos[1]));
+        car.setPrice(Double.valueOf(infos[2]));
+        return car;
+    }
 
-	@Override
-	public Class<Car> getObjectType() {
-		return Car.class;
-	}
+    @Override
+    public Class<Car> getObjectType() {
+        return Car.class;
+    }
 
-	@Override
-	public boolean isSingleton() {
-		return false;
-	}
+    @Override
+    public boolean isSingleton() {
+        //true是单例。false非单例。
+        return false;
+    }
 
-	public String getCarInfo() {
-		return carInfo;
-	}
+    public String getCarInfo() {
+        return carInfo;
+    }
 
-	public void setCarInfo(String carInfo) {
-		this.carInfo = carInfo;
-	}
+    public void setCarInfo(String carInfo) {
+        this.carInfo = carInfo;
+    }
 
 }

@@ -5,7 +5,7 @@ public class CustomerContextHolder {
 	public static final String DATA_SOURCE = "dataSource";
 	public static final String DATA_SOURCE_2 = "dataSource2";
 
-	private static final ThreadLocal<String> contextHolder = new ThreadLocal<String>();
+	private static final ThreadLocal<String> contextHolder = new ThreadLocal<>();
 
 	public static void setCustomerType(String customerType) {
 		contextHolder.set(customerType);

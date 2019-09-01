@@ -9,5 +9,5 @@ import cn.com.sky.mybatis.domain.Commodity;
  */
 public interface CommodityMapper {
 
-	public List<Commodity> getCommodity(int a);
+    List<Commodity> getCommodity(int a);
 }

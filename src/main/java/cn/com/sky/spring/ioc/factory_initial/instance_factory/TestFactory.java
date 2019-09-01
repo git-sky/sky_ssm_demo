@@ -18,9 +18,9 @@ public class TestFactory {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testInstantiatingBeanByInstanceFactory() {
-//		String configLocation = getPath() + "/initial.xml";
+		String configLocation = getPath() + "/initial.xml";
 
-		String configLocation ="/initial.xml";
+//		String configLocation ="/initial.xml";
 
 
 		// 使用实例工厂方法

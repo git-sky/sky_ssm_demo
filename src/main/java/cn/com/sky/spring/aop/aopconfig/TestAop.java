@@ -16,7 +16,7 @@ public class TestAop {
 
 	public static void main(String[] args) {
 
-		String configLocation = getPath() + "/applicationContext2.xml";
+		String configLocation = getPath() + "/aop-config2.xml";
 
 		final ClassPathXmlApplicationContext appCtx = new ClassPathXmlApplicationContext(configLocation);
 		UserDao userDao = (UserDao) appCtx.getBean("userDao");
