@@ -3,9 +3,9 @@
 
 <mapper namespace="cn.com.sky.mybatis.mapping.commodityMapper">
 
-	<!-- <select id="getCommodity" parameterType="int" resultMap="queryForListMap"> -->
-	<select id="getCommodity" parameterType="int"
-		resultType="cn.com.sky.mybatis.domain.Commodity">
+    <!-- <select id="getCommodity" parameterType="int" resultMap="queryForListMap"> -->
+    <select id="getCommodity" parameterType="int"
+            resultType="cn.com.sky.mybatis.domain.Commodity">
 		SELECT
 		d.rebate_ratio AS rebate_ratio,
 		d.id AS plan_id,

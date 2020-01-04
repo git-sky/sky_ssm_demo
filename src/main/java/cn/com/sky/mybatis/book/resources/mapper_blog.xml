@@ -74,7 +74,6 @@
     </select>
 
 
-
     <update id="updateAuthorIfNecessary">
         update Author
         <set>
@@ -85,7 +84,6 @@
         </set>
         where id=#{id}
     </update>
-
 
 
 </mapper>

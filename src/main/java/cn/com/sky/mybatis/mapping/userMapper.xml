@@ -36,8 +36,8 @@
 		values(#{name},#{age})
 	</insert>
 
-	<!-- 创建用户(Create) -->
-	<insert id="addUser3" parameterType="User">
+    <!-- 创建用户(Create) -->
+    <insert id="addUser3" parameterType="User">
 		insert into users(name,age)
 		values(#{name},#{age})
 	</insert>

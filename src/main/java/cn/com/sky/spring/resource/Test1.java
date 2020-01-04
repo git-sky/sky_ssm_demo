@@ -10,12 +10,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration("classpath:cn/com/sky/spring/resource/applicationContext.xml")
 public class Test1 {
 
-	@Autowired
-	private ClassA classA;
+    @Autowired
+    private ClassA classA;
 
-	@Test
-	public void test() {
-		classA.printContent();
-	}
+    @Test
+    public void test() {
+        classA.printContent();
+    }
 
 }

@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- - DispatcherServlet application context for PetClinic's web tier. -->
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:oxm="http://www.springframework.org/schema/oxm"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:oxm="http://www.springframework.org/schema/oxm"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 				http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd">
-	<!--job工作类 -->
-	<!-- <bean id="SendMessage" class="cn.com.gome.rebate.secheduling.SendMessageJob"></bean> -->
-	<bean id="BudgetPull" class="cn.com.gome.rebate.secheduling.BudgetPullJob"></bean>
-	<!-- 定义调用对象和调用对象的方法 -->
-	<bean id="JobFactory"
-		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<property name="targetObject" ref="BudgetPull" />
-		<property name="targetMethod" value="executeInternal" />
-		<property name="concurrent" value="false" /><!-- 作业不并发调度 -->
-	</bean>
-	<!-- 定义触发时间 -->
-<!-- 	<bean id="TriggerFactory"
-		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<property name="jobDetail" ref="JobFactory" />
-		<property name="cronExpression">
-			<value>10,15,20,25,30,35,40,45,50,55
-				* * * * ?
-			</value>
-		</property>
-		<property name="cronExpression" value="0/10 * * ? * * *" />
-	</bean> -->
-	<!-- 配置作业调度的触发方式 -->
-	<bean id="TriggerFactory"
-		class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
-		<property name="jobDetail" ref="JobFactory" />
-		<property name="startDelay" value="0" /><!-- 调度工厂实例化后，经过0秒开始执行调度 -->
-		<property name="repeatInterval" value="2000" /><!-- 每2秒调度一次 -->
-	</bean>
-	<!-- 总管理类 -->
-	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-		<property name="triggers">
-			<list>
-				<ref bean="TriggerFactory" />
-			</list>
-		</property>
-	</bean>
+    <!--job工作类 -->
+    <!-- <bean id="SendMessage" class="cn.com.gome.rebate.secheduling.SendMessageJob"></bean> -->
+    <bean id="BudgetPull" class="cn.com.gome.rebate.secheduling.BudgetPullJob"></bean>
+    <!-- 定义调用对象和调用对象的方法 -->
+    <bean id="JobFactory"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="BudgetPull"/>
+        <property name="targetMethod" value="executeInternal"/>
+        <property name="concurrent" value="false"/><!-- 作业不并发调度 -->
+    </bean>
+    <!-- 定义触发时间 -->
+    <!-- 	<bean id="TriggerFactory"
+            class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+            <property name="jobDetail" ref="JobFactory" />
+            <property name="cronExpression">
+                <value>10,15,20,25,30,35,40,45,50,55
+                    * * * * ?
+                </value>
+            </property>
+            <property name="cronExpression" value="0/10 * * ? * * *" />
+        </bean> -->
+    <!-- 配置作业调度的触发方式 -->
+    <bean id="TriggerFactory"
+          class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="jobDetail" ref="JobFactory"/>
+        <property name="startDelay" value="0"/><!-- 调度工厂实例化后，经过0秒开始执行调度 -->
+        <property name="repeatInterval" value="2000"/><!-- 每2秒调度一次 -->
+    </bean>
+    <!-- 总管理类 -->
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="TriggerFactory"/>
+            </list>
+        </property>
+    </bean>
 </beans>

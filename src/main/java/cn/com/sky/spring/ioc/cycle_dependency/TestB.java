@@ -1,18 +1,18 @@
 package cn.com.sky.spring.ioc.cycle_dependency;
 
 public class TestB {
-	
-	private TestC testC;
 
-	public void b() {
-		testC.c();
-	}
+    private TestC testC;
 
-	public TestC getTestC() {
-		return testC;
-	}
+    public void b() {
+        testC.c();
+    }
 
-	public void setTestC(TestC testC) {
-		this.testC = testC;
-	}
+    public TestC getTestC() {
+        return testC;
+    }
+
+    public void setTestC(TestC testC) {
+        this.testC = testC;
+    }
 }

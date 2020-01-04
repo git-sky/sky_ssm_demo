@@ -9,14 +9,14 @@ import javax.servlet.ServletResponse;
 
 public class MyGenericServlet extends GenericServlet {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+    @Override
+    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
 
-	}
+    }
 
 }

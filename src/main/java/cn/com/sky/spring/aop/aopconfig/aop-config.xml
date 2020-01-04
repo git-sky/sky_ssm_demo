@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:aop="http://www.springframework.org/schema/aop"
-	   xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
 
-	<!-- 配置bean -->
-	<bean id="userDao" class="cn.com.sky.spring.aop.aopconfig.UserDaoImpl" />
-	<!-- 通知 -->
-	<bean id="myAdvice" class="cn.com.sky.spring.aop.aopconfig.MyAdvice" />
+    <!-- 配置bean -->
+    <bean id="userDao" class="cn.com.sky.spring.aop.aopconfig.UserDaoImpl"/>
+    <!-- 通知 -->
+    <bean id="myAdvice" class="cn.com.sky.spring.aop.aopconfig.MyAdvice"/>
 
-	<!-- proxy-target-class:基于接口还是基于类的代理 -->
-	<aop:config proxy-target-class="false">
-		<aop:aspect id="configAspect" ref="myAdvice">
-			<!--配置cn.com.sky.spring.aop.aopconfig包下所有类或接口的所有方法 -->
-			<aop:pointcut id="myPointcut"
-				expression="execution(* cn.com.sky.spring.aop.aopconfig.*..add(..))" />
-			<aop:pointcut id="myPointcut2"
-				expression="execution(* cn.com.sky.spring.aop.aopconfig.*..update(..))" />
-			<aop:before pointcut-ref="myPointcut" method="doBefore" />
-			<aop:after pointcut-ref="myPointcut" method="doAfter" />
-			<aop:around pointcut-ref="myPointcut2" method="doAround" />
-			<aop:after-throwing pointcut-ref="myPointcut"
-				method="doThrowing" throwing="ex" />
-		</aop:aspect>
-	</aop:config>
-
+    <!-- proxy-target-class:基于接口还是基于类的代理 -->
+    <aop:config proxy-target-class="false">
+        <aop:aspect id="configAspect" ref="myAdvice">
+            <!--配置cn.com.sky.spring.aop.aopconfig包下所有类或接口的所有方法 -->
+            <aop:pointcut id="myPointcut"
+                          expression="execution(* cn.com.sky.spring.aop.aopconfig.*..add(..))"/>
+            <aop:pointcut id="myPointcut2"
+                          expression="execution(* cn.com.sky.spring.aop.aopconfig.*..update(..))"/>
+            <aop:before pointcut-ref="myPointcut" method="doBefore"/>
+            <aop:after pointcut-ref="myPointcut" method="doAfter"/>
+            <aop:around pointcut-ref="myPointcut2" method="doAround"/>
+            <aop:after-throwing pointcut-ref="myPointcut"
+                                method="doThrowing" throwing="ex"/>
+        </aop:aspect>
+    </aop:config>
 
 
 </beans>

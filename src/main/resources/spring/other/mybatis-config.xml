@@ -5,8 +5,8 @@
 	http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="configLocation" value="classpath:sqlMapConfig.xml" />
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:sqlMapConfig.xml"/>
         <property name="mapperLocations">
             <list>
                 <value>classpath:/mybatis/**.xml</value>
@@ -14,9 +14,9 @@
         </property>
     </bean>
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="cn.com.gome.rebate.dao" />
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-        <property name="annotationClass" value="cn.com.gome.rebate.dao.common.MybatisRepository" />
+        <property name="basePackage" value="cn.com.gome.rebate.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="annotationClass" value="cn.com.gome.rebate.dao.common.MybatisRepository"/>
     </bean>
 
 </beans>

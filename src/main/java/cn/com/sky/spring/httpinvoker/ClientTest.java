@@ -5,11 +5,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ClientTest {
 
-	public static void main(String[] args) {
-		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:client.xml");
+    public static void main(String[] args) {
+        ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:client.xml");
 
-		HttpInvokerTestI httpInvokerTestI = (HttpInvokerTestI) ac.getBean("remoteService");
-		System.out.println(httpInvokerTestI.getTestPo("abc"));
-	}
+        HttpInvokerTestI httpInvokerTestI = (HttpInvokerTestI) ac.getBean("remoteService");
+        System.out.println(httpInvokerTestI.getTestPo("abc"));
+    }
 
 }

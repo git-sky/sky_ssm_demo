@@ -11,26 +11,26 @@ import org.springframework.stereotype.Component;
 @Component("consumerService")
 public class ConsumerServiceImpl implements ConsumerService {
 
-	@Resource
-	private JmsTemplate jmsTemplate;
+    @Resource
+    private JmsTemplate jmsTemplate;
 
-	@Override
-	public void consumeMessage(Destination destination) {
+    @Override
+    public void consumeMessage(Destination destination) {
 
-		while (true) {
-			TextMessage message = (TextMessage) jmsTemplate.receive(destination);
-			try {
-				Thread.sleep(10000);
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
-			try {
-				System.out.println("---------------消费者收到消息-----------------");
-				System.out.println("recive:" + message.getText());
-			} catch (JMSException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+        while (true) {
+            TextMessage message = (TextMessage) jmsTemplate.receive(destination);
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                System.out.println("---------------消费者收到消息-----------------");
+                System.out.println("recive:" + message.getText());
+            } catch (JMSException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }

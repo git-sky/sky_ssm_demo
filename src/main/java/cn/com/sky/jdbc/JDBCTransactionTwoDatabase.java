@@ -43,7 +43,7 @@ public class JDBCTransactionTwoDatabase {
             pstmtupdate = conn.prepareStatement(updatesql);
             pstmtupdate.executeUpdate();
 
-             int a = 1 / 0;
+            int a = 1 / 0;
 
             // 执行更新操作
             pstmtupdate2 = conn.prepareStatement(updatesql2);

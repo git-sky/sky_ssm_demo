@@ -19,7 +19,8 @@
 
 
     <bean class="org.springframework.beans.factory.config.PropertyOverrideConfigurer">
-        <property name="location" value="classpath:/cn/com/sky/spring/ioc/BeanFactoryPostProcessor/pool-adjustment.properties"/>
+        <property name="location"
+                  value="classpath:/cn/com/sky/spring/ioc/BeanFactoryPostProcessor/pool-adjustment.properties"/>
     </bean>
 
 

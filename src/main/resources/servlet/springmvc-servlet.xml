@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/aop  
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-3.0.xsd  
         http://www.springframework.org/schema/beans  
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
@@ -13,53 +15,53 @@
         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
 
-	<!-- 描述程序中所有注解 -->
-	<context:component-scan base-package="cn.com.gome.rebate.web.controller" />
-	<context:component-scan base-package="cn.com.gome.rebate.web.service" />
+    <!-- 描述程序中所有注解 -->
+    <context:component-scan base-package="cn.com.gome.rebate.web.controller"/>
+    <context:component-scan base-package="cn.com.gome.rebate.web.service"/>
 
-	<mvc:annotation-driven />
-	<mvc:default-servlet-handler />
-	<mvc:resources location="/static/" mapping="/static/**" cache-period="864000" />
-	<!-- template view -->
-	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-		<property name="resourceLoaderPath" value="/WEB-INF/views/" />
-		<property name="velocityProperties">
-			<props>
-				<prop key="input.encoding">UTF-8</prop>
-				<prop key="output.encoding">UTF-8</prop>
-				<prop key="contentType">text/html;charset=UTF-8</prop>
-				<prop key="velocimacro.library">macro/pagin.vm</prop>
-			</props>
-		</property>
-	</bean>
-	<bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-		<property name="cache" value="true" />
-		<property name="suffix" value=".vm" />
-		<property name="contentType" value="text/html;charset=UTF-8" />
-		<property name="exposeSpringMacroHelpers" value="true" />
-		<property name="exposeRequestAttributes" value="true" />
-		<property name="allowRequestOverride" value="true" />
-		<property name="exposeSessionAttributes" value="true" />
-		<property name="toolboxConfigLocation" value="/WEB-INF/conf/velocity/toolbox.xml"></property>
-		<property name="dateToolAttribute">
-			<value>dateTool</value>
-		</property>
-		<property name="numberToolAttribute">
-			<value>numberTool</value>
-		</property>
-		<property name="attributes">
-			<props>
-				<prop key="ver">0.0.0079</prop>
-			</props>
-		</property>
-	</bean>
+    <mvc:annotation-driven/>
+    <mvc:default-servlet-handler/>
+    <mvc:resources location="/static/" mapping="/static/**" cache-period="864000"/>
+    <!-- template view -->
+    <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="/WEB-INF/views/"/>
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">UTF-8</prop>
+                <prop key="output.encoding">UTF-8</prop>
+                <prop key="contentType">text/html;charset=UTF-8</prop>
+                <prop key="velocimacro.library">macro/pagin.vm</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <property name="cache" value="true"/>
+        <property name="suffix" value=".vm"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+        <property name="exposeSpringMacroHelpers" value="true"/>
+        <property name="exposeRequestAttributes" value="true"/>
+        <property name="allowRequestOverride" value="true"/>
+        <property name="exposeSessionAttributes" value="true"/>
+        <property name="toolboxConfigLocation" value="/WEB-INF/conf/velocity/toolbox.xml"></property>
+        <property name="dateToolAttribute">
+            <value>dateTool</value>
+        </property>
+        <property name="numberToolAttribute">
+            <value>numberTool</value>
+        </property>
+        <property name="attributes">
+            <props>
+                <prop key="ver">0.0.0079</prop>
+            </props>
+        </property>
+    </bean>
 
 
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<property name="messageConverters">
-			<list>
-				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
-			</list>
-		</property>
-	</bean>
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
 </beans>

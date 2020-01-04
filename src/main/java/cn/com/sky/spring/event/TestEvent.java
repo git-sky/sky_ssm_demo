@@ -26,10 +26,9 @@ public class TestEvent {
         System.out.println(TestEvent.getPath());
 
 
-        String configLocation ="cn\\com\\sky\\spring\\event\\applicationContext.xml";
+        String configLocation = "cn\\com\\sky\\spring\\event\\applicationContext.xml";
         ApplicationContext ctx = new ClassPathXmlApplicationContext(configLocation);
 //        ApplicationContext ctx = new FileSystemXmlApplicationContext(configLocation);
-
 
 
         DemoPublisher publisher = ctx.getBean(DemoPublisher.class);

@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * AbstractJUnit4SpringContextTests类，不回滚。
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:/spring/trans/aopconfig.xml" })
+@ContextConfiguration(locations = {"classpath:/spring/trans/aopconfig.xml"})
 public class SpringContextTests extends AbstractJUnit4SpringContextTests {
 
 }

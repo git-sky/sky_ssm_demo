@@ -7,24 +7,24 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class TestAop {
 
-	private static String getPath() {
-		String path = TestAop.class.getPackage().getName();
-		String p = path.replaceAll("\\.", "/");
-		System.out.println(p);
-		return p;
-	}
+    private static String getPath() {
+        String path = TestAop.class.getPackage().getName();
+        String p = path.replaceAll("\\.", "/");
+        System.out.println(p);
+        return p;
+    }
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		String configLocation = getPath() + "/aop-config2.xml";
+        String configLocation = getPath() + "/aop-config2.xml";
 
-		final ClassPathXmlApplicationContext appCtx = new ClassPathXmlApplicationContext(configLocation);
-		UserDao userDao = (UserDao) appCtx.getBean("userDao");
-		// userDao.add();
-		// userDao.delete();
-		// userDao.update();
-		// userDao.query();
-		userDao.query("abc");
-	}
+        final ClassPathXmlApplicationContext appCtx = new ClassPathXmlApplicationContext(configLocation);
+        UserDao userDao = (UserDao) appCtx.getBean("userDao");
+        // userDao.add();
+        // userDao.delete();
+        // userDao.update();
+        // userDao.query();
+        userDao.query("abc");
+    }
 
 }

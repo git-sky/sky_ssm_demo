@@ -7,13 +7,13 @@ import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 给定一系列的Get实例返回数据集
- *
  */
 public class GetDataWithListGet {
 
@@ -77,16 +77,16 @@ public class GetDataWithListGet {
 }
 
 /**
- result:
- First iteration...
- Row: 10010 Value: 中国联通
- Row: 10086 Value: 中国移动
- Row: null
- Second iteration...
- Row: 10010 Value: 中国联通
- Row: 10086 Value: 中国移动
- Third iteration...
- keyvalues={10010/colfam1:qual1/1471836722159/Put/vlen=12/seqid=0}
- keyvalues={10086/colfam1:qual1/1471836722159/Put/vlen=12/seqid=0}
- keyvalues=NONE
+ * result:
+ * First iteration...
+ * Row: 10010 Value: 中国联通
+ * Row: 10086 Value: 中国移动
+ * Row: null
+ * Second iteration...
+ * Row: 10010 Value: 中国联通
+ * Row: 10086 Value: 中国移动
+ * Third iteration...
+ * keyvalues={10010/colfam1:qual1/1471836722159/Put/vlen=12/seqid=0}
+ * keyvalues={10086/colfam1:qual1/1471836722159/Put/vlen=12/seqid=0}
+ * keyvalues=NONE
  **/

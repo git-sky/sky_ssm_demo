@@ -10,9 +10,8 @@ import org.springframework.util.StringUtils;
 
 import cn.com.sky.spring.jms.net2.jms.MessageSender;
 
-public class SenderApp
-{
-    public static void main( String[] args ) throws IOException {
+public class SenderApp {
+    public static void main(String[] args) throws IOException {
         start("springJMSConfiguration.xml");
     }
 

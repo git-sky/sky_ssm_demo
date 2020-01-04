@@ -4,6 +4,6 @@ import javax.jms.Destination;
 
 public interface ConsumerService {
 
-	void consumeMessage(Destination destination);
+    void consumeMessage(Destination destination);
 
 }

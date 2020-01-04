@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="sky" class="cn.com.sky.spring.ioc.autoware.Student"
-		autowire="byType">
-		<property name="name" value="Lucy" />
-		<property name="age" value="24" />
-	</bean>
+    <bean id="sky" class="cn.com.sky.spring.ioc.autoware.Student"
+          autowire="byType">
+        <property name="name" value="Lucy"/>
+        <property name="age" value="24"/>
+    </bean>
 
-	<bean id="xidianSchool" class="cn.com.sky.spring.ioc.autoware.School"
-		primary="false">
-		<property name="name" value="西安电子科技大学" />
-		<property name="location" value="西安" />
-	</bean>
-	<bean id="shandaSchool" class="cn.com.sky.spring.ioc.autoware.School"
-		primary="true">
-		<property name="name" value="山东大学" />
-		<property name="location" value="山东" />
-	</bean>
+    <bean id="xidianSchool" class="cn.com.sky.spring.ioc.autoware.School"
+          primary="false">
+        <property name="name" value="西安电子科技大学"/>
+        <property name="location" value="西安"/>
+    </bean>
+    <bean id="shandaSchool" class="cn.com.sky.spring.ioc.autoware.School"
+          primary="true">
+        <property name="name" value="山东大学"/>
+        <property name="location" value="山东"/>
+    </bean>
 
-	<bean id="course1" class="cn.com.sky.spring.ioc.autoware.Course"
-		primary="true">
-		<property name="name" value="语文" />
-		<property name="score" value="89" />
-	</bean>
+    <bean id="course1" class="cn.com.sky.spring.ioc.autoware.Course"
+          primary="true">
+        <property name="name" value="语文"/>
+        <property name="score" value="89"/>
+    </bean>
 
-	<bean id="course2" class="cn.com.sky.spring.ioc.autoware.Course">
-		<property name="name" value="数学" />
-		<property name="score" value="97" />
-	</bean>
+    <bean id="course2" class="cn.com.sky.spring.ioc.autoware.Course">
+        <property name="name" value="数学"/>
+        <property name="score" value="97"/>
+    </bean>
 
 </beans>

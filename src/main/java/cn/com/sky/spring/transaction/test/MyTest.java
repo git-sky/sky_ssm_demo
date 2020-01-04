@@ -11,14 +11,14 @@ import cn.com.sky.spring.transaction.declarative.aopconfig.BookShopService;
 // @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
 public class MyTest extends SpringTransactionalContextTests {
 
-	@Autowired
-	private BookShopService bookShopService;
+    @Autowired
+    private BookShopService bookShopService;
 
-	@Test
-	public void test() {
+    @Test
+    public void test() {
 
-		bookShopService.purchase("Lucy", "1001");
+        bookShopService.purchase("Lucy", "1001");
 
-	}
+    }
 
 }

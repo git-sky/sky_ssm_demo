@@ -11,38 +11,38 @@ import org.springframework.core.io.ResourceLoader;
 
 public class XmlBeanDefinitionReaderTest {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		// 资源加载器
-		ResourceLoader rl = null;
+        // 资源加载器
+        ResourceLoader rl = null;
 
-		Resource resource = rl.getResource("a.xml");
-		
+        Resource resource = rl.getResource("a.xml");
+
 //		BeanDefinitionReader;
 //		Scope
-		
+
 //		PropertyEditorSupport;
 //		CustomEditorConfigurer
 //		
 //		AbstractBeanFactory
-		
+
 //		InstantiationStrategy
-		
+
 //		BeanWrapper
 //		BeanWrapperImpl
-		
+
 //		BeanFactory
-		
+
 //		DefaultResourceLoader;
-		
+
 //		AbstractApplicationContext;
-		
+
 //		MessageSource;
-		
+
 //		BeanDefinitionReader
-		
+
 //		AutowiredAnnotationBeanPostProcessor;
-		
+
 //		
 //		EnvironmentCapable;
 //		
@@ -53,6 +53,6 @@ public class XmlBeanDefinitionReaderTest {
 //		BeanDefinitionDocumentReader;
 //		
 //		BeanDefinitionParserDelegate;
-	}
+    }
 
 }

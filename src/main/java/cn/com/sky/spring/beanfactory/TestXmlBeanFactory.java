@@ -6,10 +6,10 @@ import org.springframework.core.io.ClassPathResource;
 
 public class TestXmlBeanFactory {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		BeanFactory bf = new XmlBeanFactory(new ClassPathResource("a.xml"));
+        BeanFactory bf = new XmlBeanFactory(new ClassPathResource("a.xml"));
 
-	}
+    }
 
 }

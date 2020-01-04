@@ -73,7 +73,7 @@ public class TestProxyFactoryProgrammatic2 {
                 Method method = invocation.getMethod();
                 Object target = invocation.getThis();
                 Object bytes = method.invoke(target, params);
-                byte[] result = (byte[])bytes;
+                byte[] result = (byte[]) bytes;
                 System.out.println("1111111111环绕通知生成的结果--" + new String(result));
                 return "北京生活圈".getBytes();
             }
@@ -105,7 +105,7 @@ public class TestProxyFactoryProgrammatic2 {
         UserDao userDao = (UserDao) proxy;
 //        userDao.query();
 
-         System.out.println(userDao.query("abc"));
+        System.out.println(userDao.query("abc"));
 
 
         ProxyFactoryBean pfb;

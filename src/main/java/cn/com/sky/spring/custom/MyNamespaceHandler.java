@@ -8,7 +8,7 @@ import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
  * ，就会用PeopleBeanDefinitionParser来解析配置。
  */
 public class MyNamespaceHandler extends NamespaceHandlerSupport {
-	public void init() {
-		registerBeanDefinitionParser("people", new PeopleBeanDefinitionParser());
-	}
+    public void init() {
+        registerBeanDefinitionParser("people", new PeopleBeanDefinitionParser());
+    }
 }

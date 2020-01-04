@@ -9,9 +9,9 @@ import java.util.List;
 
 public class Testxx {
 
-        @Test
-        public void test() {
-            String poiList = "a,b ,c , d ,           f,,";
+    @Test
+    public void test() {
+        String poiList = "a,b ,c , d ,           f,,";
         List<String> mtIds = Splitter.on(",").trimResults().splitToList(poiList);
 
 //        List<String> mtIds = Arrays.asList(poiList.split(","));
@@ -21,12 +21,10 @@ public class Testxx {
 //            List<String> mtIds = Arrays.asList(StringUtils.commaDelimitedListToStringArray(poiList));
 
 
-
-            System.out.println(mtIds);
-            for (String id : mtIds) {
-                System.out.println("|" + id + "|");
-            }
-
+        System.out.println(mtIds);
+        for (String id : mtIds) {
+            System.out.println("|" + id + "|");
+        }
 
 
     }

@@ -17,12 +17,12 @@
 
 
     <!--<util:properties id="prop">-->
-        <!--<prop key="name">zhangsan</prop>-->
-        <!--<prop key="age">age</prop>-->
-        <!--<prop key="gender">gender</prop>-->
+    <!--<prop key="name">zhangsan</prop>-->
+    <!--<prop key="age">age</prop>-->
+    <!--<prop key="gender">gender</prop>-->
     <!--</util:properties>-->
     <!--<bean id="phone" class="cn.com.sky.spring.util_properties.Phone">-->
-        <!--<property name="properties" ref="prop"/>-->
+    <!--<property name="properties" ref="prop"/>-->
     <!--</bean>-->
 
     <!--通过读取文件获取内容-->

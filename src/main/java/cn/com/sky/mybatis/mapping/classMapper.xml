@@ -4,42 +4,42 @@
 	例如namespace="cn.com.sky.mybatis.mapping.classMapper"就是cn.com.sky.mybatis.mapping(包名)+classMapper(classMapper.xml文件去除后缀) -->
 <mapper namespace="cn.com.sky.mybatis.mapping.classMapper">
 
-	<!-- 根据班级id查询班级信息(带老师的信息) ##1. 联表查询 SELECT * FROM class c,teacher t WHERE 
-		c.teacher_id=t.t_id AND c.c_id=1; ##2. 执行两次查询 SELECT * FROM class WHERE c_id=1; 
-		//teacher_id=1 SELECT * FROM teacher WHERE t_id=1;//使用上面得到的teacher_id -->
+    <!-- 根据班级id查询班级信息(带老师的信息) ##1. 联表查询 SELECT * FROM class c,teacher t WHERE
+        c.teacher_id=t.t_id AND c.c_id=1; ##2. 执行两次查询 SELECT * FROM class WHERE c_id=1;
+        //teacher_id=1 SELECT * FROM teacher WHERE t_id=1;//使用上面得到的teacher_id -->
 
-	<!-- 方式一：嵌套结果：使用嵌套结果映射来处理重复的联合结果的子集 封装联表查询的数据(去除重复的数据) select * from class 
-		c, teacher t where c.teacher_id=t.t_id and c.c_id=1 -->
-	<select id="getClass" parameterType="int" resultMap="ClassResultMap">
+    <!-- 方式一：嵌套结果：使用嵌套结果映射来处理重复的联合结果的子集 封装联表查询的数据(去除重复的数据) select * from class
+        c, teacher t where c.teacher_id=t.t_id and c.c_id=1 -->
+    <select id="getClass" parameterType="int" resultMap="ClassResultMap">
 		select *
 		from class c, teacher t where c.teacher_id=t.t_id and c.c_id=#{id}
 	</select>
-	<!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
-	<resultMap type="cn.com.sky.mybatis.domain.Classes" id="ClassResultMap">
-		<id property="id" column="c_id" />
-		<result property="name" column="c_name" />
-		<association property="teacher" javaType="cn.com.sky.mybatis.domain.Teacher">
-			<id property="id" column="t_id" />
-			<result property="name" column="t_name" />
-		</association>
-	</resultMap>
+    <!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
+    <resultMap type="cn.com.sky.mybatis.domain.Classes" id="ClassResultMap">
+        <id property="id" column="c_id"/>
+        <result property="name" column="c_name"/>
+        <association property="teacher" javaType="cn.com.sky.mybatis.domain.Teacher">
+            <id property="id" column="t_id"/>
+            <result property="name" column="t_name"/>
+        </association>
+    </resultMap>
 
-	<!-- 方式二：嵌套查询：通过执行另外一个SQL映射语句来返回预期的复杂类型 SELECT * FROM class WHERE c_id=1; 
-		SELECT * FROM teacher WHERE t_id=1 //1 是上一个查询得到的teacher_id的值 -->
-	<select id="getClass2" parameterType="int" resultMap="ClassResultMap2">
+    <!-- 方式二：嵌套查询：通过执行另外一个SQL映射语句来返回预期的复杂类型 SELECT * FROM class WHERE c_id=1;
+        SELECT * FROM teacher WHERE t_id=1 //1 是上一个查询得到的teacher_id的值 -->
+    <select id="getClass2" parameterType="int" resultMap="ClassResultMap2">
 		select *
 		from class where c_id=#{id}
 	</select>
-	<!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
-	<resultMap type="cn.com.sky.mybatis.domain.Classes" id="ClassResultMap2">
-		<id property="id" column="c_id" />
-		<result property="name" column="c_name" />
-		<association property="teacher" column="teacher_id"
-			select="getTeacher" />
-	</resultMap>
+    <!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
+    <resultMap type="cn.com.sky.mybatis.domain.Classes" id="ClassResultMap2">
+        <id property="id" column="c_id"/>
+        <result property="name" column="c_name"/>
+        <association property="teacher" column="teacher_id"
+                     select="getTeacher"/>
+    </resultMap>
 
-	<select id="getTeacher" parameterType="int"
-		resultType="cn.com.sky.mybatis.domain.Teacher">
+    <select id="getTeacher" parameterType="int"
+            resultType="cn.com.sky.mybatis.domain.Teacher">
 		SELECT t_id id, t_name name FROM teacher WHERE t_id=#{id}
 	</select>
 

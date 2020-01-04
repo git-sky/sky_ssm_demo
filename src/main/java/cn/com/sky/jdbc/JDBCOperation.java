@@ -32,7 +32,7 @@ public class JDBCOperation {
         String sql = "insert into student (s_name,class_id) values(?,?)";
         PreparedStatement pstmt;
         try {
-            pstmt =  conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, student.getName());
             pstmt.setInt(2, student.getClassId());
             i = pstmt.executeUpdate();
@@ -50,7 +50,7 @@ public class JDBCOperation {
         String sql = "update student set class_id=" + student.getClassId() + " where s_name='" + student.getName() + "'";
         PreparedStatement pstmt;
         try {
-            pstmt =  conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
             i = pstmt.executeUpdate();
             System.out.println("result: " + i);
             pstmt.close();
@@ -66,7 +66,7 @@ public class JDBCOperation {
         String sql = "select * from student";
         PreparedStatement pstmt;
         try {
-            pstmt =  conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
             int col = rs.getMetaData().getColumnCount();
             System.out.println("============================");
@@ -92,7 +92,7 @@ public class JDBCOperation {
         String sql = "delete from student where s_name='" + name + "'";
         PreparedStatement pstmt;
         try {
-            pstmt =  conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
             i = pstmt.executeUpdate();
             System.out.println("result: " + i);
             pstmt.close();

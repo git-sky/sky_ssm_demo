@@ -11,7 +11,7 @@ public class TestStopWatch2 {
     }
 
     private void test() throws InterruptedException {
-        StopWatch sw = new StopWatch();
+        StopWatch sw = new StopWatch("a");
 
         sw.start("起床");
         Thread.sleep(1000);

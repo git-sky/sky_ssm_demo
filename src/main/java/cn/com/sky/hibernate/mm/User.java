@@ -2,31 +2,31 @@ package cn.com.sky.hibernate.mm;
 
 public class User {
 
-	private int id;
-	private String name;
-	private Group group;
+    private int id;
+    private String name;
+    private Group group;
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Group getGroup() {
-		return group;
-	}
+    public Group getGroup() {
+        return group;
+    }
 
-	public void setGroup(Group group) {
-		this.group = group;
-	}
+    public void setGroup(Group group) {
+        this.group = group;
+    }
 }

@@ -1,16 +1,16 @@
-<?xml version="1.0"?>  
-<!DOCTYPE hibernate-mapping PUBLIC   
-    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
-    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="cn.com.sky.hibernate.mm">
-	<class name="User" table="t_user">
-		<id name="id">
-			<generator class="native"></generator>
-		</id>
-		<property name="name"></property>
-		<!-- group属性，表达的是本对象与Group的多对一的关系 -->
-		<many-to-one name="group" class="Group" column="groupid"></many-to-one>
-		<!-- 解释： 多对一关系标签： <many-to-one name=“” class=“” column=“”/> 1、第1个问号：group是User类的属性，对应于name属性名 
-			2、第2个问号：class表达的是本对象(User)与Group的关系 3、第3个问号：column是属性名+Id 当我们写完注释之后，我们直接拷贝问号的对应关系即可。 -->
-	</class>
+    <class name="User" table="t_user">
+        <id name="id">
+            <generator class="native"></generator>
+        </id>
+        <property name="name"></property>
+        <!-- group属性，表达的是本对象与Group的多对一的关系 -->
+        <many-to-one name="group" class="Group" column="groupid"></many-to-one>
+        <!-- 解释： 多对一关系标签： <many-to-one name=“” class=“” column=“”/> 1、第1个问号：group是User类的属性，对应于name属性名
+            2、第2个问号：class表达的是本对象(User)与Group的关系 3、第3个问号：column是属性名+Id 当我们写完注释之后，我们直接拷贝问号的对应关系即可。 -->
+    </class>
 </hibernate-mapping>  

@@ -13,20 +13,20 @@ import org.springframework.stereotype.Component;
 @Component("producerService")
 public class ProducerServiceImpl implements ProducerService {
 
-	@Resource
-	private JmsTemplate jmsTemplate;
+    @Resource
+    private JmsTemplate jmsTemplate;
 
-	@Override
-	public void sendMessage(Destination destination, final String message) {
-		System.out.println("---------------生产者发送消息-----------------");
-		System.out.println("---------------生产者发了一个消息：" + message);
-		jmsTemplate.send(destination, new MessageCreator() {
-			public Message createMessage(Session session) throws JMSException {
-				return session.createTextMessage(message);
-			}
-		});
-		
+    @Override
+    public void sendMessage(Destination destination, final String message) {
+        System.out.println("---------------生产者发送消息-----------------");
+        System.out.println("---------------生产者发了一个消息：" + message);
+        jmsTemplate.send(destination, new MessageCreator() {
+            public Message createMessage(Session session) throws JMSException {
+                return session.createTextMessage(message);
+            }
+        });
+
 //		jmsTemplate.convertAndSend(message);
-	}
+    }
 
 }

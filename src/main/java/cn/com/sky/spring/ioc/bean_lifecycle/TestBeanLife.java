@@ -66,15 +66,13 @@ public class TestBeanLife {
 
     @Test
     public void testBeanFactory() {
-		String configLocation = getPath() + "/beanlife.xml";
+        String configLocation = getPath() + "/beanlife.xml";
 
 //        Resource resource = new ClassPathResource(configLocation);
 //        DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 //        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
 //        reader.loadBeanDefinitions(resource);
 //        factory.addBeanPostProcessor(new MyBeanPostProcessor());
-
-
 
 
         ConfigurableBeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource(configLocation));

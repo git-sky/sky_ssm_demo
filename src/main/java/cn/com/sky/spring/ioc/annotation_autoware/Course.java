@@ -3,10 +3,10 @@ package cn.com.sky.spring.ioc.annotation_autoware;
 import org.springframework.beans.factory.annotation.Value;
 
 public class Course {
-	@Value("my english")
-	private String name;
-	@Value("123")
-	private double score;
+    @Value("my english")
+    private String name;
+    @Value("123")
+    private double score;
 
 //	public String getName() {
 //		return name;
@@ -24,8 +24,8 @@ public class Course {
 //		this.score = score;
 //	}
 
-	@Override
-	public String toString() {
-		return "Course [name=" + name + ", score=" + score + "]";
-	}
+    @Override
+    public String toString() {
+        return "Course [name=" + name + ", score=" + score + "]";
+    }
 }

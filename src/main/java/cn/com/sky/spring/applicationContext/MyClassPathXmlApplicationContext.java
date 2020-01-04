@@ -7,12 +7,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class MyClassPathXmlApplicationContext extends ClassPathXmlApplicationContext {
 
-	public MyClassPathXmlApplicationContext(String... configLocations) {
-		super(configLocations);
-	}
+    public MyClassPathXmlApplicationContext(String... configLocations) {
+        super(configLocations);
+    }
 
-	protected void initPropertySources() {
-		getEnvironment().setRequiredProperties("var");
-	}
+    protected void initPropertySources() {
+        getEnvironment().setRequiredProperties("var");
+    }
 
 }
