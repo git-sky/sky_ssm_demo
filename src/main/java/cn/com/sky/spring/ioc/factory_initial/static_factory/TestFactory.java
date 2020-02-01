@@ -13,7 +13,6 @@ import org.springframework.core.io.ClassPathResource;
  *
  *  静态工厂方式实例化Bean
  *
- *
  * </pre>
  */
 public class TestFactory {
