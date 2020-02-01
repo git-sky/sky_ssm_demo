@@ -15,19 +15,9 @@ public class FXNewsProvider {
     @Autowired
     private IFXNewsPersister newPersistener;
 
-    public IFXNewsListener getNewsListener() {
-        return newsListener;
-    }
-//
-//    public void setNewsListener(IFXNewsListener newsListener) {
-//        this.newsListener = newsListener;
-//    }
-
-    public IFXNewsPersister getNewPersistener() {
-        return newPersistener;
+    public void send() {
+        System.out.println(newsListener);
+        System.out.println(newPersistener);
     }
 
-//    public void setNewPersistener(IFXNewsPersister newPersistener) {
-//        this.newPersistener = newPersistener;
-//    }
 }

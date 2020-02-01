@@ -19,7 +19,7 @@ public class JDBCOperation {
         Connection conn = null;
         try {
             Class.forName(driver); // classLoader,加载对应驱动
-            conn = (Connection) DriverManager.getConnection(url, username, password);
+            conn = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

@@ -9,7 +9,6 @@ public class Student {
         System.out.println("Student()");
     }
 
-
     public String getName() {
         return name;
     }

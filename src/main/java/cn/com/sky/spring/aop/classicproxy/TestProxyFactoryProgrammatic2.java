@@ -108,7 +108,7 @@ public class TestProxyFactoryProgrammatic2 {
         System.out.println(userDao.query("abc"));
 
 
-        ProxyFactoryBean pfb;
+        ProxyFactoryBean proxyFactoryBean;
 
         BeanNameAutoProxyCreator beanNameAutoProxyCreator;
     }

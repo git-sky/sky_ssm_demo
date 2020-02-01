@@ -9,6 +9,9 @@ import cn.com.sky.spring.aop.classicproxy.dao.UserDao;
 import cn.com.sky.spring.aop.classicproxy.dao.impl.UserDaoImpl;
 import cn.com.sky.spring.aop.classicproxy.pointcut.MyStaticMethodMatcherPointcut;
 
+/**
+ * 1、手工编程模式织入【织入器ProxyFactory】
+ */
 public class TestProxyFactoryProgrammatic {
 
     public static void main(String[] args) {
@@ -32,14 +35,24 @@ public class TestProxyFactoryProgrammatic {
         // 织入器
         ProxyFactory weaver = new ProxyFactory(target);
 //        weaver.addAdvisor(advisor);
-//        weaver.setProxyTargetClass(true);//设置为基于类的代理，默认cglib。
+        weaver.setProxyTargetClass(true);//设置为基于类的代理，默认cglib。
         // weaver.setOptimize(true);//设置为基于类的代理，默认cglib。
+        weaver.addAdvice(advice);
+
+        System.out.println("=====================================");
+
 
         // 代理对象
         UserDao proxyObject = (UserDao) weaver.getProxy();
         proxyObject.query();
 
-        System.out.println(proxyObject.getClass());
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++");
+
+        // 代理对象[基于接口的代理，会报错。基于类的代理，正常。]
+        UserDaoImpl proxyObject2 = (UserDaoImpl) weaver.getProxy();
+        proxyObject2.query();
+
+        System.out.println("proxy class= " + proxyObject.getClass());
 
 //		ProxyFactoryBean pfb = new ProxyFactoryBean();
 //		pfb.getObject();

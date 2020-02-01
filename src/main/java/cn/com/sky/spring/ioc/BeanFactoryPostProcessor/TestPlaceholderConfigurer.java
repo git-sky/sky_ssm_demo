@@ -52,8 +52,7 @@ public class TestPlaceholderConfigurer {
         System.out.println(dataSource.getPassword());
 
 
-        // 注意，ApplicationContext能够自动辨认和应用在其上部署的实现了BeanFactoryPostProcessor的bean。这就意味着，当使用ApplicationContext的时候应用PropertyPlaceholderConfigurer会非常的方便。由于这个原因，建议想要使用这个或者其他bean
-        // factory postprocessor的用户使用ApplicationContext代替BeanFactroy。
+        // 注意，ApplicationContext能够自动辨认和应用在其上部署的实现了BeanFactoryPostProcessor的bean。这就意味着，当使用ApplicationContext的时候应用PropertyPlaceholderConfigurer会非常的方便。由于这个原因，建议想要使用这个或者其他BeanFactoryPostProcessor的用户使用ApplicationContext代替BeanFactroy。
 //        ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
 //        DriverManagerDataSource dataSource2 = (DriverManagerDataSource) context.getBean("dataSource");
 //        System.out.println(dataSource2.getUrl());

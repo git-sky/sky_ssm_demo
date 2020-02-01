@@ -29,6 +29,9 @@ public class TestCarFactoryBean {
         //
         XmlBeanFactory beanFactory = new XmlBeanFactory(resource);
 
+        System.out.println("=============================================================================");
+
+//        for (int i = 0; i < 10; i++) {
         // 获取Car实例
         Car car = (Car) beanFactory.getBean("car");
         System.out.println(car);
@@ -39,5 +42,6 @@ public class TestCarFactoryBean {
         // 获取CarFactoryBean实例
         CarFactoryBean carFactoryBean = (CarFactoryBean) beanFactory.getBean("&car");
         System.out.println(carFactoryBean);
+//        }
     }
 }

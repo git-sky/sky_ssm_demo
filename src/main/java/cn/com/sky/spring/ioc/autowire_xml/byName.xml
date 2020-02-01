@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--school和course没有手工明确配置，使用byName，可以通过名称绑定到student上面。-->
+    <bean id="sky" class="cn.com.sky.spring.ioc.autowire_xml.Student"
+          autowire="byName">
+        <property name="name" value="Lucy"/>
+        <property name="age" value="24"/>
+    </bean>
+
+    <!--容器默认的自动绑定模式是no，也就是不采用任何形式的自动绑定，完全依赖手工明确配置各个bean之间的依赖关系。-->
+    <bean id="school" class="cn.com.sky.spring.ioc.autowire_xml.School" >
+        <property name="name" value="西安电子科技大学"/>
+        <property name="location" value="西安"/>
+    </bean>
+
+    <bean id="course" class="cn.com.sky.spring.ioc.autowire_xml.Course">
+        <property name="name" value="语文"/>
+        <property name="score" value="89"/>
+    </bean>
+</beans>

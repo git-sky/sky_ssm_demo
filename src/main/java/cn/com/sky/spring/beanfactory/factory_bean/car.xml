@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="car"
-          class="cn.com.sky.spring.beanfactory.factory_bean.CarFactoryBean">
+          class="cn.com.sky.spring.beanfactory.factory_bean.CarFactoryBean" init-method="init">
         <property name="carInfo" value="benz,250,200000"/>
     </bean>
 

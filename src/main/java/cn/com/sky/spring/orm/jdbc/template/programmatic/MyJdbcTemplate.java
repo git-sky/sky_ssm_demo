@@ -31,7 +31,7 @@ public class MyJdbcTemplate {
 
 
         //自定义异常转译
-        SQLErrorCodeSQLExceptionTranslator sqlErrorCodeSQLExceptionTranslator = new ToySQLExceptionTranslator();
+        SQLErrorCodeSQLExceptionTranslator sqlErrorCodeSQLExceptionTranslator = new MySQLExceptionTranslator();
         sqlErrorCodeSQLExceptionTranslator.setDataSource(dataSource);
         jdbcTemplate.setExceptionTranslator(sqlErrorCodeSQLExceptionTranslator);
     }

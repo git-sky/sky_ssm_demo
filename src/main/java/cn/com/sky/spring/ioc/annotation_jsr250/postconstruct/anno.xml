@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!--该类解析@Resource或者@PostConstruct和@PreDestroy注解。-->
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+
+    <!--该类解析@Autowired和@Qualifier注解。-->
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+
+    <bean id="abc" class="cn.com.sky.spring.ioc.annotation_jsr250.postconstruct.AAA"/>
+
+    <bean id="b" class="cn.com.sky.spring.ioc.annotation_jsr250.postconstruct.BBB"/>
+
+
+</beans>

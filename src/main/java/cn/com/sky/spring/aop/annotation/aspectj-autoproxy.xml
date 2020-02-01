@@ -18,9 +18,11 @@
    -->
     <bean id="myAspect7" class="cn.com.sky.spring.aop.annotation.MyAspect7"/>
 
+    <!-- 基于DTD的配置方式 -->
     <!-- 是<aop:aspectj-autoproxy />的实际背后实现，与之效果相同。自动代理模式 -->
     <!-- <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"></bean> -->
 
+    <!-- 基于XSD的配置方式 -->
     <!-- 通过<aop: aspectj-autoproxy>来配置，使用AspectJ的注解来标识通知及切入点,推荐方式 -->
     <!-- 该配置只能识别aop的配置，不能组件扫描，所以xml配置文件还需要bean的配置。-->
     <aop:aspectj-autoproxy/>

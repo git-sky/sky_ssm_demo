@@ -2,6 +2,7 @@ package cn.com.sky.spring.ioc.bean_lifecycle;
 
 import org.junit.Test;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
@@ -60,6 +61,7 @@ public class TestBeanLife {
 
         // 4.关闭容器
         System.out.println("==================4.关闭容器==================");
+        //加上这个，才会执行销毁方法（DisposableBean -> destroy() 和 destroy-method ）
         ((ClassPathXmlApplicationContext) context).registerShutdownHook();
 
     }
@@ -77,9 +79,22 @@ public class TestBeanLife {
 
         ConfigurableBeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource(configLocation));
 
-        beanFactory.addBeanPostProcessor(new MyBeanPostProcessor());
+//        beanFactory.addBeanPostProcessor(new MyBeanPostProcessor());
         // beanFactory.getBean("sky");
-        Teacher teacher = (Teacher) beanFactory.getBean("teacher");
-        System.out.println(teacher);
+//        for (int i = 0; i <= 3; i++) {
+//            Teacher teacher = (Teacher) beanFactory.getBean("teacher");
+//            System.out.println(teacher);
+//        }
+
+        for (int i = 0; i <= 3; i++) {
+            Student student = (Student) beanFactory.getBean("&sky");
+            System.out.println(student);
+        }
+
+//            Teacher stu = (Teacher) beanFactory.getBean("teacher");
+
+
+        //加上这个，才会执行销毁方法（DisposableBean -> destroy() 和 destroy-method ）
+        beanFactory.destroySingletons();
     }
 }

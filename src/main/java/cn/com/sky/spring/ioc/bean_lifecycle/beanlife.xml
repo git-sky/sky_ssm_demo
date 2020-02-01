@@ -14,7 +14,7 @@
     <bean id="myBeanPostProcessor"
           class="cn.com.sky.spring.ioc.bean_lifecycle.MyBeanPostProcessor"/>
 
-    <bean id="teacher" class="cn.com.sky.spring.ioc.bean_lifecycle.Teacher">
+    <bean id="teacher" class="cn.com.sky.spring.ioc.bean_lifecycle.Teacher"  scope="prototype" >
         <property name="name" value="Caesar"/>
     </bean>
 

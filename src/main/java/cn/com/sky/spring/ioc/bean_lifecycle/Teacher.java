@@ -28,9 +28,9 @@ public class Teacher {
         System.out.println("say() ...");
     }
 
-    @Override
-    public String toString() {
-        return "Teacher [name=" + name + "]";
-    }
+//    @Override
+//    public String toString() {
+//        return "Teacher [name=" + name + "]";
+//    }
 
 }

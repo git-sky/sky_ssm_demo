@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="china-pub" class="cn.com.sky.spring.ioc.aggregate_collection.Bookstore">
+        <property name="name" value="china-pub"/>
+        <!-- 1.装配list或者set -->
+        <property name="books">
+            <!-- <list> <ref bean="spring" /> <ref bean="spark" /> <ref bean="java"
+                /> </list> 或者如下配置 -->
+            <set>
+                <ref bean="spring"/>
+                <ref bean="spark"/>
+                <ref bean="java"/>
+            </set>
+        </property>
+        <!-- 2.装配Map -->
+        <property name="tables">
+            <map>
+                <entry key="high" value-ref="high"/>
+                <entry key="middle" value-ref="middle"/>
+                <entry key="low" value-ref="low"/>
+            </map>
+        </property>
+        <!-- 3.装配properties集合 -->
+        <property name="computers">
+            <props>
+                <prop key="levovo">levovo</prop>
+                <prop key="dell">dell</prop>
+                <prop key="hp">hp</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="spring" class="cn.com.sky.spring.ioc.aggregate_collection.Book">
+        <property name="name" value="Spring实战"/>
+        <property name="author" value="Craig Walls"/>
+        <property name="price" value="59.00"/>
+    </bean>
+
+    <bean id="spark" class="cn.com.sky.spring.ioc.aggregate_collection.Book">
+        <property name="name" value="Spark大数据处理技术"/>
+        <property name="author" value="夏俊鸾"/>
+        <property name="price" value="65.00"/>
+    </bean>
+
+    <bean id="java" class="cn.com.sky.spring.ioc.aggregate_collection.Book">
+        <property name="name" value="写给大忙人看的Java SE 8"/>
+        <property name="author" value="Cay S. Horstmann"/>
+        <property name="price" value="59.00"/>
+    </bean>
+
+
+    <bean id="high" class="cn.com.sky.spring.ioc.aggregate_collection.Table">
+        <property name="name" value="higher table"/>
+        <property name="price" value="13.00"/>
+    </bean>
+
+    <bean id="middle" class="cn.com.sky.spring.ioc.aggregate_collection.Table">
+        <property name="name" value="middle table"/>
+        <property name="price" value="15.00"/>
+    </bean>
+
+    <bean id="low" class="cn.com.sky.spring.ioc.aggregate_collection.Table">
+        <property name="name" value="lower table"/>
+        <property name="price" value="19.00"/>
+    </bean>
+
+</beans>

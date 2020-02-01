@@ -5,10 +5,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * <pre>
- * 嵌套方法拦截失效问题。
+ * 嵌套方法拦截失效问题。[指的是同一个对象的方法嵌套调用，例如：A对象的方法m1调用A对象的方法m2。]
  *
- * 解决方案
- * 需要修改两个地方：
+ * 解决方案：
+ * 需要同时修改两个地方：
  * 1、调用嵌套方法的地方修改为： ((IPersonService) AopContext.currentProxy()).work(msg);
  * 2、配置修改为：<aop:aspectj-autoproxy expose-proxy="true"/>
  *

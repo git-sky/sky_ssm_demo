@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <bean id="sky" class="cn.com.sky.spring.ioc.annotation_config.Student">
+        <property name="name" value="Lucy"/>
+        <property name="age" value="24"/>
+    </bean>
+
+    <bean id="littleschool" class="cn.com.sky.spring.ioc.annotation_config.LittleSchool">
+        <property name="name" value="Nankai"/>
+        <property name="location" value="Tianjing"/>
+        <qualifier value="little"/>
+    </bean>
+
+    <bean id="bigschool" class="cn.com.sky.spring.ioc.annotation_config.BigSchool">
+        <property name="name" value="Tsinghua"/>
+        <property name="location" value="Beijing"/>
+        <qualifier value="big"/>
+    </bean>
+
+    <bean id="course" class="cn.com.sky.spring.ioc.annotation_config.Course">
+        <!-- 		<property name="name" value="语文" />
+                <property name="score" value="89" /> -->
+    </bean>
+</beans>

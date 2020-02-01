@@ -10,6 +10,17 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+/**
+ * <pre>
+ *
+ * 基于 Template + Callback 模式。
+ *
+ * 设置回滚的两种方式：
+ * 1、设置 txStatus.setRollbackOnly();// 回滚事务
+ * 2、抛出 uncheck exception。throw new RuntimeException(e);// 回滚事务
+ *
+ * </pre>
+ */
 public class TestTemplate {
 
     static String user = "root";
@@ -39,7 +50,6 @@ public class TestTemplate {
             public Object doInTransaction(TransactionStatus txStatus) {
                 int i = 0;
                 try {
-
                     String username = "Lucy";
                     String isbn = "1001";
 

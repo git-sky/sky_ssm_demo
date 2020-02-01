@@ -83,7 +83,7 @@
         </property>
     </bean>
 
-    <!-- 配置代理工厂,而在Spring AOP中，使用类org.springframework.aop.framework.ProxyFactory作为织入器。ProxyFactoryBean本质上是一个用来生产Proxy的FactoryBean。 -->
+    <!-- 配置代理工厂,在Spring AOP中，使用类org.springframework.aop.framework.ProxyFactory作为织入器。ProxyFactoryBean本质上是一个用来生产Proxy的FactoryBean。 -->
     <bean id="userDao" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="target" ref="userDaoTarget"/>
         <!-- <property name="interceptorNames" value="myAdvisor2" /> -->

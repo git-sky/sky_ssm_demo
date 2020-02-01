@@ -1,19 +1,21 @@
 package cn.com.sky.spring.beanfactory.factory_bean;
 
 import org.springframework.beans.factory.FactoryBean;
+import org.springframework.beans.factory.InitializingBean;
 
-public class CarFactoryBean implements FactoryBean<Car> {
+public class CarFactoryBean implements FactoryBean<Car>, InitializingBean {
 
     private String carInfo;
 
     @Override
     public Car getObject() throws Exception {
-
+//        this.afterPropertiesSet();
         Car car = new Car();
         String[] infos = carInfo.split(",");
         car.setBrand(infos[0]);
         car.setMaxSpeed(Integer.valueOf(infos[1]));
         car.setPrice(Double.valueOf(infos[2]));
+        System.out.println("getObject().......");
         return car;
     }
 
@@ -34,6 +36,15 @@ public class CarFactoryBean implements FactoryBean<Car> {
 
     public void setCarInfo(String carInfo) {
         this.carInfo = carInfo;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("afterPropertiesSet....");
+    }
+
+    public void init() {
+        System.out.println("init().....");
     }
 
 }

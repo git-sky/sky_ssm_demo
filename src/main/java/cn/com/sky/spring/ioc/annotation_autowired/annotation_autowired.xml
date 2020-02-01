@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+    <bean id="newsProvider" class="cn.com.sky.spring.ioc.annotation_autowired.FXNewsProvider"/>
+
+    <bean id="djNewsListener" class="cn.com.sky.spring.ioc.annotation_autowired.DowJonesNewsListener"/>
+
+    <bean id="djNewsPersister" class="cn.com.sky.spring.ioc.annotation_autowired.DowJonesNewsPersister"/>
+
+</beans>

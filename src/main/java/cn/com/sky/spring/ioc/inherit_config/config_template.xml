@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+    <bean id="djNewsListener" class="cn.com.sky.spring.ioc.inherit_config.DowJonesNewsListener"/>
+
+    <bean id="djNewsPersister" class="cn.com.sky.spring.ioc.inherit_config.DowJonesNewsPersister"/>
+
+    <bean id="specificNewsListener" class="cn.com.sky.spring.ioc.inherit_config.SpecificNewsListener"/>
+
+    <!--parent属性还可以与abstract属性结合使用，达到将相应bean定义模板化的目的。-->
+
+    <!-- newsProviderTemplate的bean定义通过abstract属性声明为true，说明这个bean定义不需要实例化。
+    实际上，这就是之前提到的可以不指定class属性的少数场景之一(当然，同时指定class和 abstract="true"也是可以的)。该bean定义只是一个配置模板，不对应任何对象。-->
+    <bean id="newsProviderTemplate" abstract="true">
+        <property name="newPersistener">
+            <ref bean="djNewsPersister"/>
+        </property>
+    </bean>
+
+    <!--通过parent指向newsProviderTemplate这个模板定义，就拥有了该模板定义的所有属性配置。
+    当多个bean定义拥有多个相同默认属性配置的时候，你会发现这种方式可以带来很大的便利。-->
+    <bean id="superNewsProvider" class="cn.com.sky.spring.ioc.inherit_config.FXNewsProvider"
+          parent="newsProviderTemplate">
+        <property name="newsListener">
+            <ref bean="djNewsListener"/>
+        </property>
+    </bean>
+
+    <bean id="subNewsProvider" class="cn.com.sky.spring.ioc.inherit_config.SpecificFXNewsProvider"
+          parent="newsProviderTemplate">
+        <property name="newsListener">
+            <ref bean="specificNewsListener"/>
+        </property>
+    </bean>
+
+</beans>  

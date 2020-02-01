@@ -6,15 +6,16 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * <pre>
- * 我们只是使用@Resource或者@PostConstruct和@PreDestroy标注了相应对象，并不能给该对象带来想要的东西。
  *
- * 所以，就像@Autowired需要AutowiredAnnotationBeanPostProcessor为它与IoC容器牵线搭桥一样，
+ * 我们只是使用 @Resource或者 @PostConstruct和 @PreDestroy 标注了相应对象，并不能给该对象带来想要的东西。
  *
- * JSR250的这些注解也同样需要一个BeanPostProcessor帮助它们实现自身的价值。
+ * 所以，就像 @Autowired需要AutowiredAnnotationBeanPostProcessor 为它与IoC容器牵线搭桥一样，
  *
- * 这个BeanPostProcessor就是org.springframework.context.annotation.CommonAnnotationBeanPostProcessor，
+ * JSR250 的这些注解也同样需要一个 BeanPostProcessor帮助它们实现自身的价值。
  *
- * 只有将CommonAnnotationBeanPostProcessor添加到容器，JSR250的相关注解才能发挥作用。
+ * 这个BeanPostProcessor 就是org.springframework.context.annotation.CommonAnnotationBeanPostProcessor，
+ *
+ * 只有将CommonAnnotationBeanPostProcessor 添加到容器，JSR250 的相关注解才能发挥作用。
  *
  * 总结：
  * CommonAnnotationBeanPostProcessor 解析@Resource或者@PostConstruct和@PreDestroy注解。
@@ -42,11 +43,15 @@ public class TestCommonAnnotationBeanPostProcessor {
         FXNewsProvider provider = (FXNewsProvider) context.getBean("newsProvider");
 
         System.out.println(provider);
-        System.out.println(provider.getNewsListener());
-        System.out.println(provider.getNewPersistener());
+        provider.send();
+
+        System.out.println("+++++++++++++++++++++++++");
 
 
-        // 关闭容器
+        LifeCycleEnabledClass lifeCycleEnabledClass = (LifeCycleEnabledClass) context.getBean("lifeCycleEnabledClass");
+        System.out.println(lifeCycleEnabledClass);
+
+        // 关闭容器（加上registerShutdownHook，注解@PreDestroy才会执行。）
         ((ClassPathXmlApplicationContext) context).registerShutdownHook();
     }
 }

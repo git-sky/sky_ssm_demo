@@ -19,9 +19,9 @@ import cn.com.sky.spring.aop.classicproxy.dao.UserDao;
  * 	// 执行后置通知；after advice
  * }
  *
- * ProxyFactoryBean（Proxy+FactoryBean ） --基于容器配置的织入器
+ * ProxyFactoryBean（Proxy+FactoryBean ） ----基于容器配置的织入器
  *
- * 1. 代理模式
+ * 2、ioc配置模式织入【织入器ProxyFactoryBean】
  */
 public class TestProxyFactoryBean {
 
@@ -34,7 +34,8 @@ public class TestProxyFactoryBean {
 
     public static void main(String[] args) {
 
-        String configLocation = getPath() + "/aop_proxy.xml";// 基本代理模式
+        // 基本代理模式
+        String configLocation = getPath() + "/aop_proxy.xml";
 
         final ApplicationContext appCtx = new ClassPathXmlApplicationContext(configLocation);
         UserDao userDao = (UserDao) appCtx.getBean("userDao");

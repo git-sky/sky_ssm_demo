@@ -1,1 +1,1 @@
-http\://blog.csdn.net/cutesource/schema/people=cn.com.sky.spring.custom.MyNamespaceHandler
+http\://blog.csdn.net/cutesource/schema/people=cn.com.sky.spring.custom_namespace.MyNamespaceHandler

@@ -25,16 +25,14 @@
 
     <!-- 自动代理创建模式,DefaultAdvisorAutoProxyCreator -->
     <!-- 将DefaultAdvisorAutoProxyCreator注册到容器后，它就会自动搜寻容器内的所有Advisor，然后根据各个Advisor所提供的拦截信息，为符合条件的容器中的目标对象生成相应的代理对象。 -->
-    <bean
-            class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
         <property name="proxyTargetClass">
             <value>true</value>
         </property>
     </bean>
 
     <!-- 自动代理创建模式,BeanNameAutoProxyCreator,更加细粒度的织入范围控制。 -->
-    <bean
-            class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
         <!-- 通过beanNames，我们可以指定要对容器中的哪些bean自动生成代理对象。 -->
         <property name="beanNames">
             <list>

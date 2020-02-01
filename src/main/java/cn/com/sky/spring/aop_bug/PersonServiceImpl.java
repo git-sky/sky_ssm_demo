@@ -1,10 +1,14 @@
 package cn.com.sky.spring.aop_bug;
 
 import org.springframework.aop.framework.AopContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PersonServiceImpl implements IPersonService {
+
+    @Autowired
+    private IPersonDao personDao;
 
     @Override
     public String action(String msg) {
@@ -14,6 +18,8 @@ public class PersonServiceImpl implements IPersonService {
 
 
         ((IPersonService) AopContext.currentProxy()).work(msg);   //代码2，解决嵌套方法不拦截问题。
+
+        personDao.action(msg);
 
 
         return "[" + msg + "]";

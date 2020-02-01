@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+    <bean id="djNewsListener" class="cn.com.sky.spring.ioc.inherit_config.DowJonesNewsListener"/>
+
+    <bean id="djNewsPersister" class="cn.com.sky.spring.ioc.inherit_config.DowJonesNewsPersister"/>
+
+    <bean id="specificNewsListener" class="cn.com.sky.spring.ioc.inherit_config.SpecificNewsListener"/>
+
+
+    <bean id="superNewsProvider" class="cn.com.sky.spring.ioc.inherit_config.FXNewsProvider">
+        <property name="newsListener">
+            <ref bean="djNewsListener"/>
+        </property>
+        <property name="newPersistener">
+            <ref bean="djNewsPersister"/>
+        </property>
+    </bean>
+
+    <!--我们在声明subNewsProvider的时候，使用了parent属性，将其值指定为superNewsProvider， 这样就继承了superNewsProvider定义的默认值，只需要将特定的属性进行更改，而不要全部又重新定义一遍。-->
+    <bean id="subNewsProvider" class="cn.com.sky.spring.ioc.inherit_config.SpecificFXNewsProvider" parent="superNewsProvider">
+        <property name="newsListener">
+            <ref bean="specificNewsListener"/>
+        </property>
+    </bean>
+
+</beans>  

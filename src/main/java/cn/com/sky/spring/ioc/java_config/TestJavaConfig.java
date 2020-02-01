@@ -29,6 +29,11 @@ public class TestJavaConfig {
         student.setName("Caesar");
         student.setAge(24);
         System.out.println(student.toString());
+
+        Student student1 = (Student) context.getBean("studentBean");
+        System.out.println(student1);
+
+
     }
 
 }

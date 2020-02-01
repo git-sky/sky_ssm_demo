@@ -5,7 +5,13 @@ import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 import org.springframework.aop.aspectj.annotation.AspectJProxyFactory;
 
 /**
- * 编程实现
+ * <pre>
+ *
+ * 基于@AspectJ注解的AOP（注解AOP实现）
+ *
+ * 1、手工编程实现织入【织入器 AspectJProxyFactory】
+ *
+ * </pre>
  */
 public class TestProgrammatic {
 
@@ -14,7 +20,7 @@ public class TestProgrammatic {
         weaver.setProxyTargetClass(true);
         weaver.setTarget(new UserDaoImpl());
         weaver.addAspect(MyAspect.class);
-        UserDao userDao = (UserDao) weaver.getProxy();
+        UserDao userDao = weaver.getProxy();
         userDao.add();
         userDao.delete();
         userDao.update();
@@ -37,7 +43,7 @@ public class TestProgrammatic {
         weaver.addAspect(MyAspect5.class);
         weaver.addAspect(MyAspect4.class);
         weaver.addAspect(MyAspect3.class);
-        UserDao userDao = (UserDao) weaver.getProxy();
+        UserDao userDao = weaver.getProxy();
         userDao.query();
     }
 }

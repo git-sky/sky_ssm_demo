@@ -6,10 +6,18 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.com.sky.spring.ioc.factory_initial.HelloApi;
 
+/**
+ * <pre>
+ *
+ *  静态工厂方式实例化Bean
+ *
+ *
+ * </pre>
+ */
 public class TestFactory {
 
     private static String getPath() {
-        String path = cn.com.sky.spring.ioc.factory_initial.static_factory.TestFactory.class.getPackage().getName();
+        String path = TestFactory.class.getPackage().getName();
         String p = path.replaceAll("\\.", "/");
         System.out.println(p);
         return p;

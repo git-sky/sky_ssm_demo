@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+    <bean id="djNewsListener" class="cn.com.sky.spring.ioc.inherit_config.DowJonesNewsListener"/>
+
+    <bean id="djNewsPersister" class="cn.com.sky.spring.ioc.inherit_config.DowJonesNewsPersister"/>
+
+    <bean id="specificNewsListener" class="cn.com.sky.spring.ioc.inherit_config.SpecificNewsListener"/>
+
+
+    <bean id="superNewsProvider" class="cn.com.sky.spring.ioc.inherit_config.FXNewsProvider">
+        <property name="newsListener">
+            <ref bean="djNewsListener"/>
+        </property>
+        <property name="newPersistener">
+            <ref bean="djNewsPersister"/>
+        </property>
+    </bean>
+
+    <bean id="subNewsProvider" class="cn.com.sky.spring.ioc.inherit_config.SpecificFXNewsProvider">
+        <property name="newsListener">
+            <ref bean="specificNewsListener"/>
+        </property>
+        <!--重复配置，可以通过parent继承来解决。-->
+        <property name="newPersistener">
+            <ref bean="djNewsPersister"/>
+        </property>
+    </bean>
+
+</beans>  

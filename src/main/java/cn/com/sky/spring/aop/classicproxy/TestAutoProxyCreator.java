@@ -1,13 +1,19 @@
 package cn.com.sky.spring.aop.classicproxy;
 
 import cn.com.sky.spring.aop.classicproxy.dao.UserDao;
+import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 
 /**
  * <pre>
  *
- * 自动代理模式
+ * 3、自动代理模式织入【织入器DefaultAdvisorAutoProxyCreator】
+ *
  * 自动代理的原理都是基于BeanPostProcessor，通过干预对象实例化过程，生成代理对象。
  *
  * 所有的 AutoProxyCreator 都是 InstantiationAwareBeanPostProcessor，这种类型的 BeanPostProcessor
@@ -31,10 +37,14 @@ public class TestAutoProxyCreator {
     }
 
     public static void main(String[] args) {
+        //自动代理模式
+        String configLocation = getPath() + "/aop_autoproxy.xml";
 
-        String configLocation = getPath() + "/aop_autoproxy.xml";//自动代理模式
+        System.out.println(configLocation);
 
         final ApplicationContext appCtx = new ClassPathXmlApplicationContext(configLocation);
+
+
         UserDao userDao = (UserDao) appCtx.getBean("userDao");
         userDao.add();
         userDao.delete();
