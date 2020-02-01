@@ -28,7 +28,6 @@ public class TestFactory {
     public void testInstantiatingBeanByStaticFactory() {
 
         String configLocation = getPath() + "/initial.xml";
-
         // 使用静态工厂方法
         BeanFactory beanFactory = new ClassPathXmlApplicationContext(configLocation);
         HelloApi bean3 = beanFactory.getBean("bean3", HelloApi.class);
