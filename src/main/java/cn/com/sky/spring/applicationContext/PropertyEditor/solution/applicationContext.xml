@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="sky" class="cn.com.sky.spring.applicationContext.PropertyEditor.solution.UserManager">
+        <property name="dataValue">
+            <value>2020-01-22</value>
+        </property>
+    </bean>
+
+    <!--将自定义属性编辑器注册到Spring配置文件中。-->
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <entry key="java.util.Date">
+                    <bean class="cn.com.sky.spring.applicationContext.PropertyEditor.solution.DatePropertyEditor">
+                        <property name="format" value="yyyy-MM-dd"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+</beans>

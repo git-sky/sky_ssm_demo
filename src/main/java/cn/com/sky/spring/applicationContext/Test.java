@@ -17,9 +17,9 @@ public class Test {
 
         String configLocation = getPath() + "/applicationContext.xml";
 
-        ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
+//        ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
 
-//		ApplicationContext context = new MyClassPathXmlApplicationContext(configLocation);
+		ApplicationContext context = new MyClassPathXmlApplicationContext(configLocation);
 
         // BeanFactory context = new XmlBeanFactory(new ClassPathResource(configLocation));
 

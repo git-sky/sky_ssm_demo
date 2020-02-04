@@ -1,8 +1,9 @@
-package cn.com.sky.spring.applicationContext;
+package cn.com.sky.spring.applicationContext.initPropertySources;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
+ * 实现initPropertySources方法。
  * 使用该类时，需要定义var变量。
  */
 public class MyClassPathXmlApplicationContext extends ClassPathXmlApplicationContext {
@@ -16,7 +17,7 @@ public class MyClassPathXmlApplicationContext extends ClassPathXmlApplicationCon
      */
     @Override
     protected void initPropertySources() {
-        getEnvironment().setRequiredProperties("var");
+//        getEnvironment().setRequiredProperties("var");
     }
 
 }

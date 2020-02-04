@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <!--如果属性在不只一个地方进行了配置，那么 MyBatis 将按照下面的顺序来加载：
+在 properties 元素体内指定的属性首先被读取。
+然后根据 properties 元素中的 resource 属性读取类路径下属性文件或根据 url 属性指定的路径读取属性文件，并覆盖已读取的同名属性。
+最后读取作为方法参数传递的属性，并覆盖已读取的同名属性。
+因此，通过方法参数传递的属性具有最高优先级，resource/url 属性中指定的配置文件次之，最低优先级的是 properties 属性中指定的属性。-->
+    <!--<properties resource="cn/com/sky/mybatis/book/db-config.properties">-->
+    <!--<property name="username" value="root"/>-->
+    <!--<property name="password" value="123456"/>-->
+    <!--</properties>-->
+
+    <typeAliases>
+        <typeAlias type="cn.com.sky.spring.orm.mybatis.demo.domain.User" alias="User"/>
+    </typeAliases>
+
+
+    <mappers>
+        <!--单个配置： 注册userMapper.xml文件， userMapper.xml位于cn.com.sky.mybatis.mapping这个包下，所以resource写成cn/com/sky/mybatis/mapping/userMapper.xml -->
+        <mapper resource="cn/com/sky/spring/orm/mybatis/demo/mapper/mapper_user.xml"/>
+
+        <!--单个配置： 注册UserMapper映射接口 &ndash;&gt;-->
+        <!--<mapper class="cn.com.sky.mybatis.mapping.UserMapperI"/>-->
+
+
+        <!--&lt;!&ndash; 注册orderMapper.xml文件， orderMapper.xml位于cn.com.sky.mybatis.mapping这个包下，所以resource写成cn/com/sky/mybatis/mapping/orderMapper.xml &ndash;&gt;-->
+        <!--<mapper resource="cn/com/sky/mybatis/mapping/orderMapper.xml"/>-->
+
+
+        <!--&lt;!&ndash; 注册classMapper.xml文件， classMapper.xml位于cn.com.sky.mybatis.mapping这个包下，所以resource写成cn/com/sky/mybatis/mapping/classMapper.xml &ndash;&gt;-->
+        <!--<mapper resource="cn/com/sky/mybatis/mapping/classMapper.xml"/>-->
+
+        <!--<mapper resource="cn/com/sky/mybatis/mapping/classMapper2.xml"/>-->
+
+        <!--<mapper resource="cn/com/sky/mybatis/mapping/commodityMapper.xml"/>-->
+
+        <!--批量配置：扫描包下的文件-->
+        <!--<package name="cn.com.sky.mybatis.book.resources"/>-->
+
+    </mappers>
+
+</configuration>

@@ -8,7 +8,7 @@ import java.beans.PropertyEditor;
 import java.text.SimpleDateFormat;
 
 public class DatePropertyEditorRegistrar implements PropertyEditorRegistrar {
-
+    @Override
     public void registerCustomEditors(PropertyEditorRegistry registry) {
         registry.registerCustomEditor(java.util.Date.class,
                 new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), false));

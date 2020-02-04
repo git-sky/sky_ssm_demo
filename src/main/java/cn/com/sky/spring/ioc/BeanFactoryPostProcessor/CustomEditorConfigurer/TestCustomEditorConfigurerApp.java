@@ -21,7 +21,6 @@ import java.util.Map;
  * 要想完成这种由字符串到具体对象的转换（不管这个转换工作最终由谁来做），都需要这种转换规则相关的信息，而CustomEditorConfigurer就是帮助我们传达类似信息的。
  *
  *
- *
  * Spring内部通过JavaBean的PropertyEditor来帮助进行String类型到其他类型的转换工作。
  *
  * 只要为每种对象类型提供一个PropertyEditor，就可以根据该对象类型取得与其相对应的 PropertyEditor来做具体的类型转换。

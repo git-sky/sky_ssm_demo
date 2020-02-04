@@ -3,8 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="car" class="cn.com.sky.spring.beanfactory.factory_bean.CarFactoryBean" init-method="init">
-        <property name="carInfo" value="benz,250,200000"/>
+    <bean id="sky" class="cn.com.sky.spring.applicationContext.initPropertySources.Student">
+        <property name="name" value="Lucy"/>
+        <property name="age" value="24"/>
     </bean>
 
 </beans>

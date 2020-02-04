@@ -3,8 +3,10 @@ package cn.com.sky.spring.aop;
 
 import org.aopalliance.aop.Advice;
 import org.aopalliance.intercept.MethodInterceptor;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.Test;
 import org.springframework.aop.*;
+import org.springframework.aop.config.AopNamespaceHandler;
 import org.springframework.aop.support.*;
 import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
 import org.springframework.core.Ordered;
@@ -42,7 +44,8 @@ public class TestSpringAop {
         StaticMethodMatcher staticMethodMatcher;
         StaticMethodMatcherPointcut staticMethodMatcherPointcut1;
         DynamicMethodMatcher dynamicMethodMatcher;
-        DynamicMethodMatcherPointcut dynamicMethodMatcherPointcut1;
+
+        AopNamespaceHandler aopNamespaceHandler;
 
     }
 
