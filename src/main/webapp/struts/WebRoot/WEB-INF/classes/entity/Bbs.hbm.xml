@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="entity.Bbs" table="bbs" schema="dbo" catalog="web">
+        <id name="bbsid" type="integer">
+            <column name="bbsid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="users" class="entity.Users" fetch="select">
+            <column name="userid" not-null="true" />
+        </many-to-one>
+        <property name="title" type="string">
+            <column name="title" length="50" not-null="true" />
+        </property>
+        <property name="contents" type="string">
+            <column name="contents" length="200" not-null="true" />
+        </property>
+        <property name="replycount" type="integer" update="true">
+            <column name="replycount" not-null="true" />
+        </property>
+        <property name="date" type="string">
+            <column name="date" length="23" not-null="true" />
+        </property>
+        <set name="replies" inverse="true" cascade="delete">
+            <key>
+                <column name="bbsid" not-null="true" />
+            </key>
+            <one-to-many class="entity.Reply" />
+        </set>
+    </class>
+</hibernate-mapping>

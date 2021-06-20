@@ -57,7 +57,7 @@
 
     <servlet>
         <servlet-name>ServletDemoSecond</servlet-name>
-        <servlet-class>cn.com.sky.servlet.servlet.ServletDemoSecond</servlet-class>
+        <servlet-class>cn.com.sky.servlet.servlet.My</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -95,5 +95,32 @@
         <servlet-name>liny</servlet-name>
         <url-pattern>/liny</url-pattern>
     </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>DisplayChart</servlet-name>
+        <servlet-class>org.jfree.chart.servlet.DisplayChart</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DisplayChart</servlet-name>
+        <url-pattern>/servlet/DisplayChart</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>Aa</servlet-name>
+        <servlet-class>servlet.Aa</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>myservlet</servlet-name>
+        <url-pattern>/servlet/myservlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Aa</servlet-name>
+        <url-pattern>/servlet/Aa</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

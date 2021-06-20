@@ -3,6 +3,7 @@ package cn.com.sky.spring.beanfactory.programmatic;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.PropertyValue;
 import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConstructorArgumentValues;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -23,6 +24,8 @@ public class TestByCode {
         BeanFactory container = bindViaCode(beanRegistry);
         User user = (User) container.getBean("user");
         user.say();
+
+        BeanDefinition beanDefinition;
     }
 
     public static BeanFactory bindViaCode(BeanDefinitionRegistry registry) {

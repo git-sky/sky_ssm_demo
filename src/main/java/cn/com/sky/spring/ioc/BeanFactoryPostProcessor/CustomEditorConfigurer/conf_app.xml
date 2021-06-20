@@ -11,12 +11,12 @@
         </property>
     </bean>
 
-    <!--<bean id="datePropertyEditor"-->
-          <!--class="cn.com.sky.spring.ioc.BeanFactoryPostProcessor.CustomEditorConfigurer.DatePropertyEditor">-->
-        <!--<property name="datePattern">-->
-            <!--<value>yyyy/MM/dd</value>-->
-        <!--</property>-->
-    <!--</bean>-->
+    <bean id="datePropertyEditor"
+          class="cn.com.sky.spring.ioc.BeanFactoryPostProcessor.CustomEditorConfigurer.DatePropertyEditor">
+        <property name="datePattern">
+            <value>yyyy/MM/dd</value>
+        </property>
+    </bean>
 
     <!--<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">-->
         <!--<property name="customEditors">-->

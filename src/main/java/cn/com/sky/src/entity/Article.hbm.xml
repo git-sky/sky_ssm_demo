@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="entity.Article" table="article" schema="dbo" catalog="web">
+        <id name="articleid" type="integer">
+            <column name="articleid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="articletype" class="entity.Articletype">
+            <column name="articletypeid" not-null="true" />
+        </many-to-one>
+        <property name="title" type="string">
+            <column name="title" length="50" not-null="true" />
+        </property>
+        <property name="readcount" type="integer">
+        <column name="readcount" not-null="true" />
+        </property>
+        <property name="contents" type="string">
+            <column name="contents" not-null="true" />
+        </property>
+        <property name="date" type="string">
+            <column name="date" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

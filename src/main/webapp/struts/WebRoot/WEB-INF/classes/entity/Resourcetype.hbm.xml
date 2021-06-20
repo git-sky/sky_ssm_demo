@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="entity.Resourcetype" table="resourcetype" schema="dbo" catalog="web" lazy="false">
+        <id name="resourcetypeid" type="integer">
+            <column name="resourcetypeid" />
+            <generator class="identity" />
+        </id>
+        <property name="resourcetypename" type="string">
+            <column name="resourcetypename" length="50" not-null="true" />
+        </property>
+        <set name="resources" inverse="true" cascade="delete">
+            <key>
+                <column name="resourcetypeid" not-null="true" />
+            </key>
+            <one-to-many class="entity.Resource" />
+        </set>
+    </class>
+</hibernate-mapping>

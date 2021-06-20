@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+
+	<!-- 定义数据源Bean，使用C3P0数据源实现 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<!-- 指定连接数据库的驱动 -->
+		<property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<!-- 指定连接数据库的URL -->
+		<property name="jdbcUrl"
+			value="jdbc:sqlserver://localhost:1433;DatabaseName=web" />
+		<!-- 指定连接数据库的用户名 -->
+		<property name="user" value="sa" />
+		<!-- 指定连接数据库的密码 -->
+		<property name="password" value="xian" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.SQLServerDialect
+                </prop>
+				<!-- 表示允许自动提交 -->
+				<prop key="hibernate.connection.autocommit">true</prop>
+				<!-- 显示SQL语句 -->
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>entity/Roles.hbm.xml</value>
+				<value>entity/Bbs.hbm.xml</value>
+				<value>entity/Score.hbm.xml</value>
+				<value>entity/Article.hbm.xml</value>
+				<value>entity/Articletype.hbm.xml</value>
+				<value>entity/Reply.hbm.xml</value>
+				<value>entity/Chapter.hbm.xml</value>
+				<value>entity/Testbank.hbm.xml</value>
+				<value>entity/News.hbm.xml</value>
+				<value>entity/Users.hbm.xml</value>
+				<value>entity/Resourcetype.hbm.xml</value>
+				<value>entity/Resource.hbm.xml</value>
+				<value>entity/Adv.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="transactionInterceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="get*">PROPAGATION_REQUIRED, readOnly</prop>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">      
+        <property name="beanNames">      
+            <list>      
+                <value>*Service</value>   
+            </list>      
+        </property>      
+        <property name="interceptorNames">      
+            <list>      
+                <value>transactionInterceptor</value>      
+            </list>      
+        </property>      
+    </bean>  
+
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="IndexAction" class="action.IndexAction" />
+	
+	<bean id="UserLoginAction" class="action.UserLoginAction" scope="prototype">
+		<property name="us">
+			<ref bean="usersService" />
+		</property>
+	</bean>
+
+	<bean id="WebCountAction" class="action.WebCountAction" scope="prototype">
+		<property name="users">
+			<ref bean="usersService" />
+		</property>
+		<property name="bbs">
+			<ref bean="bbsService" />
+		</property>
+		<property name="resource">
+			<ref bean="resourceService" />
+		</property>
+		<property name="article">
+			<ref bean="articleService" />
+		</property>
+		<property name="testbank">
+			<ref bean="testbankService" />
+		</property>
+		<property name="news">
+			<ref bean="newsService" />
+		</property>
+	</bean>
+
+	<bean id="RegisterAction" class="action.RegisterAction" scope="prototype">
+		<property name="us">
+			<ref bean="usersService" />
+		</property>
+	</bean>
+
+
+	<bean id="bbsDAO" class="dao.BbsDAOImpl">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+
+	<bean id="bbsService" class="service.BbsServiceImpl">
+		<property name="bd">
+			<ref bean="bbsDAO" />
+		</property>
+		<property name="rd">
+			<ref bean="replyDAO" />
+		</property>
+		<property name="ud">
+			<ref bean="usersDAO" />
+		</property>
+	</bean>
+
+	<bean id="BbsAction" class="action.BbsAction" scope="prototype">
+		<property name="bs">
+			<ref bean="bbsService" />
+		</property>
+	</bean>
+
+	<bean id="scoreDAO" class="dao.ScoreDAOImpl">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+
+	<bean id="scoreService" class="service.ScoreServiceImpl">
+		<property name="sd">
+			<ref bean="scoreDAO" />
+		</property>
+	</bean>
+
+
+	<bean id="ScoreAction" class="action.ScoreAction">
+		<property name="ss">
+			<ref bean="scoreService" />
+		</property>
+	</bean>
+
+
+
+	<bean id="articleDAO" class="dao.ArticleDAOImpl">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+
+	<bean id="articletypeDAO" class="dao.ArticletypeDAOImpl">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+
+	<bean id="articleService" class="service.ArticleServiceImpl">
+		<property name="ad">
+			<ref bean="articleDAO" />
+		</property>
+	</bean>
+
+	<bean id="articletypeService" class="service.ArticletypeServiceImpl">
+		<property name="atd">
+			<ref bean="articletypeDAO" />
+		</property>
+	</bean>
+
+	<bean id="ArticleAction" class="action.ArticleAction">
+		<property name="as">
+			<ref bean="articleService" />
+		</property>
+		<property name="ats">
+			<ref bean="articletypeService" />
+		</property>
+	</bean>
+
+	<bean id="ArticletypeAction" class="action.ArticletypeAction">
+		<property name="ats">
+			<ref bean="articletypeService" />
+		</property>
+	</bean>
+
+	<bean id="replyDAO" class="dao.ReplyDAOImpl">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+
+
+	<bean id="replyService" class="service.ReplyServiceImpl">
+		<property name="rd">
+			<ref bean="replyDAO" />
+		</property>
+		<property name="bd">
+			<ref bean="bbsDAO" />
+		</property>
+	</bean>
+
+
+	<bean id="ReplyAction" class="action.ReplyAction">
+		<property name="rs">
+			<ref bean="replyService" />
+		</property>
+	</bean>
+
+
+	<bean id="chapterDAO" class="dao.ChapterDAOImpl">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+
+
+	<bean id="chapterService" class="service.ChapterServiceImpl">
+		<property name="cd">
+			<ref bean="chapterDAO" />
+		</property>
+	</bean>
+
+
+	<bean id="ChapterAction" class="action.ChapterAction">
+		<property name="cs">
+			<ref bean="chapterService" />
+		</property>
+	</bean>
+
+
+	<bean id="testbankDAO" class="dao.TestbankDAOImpl">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+
+
+	<bean id="testbankService" class="service.TestbankServiceImpl">
+		<property name="td">
+			<ref bean="testbankDAO" />
+		</property>
+		<property name="cd">
+			<ref bean="chapterDAO" />
+		</property>
+	</bean>
+
+
+	<bean id="TestbankAction" class="action.TestbankAction">
+		<property name="ts">
+			<ref bean="testbankService" />
+		</property>
+		<property name="ss">
+			<ref bean="scoreService" />
+		</property>
+	</bean>
+
+
+	<bean id="newsDAO" class="dao.NewsDAOImpl">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+
+
+	<bean id="newsService" class="service.NewsServiceImpl">
+		<property name="nd">
+			<ref bean="newsDAO" />
+		</property>
+	</bean>
+
+
+	<bean id="NewsAction" class="action.NewsAction">
+		<property name="ns">
+			<ref bean="newsService" />
+		</property>
+	</bean>
+
+	<bean id="usersDAO" class="dao.UsersDAOImpl">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+
+	<bean id="usersService" class="service.UsersServiceImpl">
+		<property name="ud">
+			<ref bean="usersDAO" />
+		</property>
+		<property name="bd">
+			<ref bean="bbsDAO" />
+		</property>
+		<property name="rd">
+			<ref bean="resourceDAO" />
+		</property>
+		<property name="sd">
+			<ref bean="scoreDAO" />
+		</property>
+	</bean>
+
+
+	<bean id="UserAction" class="action.UserAction">
+		<property name="us">
+			<ref bean="usersService" />
+		</property>
+	</bean>
+
+	<bean id="resourceDAO" class="dao.ResourceDAOImpl">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+
+	<bean id="resourcetypeDAO" class="dao.ResourcetypeDAOImpl">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+
+	<bean id="resourceService" class="service.ResourceServiceImpl">
+		<property name="rd">
+			<ref bean="resourceDAO" />
+		</property>
+		<property name="rtd">
+			<ref bean="resourcetypeDAO" />
+		</property>
+	</bean>
+
+	<bean id="resourcetypeService" class="service.ResourcetypeServiceImpl">
+		<property name="rtd">
+			<ref bean="resourcetypeDAO" />
+		</property>
+	</bean>
+
+
+	<bean id="ResourceAction" class="action.ResourceAction" scope="prototype">
+		<property name="rs">
+			<ref bean="resourceService" />
+		</property>
+	</bean>
+
+
+	<bean id="ResourcetypeAction" class="action.ResourcetypeAction"
+		scope="prototype">
+		<property name="rts">
+			<ref bean="resourcetypeService" />
+		</property>
+	</bean>
+
+	<bean id="advDAO" class="dao.AdvDAOImpl">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+
+	<bean id="advService" class="service.AdvServiceImpl">
+		<property name="avd">
+			<ref bean="advDAO" />
+		</property>
+
+	</bean>
+
+	<bean id="AdvAction" class="action.AdvAction" scope="prototype">
+		<property name="ads">
+			<ref bean="advService" />
+		</property>
+	</bean>
+
+	<bean id="FileDownloadAction" class="action.FileDownloadAction">
+		<property name="rs">
+			<ref bean="resourceService" />
+		</property>
+	</bean>
+
+	<bean id="ForgetAction" class="action.ForgetAction" scope="prototype">
+		<property name="us">
+			<ref bean="usersService" />
+		</property>
+	</bean>
+
+
+	<bean id="AdminAction" class="action.AdminAction" scope="prototype">
+		<property name="us">
+			<ref bean="usersService" />
+		</property>
+	</bean>
+
+
+	<bean id="AdminLoginAction" class="action.AdminLoginAction" scope="prototype">
+		<property name="us">
+			<ref bean="usersService" />
+		</property>
+	</bean>
+
+</beans>

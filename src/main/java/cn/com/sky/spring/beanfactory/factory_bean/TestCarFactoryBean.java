@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.web.servlet.mvc.ServletWrappingController;
 
 public class TestCarFactoryBean {
 
@@ -40,8 +41,10 @@ public class TestCarFactoryBean {
         System.out.println(car2);
 
         // 获取CarFactoryBean实例
-        CarFactoryBean carFactoryBean = (CarFactoryBean) beanFactory.getBean("&car");
-        System.out.println(carFactoryBean);
+//        CarFactoryBean carFactoryBean = (CarFactoryBean) beanFactory.getBean("&car");
+//        System.out.println(carFactoryBean);
 //        }
+
+        ServletWrappingController servletWrappingController;
     }
 }

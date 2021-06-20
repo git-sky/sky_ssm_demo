@@ -3,6 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<!--
+重点说一下UserMapper.xml配置中需要注意的几个小细节问题：
+1、本文件的<mapper>标签的namespace必须是UserMapper接口的全类名，既<mapper namespace="cn.com.sky.spring.orm.mybatis.demo.dao.UserMapper" >。
+2、本文件的定义操作数据库的<select><delete><update><insert>这些标签的id属性的值必须和UserMapper接口定义的方法名一致。
+之所以有上述说的这两点要求，就是为了能够让MyBatis能够根据UserMapper接口和本xml文件去自动实现UserMapper接口中定义的相关方法，这样我们就不再需要针对UserMapper接口去编写具体的实现代码了。
+-->
+
 <mapper namespace="cn.com.sky.spring.orm.mybatis.demo.dao.UserMapper">
 
     <insert id="insertUser" parameterType="User">

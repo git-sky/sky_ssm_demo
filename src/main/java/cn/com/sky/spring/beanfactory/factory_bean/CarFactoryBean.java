@@ -15,7 +15,7 @@ public class CarFactoryBean implements FactoryBean<Car>, InitializingBean {
         car.setBrand(infos[0]);
         car.setMaxSpeed(Integer.valueOf(infos[1]));
         car.setPrice(Double.valueOf(infos[2]));
-        System.out.println("getObject().......");
+        System.out.println("CarFactoryBean getObject().......");
         return car;
     }
 

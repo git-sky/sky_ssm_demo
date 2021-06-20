@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 public class FormServlet extends HttpServlet {
     private static final long serialVersionUID = -884689940866074733L;
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String token = TokenProccessor.getInstance().makeToken();// 创建令牌
@@ -18,6 +19,7 @@ public class FormServlet extends HttpServlet {
         request.getRequestDispatcher("/form.jsp").forward(request, response);// 跳转到form.jsp页面
     }
 
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }

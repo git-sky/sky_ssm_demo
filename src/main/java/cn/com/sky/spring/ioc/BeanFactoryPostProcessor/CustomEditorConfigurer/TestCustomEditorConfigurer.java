@@ -6,6 +6,7 @@ import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 
 import java.beans.PropertyEditor;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ import java.util.Map;
  *
  *
  *
- * Spring内部通过JavaBean的PropertyEditor来帮助进行String类型到其他类型的转换工作。
+ * Spring内部通过JavaBean 的PropertyEditor 来帮助进行String类型到其他类型的转换工作。
  *
  * 只要为每种对象类型提供一个PropertyEditor，就可以根据该对象类型取得与其相对应的 PropertyEditor来做具体的类型转换。
  * Spring容器内部在做具体的类型转换的时候，会采用JavaBean 框架内默认的PropertyEditor搜寻逻辑，从而继承了对原生类型以及java.lang.String.java.awt. Color和java.awt.Font等类型的转换支持。
@@ -46,12 +47,14 @@ public class TestCustomEditorConfigurer {
         XmlBeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource(configLocation));
 
         CustomEditorConfigurer customEditorConfigurer = new CustomEditorConfigurer();
-        Map<Class<?>, Class<? extends PropertyEditor>> customerEditors = new HashMap<>();
-        DatePropertyEditor propertyEditor = new DatePropertyEditor();
-        propertyEditor.setDatePattern("yyyy/MM/dd");
-        customerEditors.put(java.util.Date.class, DatePropertyEditor.class);
-        customEditorConfigurer.setCustomEditors(customerEditors);
 
+        Map<Class<?>, Class<? extends PropertyEditor>> customerEditors = new HashMap<>();
+//        DatePropertyEditor propertyEditor = new DatePropertyEditor();
+//        propertyEditor.setDatePattern("yyyy/MM/dd");
+
+        customerEditors.put(Date.class, DatePropertyEditor.class);
+
+        customEditorConfigurer.setCustomEditors(customerEditors);
         customEditorConfigurer.postProcessBeanFactory(beanFactory);
 
         DateFoo dateFoo = (DateFoo) beanFactory.getBean("dateFoo");

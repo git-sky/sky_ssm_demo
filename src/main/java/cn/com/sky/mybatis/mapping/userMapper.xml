@@ -42,6 +42,35 @@
 		values(#{name},#{age})
 	</insert>
 
+
+    <!--
+    selectKey 会将 SELECT LAST_INSERT_ID()的结果放入到传入的model的主键里面。
+    keyProperty 对应的model中的主键的属性名，这里是 User 中的id。
+    order="AFTER" 表示 SELECT LAST_INSERT_ID() 在insert执行之后执行,多用于自增主键，
+    BEFORE表示SELECT LAST_INSERT_ID() 在insert执行之前执行，这样的话就拿不到主键了，这种适合那种主键不是自增的类型，
+    resultType 主键类型。
+    -->
+    <insert id="addUserReturnKey" parameterType="User">
+        <selectKey keyProperty="id" order="AFTER" resultType="Integer" >
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into users(name,age) values(#{name},#{age})
+    </insert>
+
+    <!--BEFORE表示SELECT LAST_INSERT_ID() 在insert执行之前执行，这样的话就拿不到主键了，拿到的是一个跟主键无关的数。-->
+    <insert id="addUserReturnKey2" parameterType="User">
+        <selectKey keyProperty="id" order="BEFORE" resultType="Integer">
+            SELECT floor(RAND() * 10000)+500
+        </selectKey>
+        insert into users(name,age) values(#{name},#{age})
+    </insert>
+
+    <!--在开发中需要向表中插入自增ID，这个时候领域模型如果想要获取该ID的值，就需要添加useGeneratedKeys="true" keyProperty="id"。-->
+    <insert id="addUserReturnKey3" parameterType="User"  keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into users(name,age) values(#{name},#{age})
+    </insert>
+
+
     <!-- 删除用户(Remove) -->
     <delete id="deleteUser" parameterType="int">
 		delete from users where
@@ -74,5 +103,7 @@
 
     <!-- 开启二级缓存 -->
     <cache/>
+    <!--cache标签常用属性：-->
+    <cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true"/>
 
 </mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="entity.Score" table="score" schema="dbo" catalog="web">
+        <id name="scoreid" type="integer">
+            <column name="scoreid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="chapter" class="entity.Chapter" fetch="select">
+            <column name="chapterid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="users" class="entity.Users" fetch="select">
+            <column name="userid" not-null="true" />
+        </many-to-one>
+        <property name="grade" type="integer">
+            <column name="grade" not-null="true" />
+        </property>
+        
+        <property name="date" type="string">
+            <column name="date" length="23" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

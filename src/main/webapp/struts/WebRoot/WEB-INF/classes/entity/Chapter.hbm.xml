@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="entity.Chapter" table="chapter" schema="dbo" catalog="web" lazy="false">
+        <id name="chapterid" type="integer">
+            <column name="chapterid" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="50" not-null="true" />
+        </property>
+        <set name="scores" inverse="true"  cascade="delete">
+            <key>
+                <column name="chapterid" not-null="true" />
+            </key>
+            <one-to-many class="entity.Score" />
+        </set>
+        <set name="testbanks" inverse="true"  cascade="delete">
+            <key>
+                <column name="chapterid" not-null="true" />
+            </key>
+            <one-to-many class="entity.Testbank" />
+        </set>
+    </class>
+</hibernate-mapping>

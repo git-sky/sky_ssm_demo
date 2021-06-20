@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="entity.Users" table="users" schema="dbo" catalog="web" lazy="false">
+        <id name="userid" type="integer">
+            <column name="userid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="roles" class="entity.Roles" fetch="select" update="false" insert="false">
+            <column name="roleid" not-null="true" />
+        </many-to-one>
+        <property name="username" type="string" >
+            <column name="username" length="50" not-null="true" />
+        </property>
+        <property name="pass" type="string">
+            <column name="pass" length="50" not-null="true" />
+        </property>
+        <property name="sex" type="string">
+            <column name="sex" length="50" not-null="true" />
+        </property>
+       <property name="question" type="string">
+            <column name="question" length="50" />
+        </property>
+        <property name="answer" type="string">
+            <column name="answer" length="50" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" not-null="true" />
+        </property>
+        <property name="qq" type="string">
+            <column name="qq" length="50" not-null="true" />
+        </property>
+        <property name="date" type="string"  update="false" >
+            <column name="date" length="23" />
+        </property>
+        <set name="replies" inverse="true" cascade="delete">
+            <key>
+                <column name="userid" not-null="true" />
+            </key>
+            <one-to-many class="entity.Reply" />
+        </set>
+        <set name="bbses" inverse="true"  cascade="delete">
+            <key>
+                <column name="userid" not-null="true" />
+            </key>
+            <one-to-many class="entity.Bbs" />
+        </set>
+        <set name="resources" inverse="true"  cascade="delete">
+            <key>
+                <column name="userid" not-null="true" />
+            </key>
+            <one-to-many class="entity.Resource" />
+        </set>
+        <set name="scores" inverse="true"  cascade="delete" >
+            <key>
+                <column name="userid" not-null="true" />
+            </key>
+            <one-to-many class="entity.Score" />
+        </set>
+    </class>
+</hibernate-mapping>

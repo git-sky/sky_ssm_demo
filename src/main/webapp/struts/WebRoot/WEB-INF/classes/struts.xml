@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+<struts>
+	<constant name="struts.multipart.maxSize" value="300000000" />
+
+	<package name="default" extends="json-default" namespace="/">
+
+ 	<global-results>
+			<result name="insert">insert.jsp</result>
+			<result name="delete">delete.jsp</result>
+			<result name="update">update.jsp</result>
+			<result name="login">login.jsp</result>
+			<result name="allException">error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="allException">
+			</exception-mapping>
+		</global-exception-mappings>
+
+		<action name="index" class="IndexAction">
+			<result name="success" type="chain">showsomeArticle</result>
+		</action>
+
+		<action name="*Articletype" class="ArticletypeAction" method="{1}">
+			<result name="success">articletype_manager.jsp</result>
+			<result type="json" name="json2">
+				<param name="excludeProperties">
+					ats,articletype
+           </param>
+			</result>
+		</action>
+
+		<action name="*Article" class="ArticleAction" method="{1}">
+			<result name="success">article_manager.jsp</result>
+			<result name="some" type="chain">showsomeNews</result>
+			<result name="add">article_add.jsp</result>
+			<result name="update">article_update.jsp</result>
+			<result name="show">article_detail.jsp</result>
+		</action>
+
+		<action name="*Admin" class="AdminAction" method="{1}">
+			<result name="success">admin/main.jsp</result>
+			<result name="login">/admin/adminLogin.jsp</result>
+			<result name="input">/admin/adminLogin.jsp</result>
+			<result name="update">admin_update.jsp</result>
+			<result name="updatesubmit">update.jsp</result>
+		</action>
+
+		<action name="adminLogin" class="AdminLoginAction">
+			<result name="success">/admin/main.jsp</result>
+			<result name="login">/admin/adminLogin.jsp</result>
+			<result name="input">/admin/adminLogin.jsp</result>
+		</action>
+
+		<action name="userLogin" class="UserLoginAction">
+			<result name="success">user.jsp</result>
+			<result name="login">login.jsp</result>
+			<result name="input">login.jsp</result>
+		</action>
+
+		<action name="*User" class="UserAction" method="{1}">
+			<result name="success">user_manager.jsp</result>
+			<result name="input">user_add.jsp</result>
+			<result name="update">user_update.jsp</result>
+			<result name="updateok">update.jsp</result>
+			<result name="show">user_detail.jsp</result>
+			<result name="logout">index.html</result>
+		</action>
+
+		<action name="*Count" class="WebCountAction" method="{1}">
+			<result name="success">web_count.jsp</result>
+			<result name="some" type="chain">showsomeAdv</result>
+		</action>
+
+		<action name="forget" class="ForgetAction">
+			<result name="success">user.jsp</result>
+			<result name="input">forget.jsp</result>
+		</action>
+
+		<action name="*Reg" class="RegisterAction" method="{1}">
+			<result type="json" name="success">
+				<param name="includeProperties">
+				error
+           		</param>
+			</result>
+			<result name="register">register.jsp</result>
+			<result type="json" name="json2">
+				<param name="includeProperties">
+					checkname
+           		</param>
+			</result>
+			<result type="json" name="json3">
+				<param name="includeProperties">
+					error
+          		</param>
+			</result>
+		</action>
+
+		<action name="*News" class="NewsAction" method="{1}">
+			<result name="success">news_manager.jsp</result>
+			<result name="some" type="chain">showsomeResource</result>
+			<result name="input">news_add.jsp</result>
+			<result name="update">news_update.jsp</result>
+			<result name="show">news_detail.jsp</result>
+		</action>
+
+
+		<action name="*Testbank" class="TestbankAction" method="{1}">
+			<result name="success">testbank_add.jsp</result>
+			<result name="show">testbank_manager.jsp</result>
+			<result name="update">testbank_update.jsp</result>
+			<result type="json" name="json2">
+			<param name="excludeProperties">
+				all,alltype,ts,model,grade
+			</param>
+			</result>
+			<result type="json" name="json3">
+				<param name="excludeProperties">
+					all,alltype,ts,model,tests
+				</param>
+			</result>
+
+		</action>
+
+		<action name="*Chapter" class="ChapterAction" method="{1}">
+			<result name="success">chapter_manager.jsp</result>
+			<result name="showall">chapter_manager.jsp</result>
+			<result name="login">login.jsp</result>
+			<result type="json" name="json2">
+				<param name="includeProperties">
+					chapter
+			</param>
+			</result>
+		</action>
+
+		<action name="*Reply" class="ReplyAction" method="{1}">
+			<result name="success">user_manager.jsp</result>
+			<result name="input">user_manager.jsp</result>
+			<result name="reply" type="chain">showBbs</result>
+			<result name="reply2" type="chain">showBbs</result>
+		</action>
+
+		<action name="*Bbs" class="BbsAction" method="{1}">
+			<result name="success">bbs_manager.jsp</result>
+			<result name="show">bbs_detail.jsp</result>
+			<result name="some" type="chain">showCount</result>
+			<result name="showuser">user_bbs.jsp</result>
+			<result name="show2">user_bbs_detail.jsp</result>
+			<result name="showall" type="redirectAction">showallBbs</result>
+			<result name="insert">insert.jsp</result>
+			<result name="delete">delete.jsp</result>
+			<result type="json" name="jsonbbs"></result>
+		</action>
+
+		<action name="*Resource" class="ResourceAction" method="{1}">
+			<interceptor-ref name="defaultStack">
+				<param name="fileUpload.maximumSize">300000000</param>
+				<param name="fileUpload.allowedTypes">
+				</param>
+			</interceptor-ref>
+
+			<result name="success">resource_upload.jsp</result>
+			<result name="showall">resource_manager.jsp</result>
+			<result name="some" type="chain">showsomeBbs</result>
+			<result name="showmy">user_resource.jsp</result>
+			<result name="show">resource_detail.jsp</result>
+			<result name="show2">user_resource_detail.jsp</result>
+			<result name="showuser">user_resource.jsp</result>
+			<result name="update">resource_update.jsp</result>
+			<result name="input">error.jsp</result>
+			<result type="json" name="jsonresource"></result>
+
+			<param name="uploadDir">/WEB-INF/upload/</param>
+
+		</action>
+
+		<action name="*Resourcetype" class="ResourcetypeAction" method="{1}">
+			<result name="success">resourcetype_manager.jsp</result>
+			<result type="json" name="json2">
+				<param name="includeProperties">
+					resourcetype
+			</param>
+			</result>
+		</action>
+
+		<action name="*Score" class="ScoreAction" method="{1}">
+			<result name="success">score_manager.jsp</result>
+			<result name="add">score_add.jsp</result>
+			<result name="update">score_update.jsp</result>
+			<result name="showuser">user_score.jsp</result>
+		</action>
+
+		<action name="*Adv" class="AdvAction" method="{1}">
+			<result name="success">adv_manager.jsp</result>
+			<result name="show">adv_detail.jsp</result>
+			<result name="add">adv_add.jsp</result>
+			<result name="some">WEB-INF/index.jsp</result>
+			<result name="update">adv_update.jsp</result>
+		</action>
+
+		<action name="download" class="FileDownloadAction">
+			<!-- 要被下载的文件的路径 -->
+			<param name="inputPath">/WEB-INF/upload/</param>
+
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">targetFile</param>
+				<!--
+					使用经过转码的文件名作为下载文件名，downloadFileName属性 对应action类中的方法
+					getDownloadFileName()
+				-->
+				<param name="contentDisposition">attachment;filename="${downloadFileName}" </param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+	</package>
+
+</struts>

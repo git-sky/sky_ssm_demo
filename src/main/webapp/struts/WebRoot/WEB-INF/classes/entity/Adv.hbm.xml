@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="entity.Adv" table="adv" schema="dbo" catalog="web" >
+		<id name="advid" type="integer">
+			<column name="advid" />
+			<generator class="identity" />
+		</id>
+		<property name="title" type="string">
+			<column name="title"></column>
+		</property>
+		<property name="date" type="string" >
+			<column name="date" length="23" not-null="true" />
+		</property>
+		<property name="contents" type="string">
+			<column name="contents" />
+		</property>
+
+	</class>
+</hibernate-mapping>

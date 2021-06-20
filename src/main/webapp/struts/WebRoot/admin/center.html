@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<style type="text/css">
+<!--					
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	overflow:hidden;
+}
+-->
+</style>
+<script type="text/javascript">
+ flag=1;
+	 function turn(){
+		 if(flag==1){
+		 	flag=0;
+		  	document.getElementById('lef').style.width='1';
+		  	document.getElementById('mid').innerHTML=4;
+		 }else{
+		 	flag=1;
+		   	document.getElementById('lef').style.width='161';
+		   	document.getElementById('mid').innerHTML=3;
+		 }
+ 	}
+</script>
+</head>
+
+<body>
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="3" bgcolor="#5594c5"></td>
+    <td id="lef"  width="161" valign="top"><iframe height="100%" width="100%"  frameborder="0" src="manage.jsp" name="leftFrame" id="leftFrame" title="leftFrame"></iframe></td>
+    <td id="mid" onclick="turn()" width="5" bgcolor="#5594c5"  style="font-family: Webdings; font-size:12px; cursor:pointer; color:white;">3</td>
+    <td><iframe height="100%" width="100%"  frameborder="0" src="right.jsp" name="rightFrame" id="rightFrame" title="rightFrame" scrolling="auto"></iframe></td>
+    <td bgcolor="#5594c5"></td>
+  </tr>
+    <tr><td colspan="5" bgcolor="#5594c5" height="2"></td></tr>
+</table>
+</body>
+</html>

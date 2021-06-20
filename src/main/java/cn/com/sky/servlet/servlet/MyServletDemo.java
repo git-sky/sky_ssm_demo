@@ -8,15 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ServletDemoSecond extends HttpServlet {
+public class MyServletDemo extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
 
     // 初始化
+    @Override
     public void init() throws ServletException {
+        super.init();
         System.out.println("我是init()方法！用来进行初始化工作");
     }
 
     // 处理GET请求
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("我是doGet()方法！用来处理GET请求");
         response.setContentType("text/html;charset=GB2312");
@@ -26,16 +30,21 @@ public class ServletDemoSecond extends HttpServlet {
         out.println("这是Servlet的例子");
         out.println("</BODY>");
         out.println("</HTML>");
+
+        request.getSession();
     }
 
     // 处理POST请求
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 
     // 销毁实例
+    @Override
     public void destroy() {
         super.destroy();
         System.out.println("我是destroy()方法！用来进行销毁实例的工作");
     }
+
 }

@@ -20,9 +20,9 @@ import org.springframework.context.ApplicationContextAware;
  * 如果Bean 实现了BeanNameAware接口，Spring 将Bean的ID传递给setBeanName() 接口方法。
  * 如果Bean 实现了BeanFactoryAware接口，Spring 将调用setBeanFactory()接口方法，将BeanFactory 容器实例传入。
  * 如果Bean 实现了ApplicationContextAware 接口，Spring 将调用setApplicationContext()接口方法，将应用上下文的引用传入。
- * 如果Bean 实现了BeanPostProcessor 接口，Spring 将调用它们的postProcessBeforeInitialization() 接口方法。
+ * 如果容器存在实现了BeanPostProcessor 接口的类，Spring 将调用它们的postProcessBeforeInitialization() 接口方法。
  * 如果Bean 实现了InitializingBean 接口，Spring 将调用它们的afterPropertiesSet() 接口方法。类似地，如果Bean 使用init-method 声明了初始化方法，该方法也会被调用。
- * 如果Bean 实现了BeanPostProcessor 接口，Spring 将调用它们的postPoressAfterInitialization() 接口方法。
+ * 如果容器存在实现了BeanPostProcessor 接口的类，Spring 将调用它们的postPoressAfterInitialization() 接口方法。
  * 此时此刻，Bean 已经准备就绪，可以被应用程序使用了，它们将一直驻留在应用上下文中，直到该应用上下文被销毁。
  * 如果Bean 实现了DisposableBean 接口，Spring 将调用它的destroy()接口方法。
  * 同样，如果Bean 使用destroy-method 声明了销毁方法，该方法也会被调用。
@@ -91,13 +91,13 @@ public class Student implements FactoryBean<Teacher>, BeanNameAware, BeanFactory
     }
 
     // 来自于BeanNameAware接口
-    public void setBeanName(String arg0) {
-        System.out.println("BeanNameAware -> setBeanName(String arg0)...[" + arg0 + "]");
+    public void setBeanName(String beanName) {
+        System.out.println("BeanNameAware -> setBeanName(String beanName)...[" + beanName + "]");
     }
 
     // 来自于BeanFactoryAware接口
-    public void setBeanFactory(BeanFactory arg0) throws BeansException {
-        System.out.println("BeanFactoryAware -> setBeanFactory(BeanFactory arg0)...[" + arg0 + "]");
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        System.out.println("BeanFactoryAware -> setBeanFactory(BeanFactory beanFactory)...[" + beanFactory + "]");
     }
 
     // 来自于InitializingBean
@@ -137,5 +137,9 @@ public class Student implements FactoryBean<Teacher>, BeanNameAware, BeanFactory
     public boolean isSingleton() {
         System.out.println("FactoryBean -> isSingleton() .........");
         return true;
+    }
+
+    public void study() {
+        System.out.println("study englist.....");
     }
 }

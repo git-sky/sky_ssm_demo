@@ -1,0 +1,61 @@
+.main {
+	padding: 0px;
+	margin: 0px;
+	width: 160px;
+	font-size: 12px;
+	list-style: none;
+	cursor: hand;
+}
+
+.head {
+	text-decoration: none;
+	width:158px;
+	padding-left: 0px;
+	display: block;
+	padding-top: 3px;
+	padding-bottom: 5px;
+	cursor: hand;
+	background-image:url("../images/used.png");
+	font-size: 12px;
+}
+
+.main li a {
+	font-family: 宋体;
+	cursor: hand;
+	font-size: 14px;
+	text-align: center;
+	text-decoration: none;
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+	line-height: 28px;
+	vertical-align: middle;
+
+}
+
+.main li ul li a {
+	font-family: 宋体;
+	cursor: hand;
+	font-size: 12px;
+	text-align: center;
+	width: 160px;
+	height:20px;
+	text-decoration: none;
+	padding: 0px;
+	margin-left: 0px;
+	list-style: none;
+	line-height: 20px;
+	vertical-align: middle;
+}
+
+.main li a:hover {
+	list-style: none;
+	text-decoration:underline;
+	cursor: hand;
+}
+
+.main li ul {
+	display: none;
+	list-style: none;
+	cursor: hand;
+}

@@ -28,10 +28,10 @@ public class TestSqlSession {
     public void setUp() {
 
         // mybatis的配置文件
-//        String resource = "mybatis/conf.xml";
+        String resource = "mybatis/conf.xml";
+
 //        // 使用类加载器加载mybatis的配置文件（它也加载关联的映射文件）
 //        InputStream is = TestSqlSession.class.getClassLoader().getResourceAsStream(resource);
-//
 //        // 构建sqlSession的工厂
 //        SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
 
@@ -40,7 +40,7 @@ public class TestSqlSession {
         // 构建sqlSession的工厂
         // SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
 
-        String resource = "cn/com/sky/mybatis/test/mybatis-config.xml";
+//        String resource = "cn/com/sky/mybatis/test/mybatis-config.xml";
         InputStream inputStream = null;
         try {
             inputStream = Resources.getResourceAsStream(resource);
@@ -60,30 +60,34 @@ public class TestSqlSession {
          * getUser 是 select 标签的 id 属性值，通过select标签的id属性值就可以找到要执行的SQL
          */
 
+//        基于XML的实现
+
 //        String statement = "cn.com.sky.mybatis.mapping.userMapper.getUser";
 //        String statement = "cn.com.sky.mybatis.mapping.userMapper.getUserByInteger";
-        String statement = "cn.com.sky.mybatis.mapping.userMapper.getUserByInteger2";
+//        String statement = "cn.com.sky.mybatis.mapping.userMapper.getUserByInteger2";
 
 //        cn/com/sky/mybatis/mapping/userMapper.xml
 
         // 执行查询返回一个唯一user对象的sql
         // 创建能执行映射文件中sql的sqlSession
+//        SqlSession sqlSession = sqlSessionFactory.openSession();
+//        try {
+//            User user = sqlSession.selectOne(statement, 1);
+//            System.out.println(user);
+//        } finally {
+//            sqlSession.close();
+//        }
+
+
+//        基于注解的实现
+
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
-            User user = sqlSession.selectOne(statement, 1);
+            UserMapperI mapper = sqlSession.getMapper(UserMapperI.class);
+            User user = mapper.getById(2);
             System.out.println(user);
         } finally {
             sqlSession.close();
-        }
-
-
-        SqlSession session = sqlSessionFactory.openSession();
-        try {
-            UserMapperI mapper = sqlSession.getMapper(UserMapperI.class);
-            User user = mapper.getById(1);
-            System.out.println(user);
-        } finally {
-            session.close();
         }
     }
 
@@ -92,10 +96,15 @@ public class TestSqlSession {
 
 //        String statement = "cn.com.sky.mybatis.mapping.userMapper.addUser";
 //        String statement = "cn.com.sky.mybatis.mapping.userMapper.addUser2";
-        String statement = "cn.com.sky.mybatis.mapping.userMapper.addUser3";
+//        String statement = "cn.com.sky.mybatis.mapping.userMapper.addUser3";
 
+//        String statement = "cn.com.sky.mybatis.mapping.userMapper.addUserReturnKey";
 
-        User user = new User("zhaoliu", 12);
+//        String statement = "cn.com.sky.mybatis.mapping.userMapper.addUserReturnKey2";
+
+        String statement = "cn.com.sky.mybatis.mapping.userMapper.addUserReturnKey3";
+
+        User user = new User("qian", 36);
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
@@ -105,6 +114,8 @@ public class TestSqlSession {
 
             int count = sqlSession.insert(statement, user);
             System.out.println(count);
+            //user带有主键id
+            System.out.println(user);
         }
         sqlSession.commit();
     }

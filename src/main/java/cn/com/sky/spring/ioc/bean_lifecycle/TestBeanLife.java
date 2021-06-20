@@ -79,7 +79,7 @@ public class TestBeanLife {
 
         ConfigurableBeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource(configLocation));
 
-//        beanFactory.addBeanPostProcessor(new MyBeanPostProcessor());
+        beanFactory.addBeanPostProcessor(new MyBeanPostProcessor());
         // beanFactory.getBean("sky");
 //        for (int i = 0; i <= 3; i++) {
 //            Teacher teacher = (Teacher) beanFactory.getBean("teacher");

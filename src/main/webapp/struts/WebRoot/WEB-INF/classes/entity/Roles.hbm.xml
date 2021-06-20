@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="entity.Roles" table="roles" schema="dbo" catalog="web"  lazy="false">
+        <id name="roleid" type="integer">
+            <column name="roleid" />
+            <generator class="identity" />
+        </id>
+        <property name="rolename" type="string">
+            <column name="rolename" length="20" not-null="true" />
+        </property>
+        <set name="userses" inverse="true">
+            <key>
+                <column name="roleid" not-null="true" />
+            </key>
+            <one-to-many class="entity.Users" />
+        </set>
+    </class>
+</hibernate-mapping>

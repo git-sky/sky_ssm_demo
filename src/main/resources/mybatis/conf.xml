@@ -37,7 +37,6 @@
         <!--测试环境-->
         <environment id="test">
             <transactionManager type="JDBC"/>
-            <!-- 配置数据库连接信息 -->
             <dataSource type="POOLED">
                 <property name="driver" value="${driver}"/>
                 <property name="url" value="${url}"/>
@@ -48,7 +47,6 @@
         <!--预上线环境-->
         <environment id="stage">
             <transactionManager type="JDBC"/>
-            <!-- 配置数据库连接信息 -->
             <dataSource type="POOLED">
                 <property name="driver" value="${driver}"/>
                 <property name="url" value="${url}"/>
@@ -59,7 +57,6 @@
         <!--线上环境-->
         <environment id="prod">
             <transactionManager type="JDBC"/>
-            <!-- 配置数据库连接信息 -->
             <dataSource type="POOLED">
                 <property name="driver" value="${driver}"/>
                 <property name="url" value="${url}"/>
@@ -69,12 +66,12 @@
         </environment>
     </environments>
 
-
+    <!--配置映射配置文件的位置 -->
     <mappers>
         <!--单个配置： 注册userMapper.xml文件， userMapper.xml位于cn.com.sky.mybatis.mapping这个包下，所以resource写成cn/com/sky/mybatis/mapping/userMapper.xml -->
         <mapper resource="cn/com/sky/mybatis/mapping/userMapper.xml"/>
 
-        <!--单个配置： 注册UserMapper映射接口 &ndash;&gt;-->
+        <!--单个配置： 注册UserMapper映射接口 -->
         <!--<mapper class="cn.com.sky.mybatis.mapping.UserMapperI"/>-->
 
 
@@ -90,7 +87,7 @@
         <!--<mapper resource="cn/com/sky/mybatis/mapping/commodityMapper.xml"/>-->
 
         <!--批量配置：扫描包下的文件-->
-        <package name="cn.com.sky.mybatis.mapping"/>
+        <!--<package name="cn.com.sky.mybatis.mapping"/>-->
 
     </mappers>
 

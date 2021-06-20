@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+ <hibernate-mapping>
+    <class name="entity.Testbank" table="testbank" schema="dbo" catalog="web" lazy="false">
+        <id name="testid" type="integer">
+            <column name="testid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="chapter" class="entity.Chapter" fetch="select" lazy="false">
+            <column name="chapterid" not-null="true" />
+        </many-to-one>
+        <property name="title" type="string">
+            <column name="title" length="200" not-null="true" />
+        </property>
+        <property name="a" type="string">
+            <column name="A" length="200" not-null="true" />
+        </property>
+        <property name="b" type="string">
+            <column name="B" length="200" not-null="true" />
+        </property>
+        <property name="c" type="string">
+            <column name="C" length="200" not-null="true" />
+        </property>
+        <property name="d" type="string">
+            <column name="D" length="200" not-null="true" />
+        </property>
+        <property name="answer" type="string">
+            <column name="answer" length="200" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
